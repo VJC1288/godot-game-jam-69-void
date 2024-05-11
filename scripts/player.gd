@@ -1,24 +1,18 @@
 extends Node3D
 
-signal fireLaser(muzzlePosition, laserRotation)
+signal fireLaser(muzzlePosition)
 
-@onready var world_pivot:Node3D = $WorldPivot
-@onready var camera_pivot = $WorldPivot/CameraPivot
-@onready var starship = $WorldPivot/CameraPivot/StarshipBody
-@onready var center_muzzle = $WorldPivot/CameraPivot/StarshipBody/CenterMuzzle
+@onready var camera_pivot = $CameraPivot
+@onready var starship = $Starship
+@onready var center_muzzle = $Starship/CenterMuzzle
 
 @export var SPEED = 20
-@export var FALL_SPEED = 10
-@export var ORBIT_SPEED = .1
 
 var movement_clamp_vertical = 15
 var movement_clamp_horizontal = movement_clamp_vertical * (16.0/9.0) #Aspect Ratio
 
 func _physics_process(delta):
-	
-	world_pivot.rotation.y += ORBIT_SPEED * delta
-	camera_pivot.position.z += FALL_SPEED * delta
-	
+
 	var direction:= Vector2.ZERO
 	if Input.is_action_pressed("move_up"):
 		starship.rotation.z = lerp_angle(starship.rotation.z, deg_to_rad(-30), 0.5)
@@ -41,4 +35,4 @@ func _physics_process(delta):
 	
 func _input(event):
 	if event.is_action_pressed("fire"):
-		fireLaser.emit(center_muzzle.global_position, world_pivot.rotation.y)
+		fireLaser.emit(center_muzzle.global_position)

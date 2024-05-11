@@ -5,11 +5,11 @@ const PAUSE_MENU = preload("res://scenes/pause_menu.tscn")
 const PLAYERLASER = preload("res://scenes/playerlaser.tscn")
 
 @onready var ui_elements = $UIElements
-@onready var player_projectile_container = $PlayerProjectileContainer
-
+@onready var orbiter_manager = $OrbiterManager
+@onready var player_laser_container = $OrbiterManager/PlayerLaserContainer
 
 var paused = null
-var playerSpawnLocation = Vector3(0,0,0)
+var playerSpawnLocation = Vector3(0,0,-1000)
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -17,8 +17,9 @@ func _ready():
 
 func spawn_player(location:Vector3):
 	var player = PLAYER.instantiate()
-	player.fireLaser.connect(playerLaser)
-	add_child(player)
+	player.fireLaser.connect(orbiter_manager.spawn_player_laser)
+	orbiter_manager.player_container.add_child(player)
+	orbiter_manager.current_player = player
 	player.global_position = location
 
 func _input(event):
@@ -27,9 +28,4 @@ func _input(event):
 		paused = PAUSE_MENU.instantiate()
 		ui_elements.add_child(paused)
 
-func playerLaser(firePoint, laserRotation):
-	var spawned_laser = PLAYERLASER.instantiate()
-	player_projectile_container.add_child(spawned_laser)
-	spawned_laser.laser.global_position = firePoint
-	spawned_laser.laser.rotation.y = laserRotation
-	print(firePoint)
+
