@@ -1,16 +1,23 @@
-[gd_scene load_steps=9 format=3 uid="uid://bhljayf8hhj62"]
+[gd_scene load_steps=12 format=3 uid="uid://bhljayf8hhj62"]
 
 [ext_resource type="PackedScene" uid="uid://dd3se6k2tyivf" path="res://scenes/damage_zone.tscn" id="1_6hpio"]
 [ext_resource type="PackedScene" uid="uid://ver6m6pepogb" path="res://scenes/player.tscn" id="1_gwoqi"]
+[ext_resource type="Shader" path="res://shaders/sky.gdshader" id="1_qwrnc"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u1dy7"]
-sky_top_color = Color(0, 0, 0, 1)
-sky_horizon_color = Color(0.189103, 0.0697177, 0.298276, 1)
-ground_bottom_color = Color(0, 0, 0, 1)
-ground_horizon_color = Color(0.46006, 0.284444, 0.82962, 1)
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0bppq"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_pi7gf"]
+in_3d_space = true
+seamless = true
+seamless_blend_skirt = 1.0
+noise = SubResource("FastNoiseLite_0bppq")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pova0"]
+shader = ExtResource("1_qwrnc")
+shader_parameter/noise1texture = SubResource("NoiseTexture2D_pi7gf")
 
 [sub_resource type="Sky" id="Sky_bchi3"]
-sky_material = SubResource("ProceduralSkyMaterial_u1dy7")
+sky_material = SubResource("ShaderMaterial_pova0")
 
 [sub_resource type="Environment" id="Environment_je1at"]
 background_mode = 2
@@ -37,7 +44,7 @@ radius = 98.0
 [node name="Main" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
 [node name="World" type="Node3D" parent="."]
@@ -56,8 +63,5 @@ mesh = SubResource("SphereMesh_nas5n")
 shape = SubResource("CylinderShape3D_wqr05")
 
 [node name="Player" parent="." instance=ExtResource("1_gwoqi")]
-
-[node name="StarshipBody" parent="Player/WorldPivot/CameraPivot/starship" index="1"]
-collision_mask = 0
 
 [editable path="Player"]
