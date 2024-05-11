@@ -2,17 +2,20 @@ extends Node3D
 
 @onready var world_pivot:Node3D = $WorldPivot
 @onready var camera_pivot = $WorldPivot/CameraPivot
-@onready var starship = $WorldPivot/CameraPivot/starship
+@onready var starship = $WorldPivot/CameraPivot/StarshipBody
 
 
-var SPEED = 15
+
+@export var SPEED = 20
+@export var FALL_SPEED = .1
+@export var ORBIT_SPEED = .001
 var movement_clamp_vertical = 15
-var movement_clamp_horizontal = movement_clamp_vertical * 1.5
+var movement_clamp_horizontal = movement_clamp_vertical * (16.0/9.0) #Aspect Ratio
 
 func _physics_process(delta):
 	
-	world_pivot.rotation.y += .001
-	camera_pivot.position.z += .05
+	world_pivot.rotation.y += ORBIT_SPEED
+	camera_pivot.position.z += FALL_SPEED
 	
 	var direction:= Vector2.ZERO
 	if Input.is_action_pressed("move_up"):
@@ -33,4 +36,4 @@ func _physics_process(delta):
 	
 	starship.position.x = clamp(starship.position.x + direction.x * SPEED * delta, -movement_clamp_horizontal, movement_clamp_horizontal)
 	starship.position.y = clamp(starship.position.y + direction. y * SPEED * delta, -movement_clamp_vertical, movement_clamp_vertical)
-
+	

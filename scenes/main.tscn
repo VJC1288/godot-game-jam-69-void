@@ -57,7 +57,7 @@ shape = SubResource("CylinderShape3D_wqr05")
 
 [node name="Player" parent="." instance=ExtResource("1_gwoqi")]
 
-[node name="WorldPivot" parent="Player" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="StarshipBody" parent="Player/WorldPivot/CameraPivot/starship" index="1"]
+collision_mask = 0
 
 [editable path="Player"]
