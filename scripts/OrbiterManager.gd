@@ -4,10 +4,10 @@ class_name orbiter_manager
 
 const PLAYERLASER = preload("res://scenes/playerlaser.tscn")
 
-@export var DEFAULT_ORBIT_SPEED = .01
-@export var DEFAULT_FALL_SPEED = 10
+@export var DEFAULT_ORBIT_SPEED = .02
+@export var DEFAULT_FALL_SPEED = 5
 
-@export var DEFAULT_LASER_ORBIT_SPEED = DEFAULT_ORBIT_SPEED * 4
+@export var DEFAULT_LASER_ORBIT_SPEED = DEFAULT_ORBIT_SPEED * 8
 
 @onready var player_laser_container = $PlayerLaserContainer
 @onready var player_container = $PlayerContainer
@@ -15,6 +15,7 @@ const PLAYERLASER = preload("res://scenes/playerlaser.tscn")
 var current_player = null
 
 func _physics_process(delta):
+
 
 	#Player falling towards black hole
 	if current_player != null:
@@ -28,11 +29,6 @@ func _physics_process(delta):
 	
 	player_laser_container.rotation.y += DEFAULT_LASER_ORBIT_SPEED * delta
 	
-	prints("Player Rotation:", player_container.rotation)
-	prints("Laser Rotation:", player_laser_container.rotation)
-	
-
-
 
 func spawn_player_laser(firePoint):
 	var spawned_laser = PLAYERLASER.instantiate()
