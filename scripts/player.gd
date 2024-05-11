@@ -1,10 +1,11 @@
 extends Node3D
 
+signal fireLaser(muzzlePosition)
+
 @onready var world_pivot:Node3D = $WorldPivot
 @onready var camera_pivot = $WorldPivot/CameraPivot
 @onready var starship = $WorldPivot/CameraPivot/StarshipBody
-
-
+@onready var center_muzzle = $WorldPivot/CameraPivot/StarshipBody/CenterMuzzle
 
 @export var SPEED = 20
 @export var FALL_SPEED = .1
@@ -37,3 +38,6 @@ func _physics_process(delta):
 	starship.position.x = clamp(starship.position.x + direction.x * SPEED * delta, -movement_clamp_horizontal, movement_clamp_horizontal)
 	starship.position.y = clamp(starship.position.y + direction. y * SPEED * delta, -movement_clamp_vertical, movement_clamp_vertical)
 	
+func _input(event):
+	if event.is_action_pressed("fire"):
+		fireLaser.emit(center_muzzle.global_position)

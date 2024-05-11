@@ -99,3 +99,5 @@ text = "How to
 Play"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Resume" to="." method="_on_resume_pressed"]

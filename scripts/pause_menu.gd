@@ -11,3 +11,8 @@ func _input(event):
 		get_tree().paused = false
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		queue_free()
+
+func _on_resume_pressed():
+	get_tree().paused = false
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	queue_free()

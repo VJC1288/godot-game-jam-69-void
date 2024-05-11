@@ -70,16 +70,10 @@ pause={
 [layer_names]
 
 3d_physics/layer_1="player"
-3d_physics/layer_2="world"
-3d_physics/layer_3="enemy"
-3d_physics/layer_4="playerweapon"
-3d_physics/layer_5="enemyweapon"
-
-[layer_names]
-
-3d_physics/layer_1="player"
 3d_physics/layer_2="enemies"
 3d_physics/layer_3="damage_zone"
+3d_physics/layer_4="playerweapon"
+3d_physics/layer_5="enemyweapon"
 
 [physics]
 
