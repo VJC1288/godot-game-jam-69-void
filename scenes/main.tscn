@@ -1,8 +1,10 @@
 [gd_scene load_steps=12 format=3 uid="uid://bhljayf8hhj62"]
 
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_4cpek"]
 [ext_resource type="PackedScene" uid="uid://dd3se6k2tyivf" path="res://scenes/damage_zone.tscn" id="1_6hpio"]
 [ext_resource type="PackedScene" uid="uid://ver6m6pepogb" path="res://scenes/player.tscn" id="1_gwoqi"]
 [ext_resource type="Shader" path="res://shaders/sky.gdshader" id="1_qwrnc"]
+
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_0bppq"]
 
@@ -42,6 +44,7 @@ height = 50.0
 radius = 98.0
 
 [node name="Main" type="Node3D"]
+script = ExtResource("1_4cpek")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
@@ -62,6 +65,7 @@ mesh = SubResource("SphereMesh_nas5n")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/TheVoid/DamageZone"]
 shape = SubResource("CylinderShape3D_wqr05")
 
-[node name="Player" parent="." instance=ExtResource("1_gwoqi")]
+[node name="ProjectileContainer" type="Node3D" parent="."]
 
 [editable path="Player"]
+[node name="UIElements" type="Node" parent="."]
