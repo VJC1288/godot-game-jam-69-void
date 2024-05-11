@@ -1,19 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://ver6m6pepogb"]
+[gd_scene load_steps=4 format=3 uid="uid://ver6m6pepogb"]
 
 [ext_resource type="PackedScene" uid="uid://dwwhc0tog5gsq" path="res://assets/models/starship.glb" id="1_ngwxl"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_tboqh"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u0mrh"]
+radius = 0.6076
+height = 3.82652
+
 [node name="Player" type="Node3D"]
 script = ExtResource("1_tboqh")
+FALL_SPEED = 1.0
 
 [node name="WorldPivot" type="Node3D" parent="."]
 
-[node name="TiltPivot" type="Node3D" parent="WorldPivot"]
+[node name="CameraPivot" type="Node3D" parent="WorldPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -500)
 
-[node name="starship" parent="WorldPivot/TiltPivot" instance=ExtResource("1_ngwxl")]
-transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 0, 0, 0)
-
-[node name="Camera3D" type="Camera3D" parent="WorldPivot/TiltPivot"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -12.0562)
+[node name="Camera3D" type="Camera3D" parent="WorldPivot/CameraPivot"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -21.2333)
 current = true
+
+[node name="StarshipBody" type="RigidBody3D" parent="WorldPivot/CameraPivot" groups=["player"]]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.155176, 0.135779, 0)
+mass = 1000.0
+gravity_scale = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldPivot/CameraPivot/StarshipBody"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_u0mrh")
+
+[node name="StarshipModel" parent="WorldPivot/CameraPivot/StarshipBody" instance=ExtResource("1_ngwxl")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.143352, 0.310352)
