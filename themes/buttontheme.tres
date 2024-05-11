@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://b6epshmaiw5dd"]
+
+[ext_resource type="StyleBox" uid="uid://ud5jyih5jsr4" path="res://themes/buttonstyle.tres" id="1_187bf"]
+[ext_resource type="FontFile" uid="uid://mh42ommv3vnq" path="res://assets/fonts/vermin_vibes.ttf" id="2_iknf0"]
+
+[resource]
+default_font = ExtResource("2_iknf0")
+default_font_size = 20
+Button/styles/normal = ExtResource("1_187bf")

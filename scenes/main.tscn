@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bhljayf8hhj62"]
+[gd_scene load_steps=8 format=3 uid="uid://bhljayf8hhj62"]
 
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_e6aak"]
 [ext_resource type="PackedScene" uid="uid://ver6m6pepogb" path="res://scenes/player.tscn" id="1_gwoqi"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u1dy7"]
@@ -30,6 +31,11 @@ radius = 100.0
 height = 200.0
 
 [node name="Main" type="Node3D"]
+script = ExtResource("1_e6aak")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
 
 [node name="World" type="Node3D" parent="."]
 
@@ -43,7 +49,6 @@ mesh = SubResource("SphereMesh_nas5n")
 
 [node name="Player" parent="." instance=ExtResource("1_gwoqi")]
 
-[node name="WorldPivot" parent="Player" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="UIElements" type="Node" parent="."]
 
 [editable path="Player"]
