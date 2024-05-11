@@ -58,5 +58,5 @@ shape = SubResource("CylinderShape3D_wqr05")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_1ijl5")
-volume_db = -20.0
+volume_db = -22.0
 autoplay = true
