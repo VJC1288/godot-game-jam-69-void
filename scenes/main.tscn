@@ -1,15 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://bhljayf8hhj62"]
+[gd_scene load_steps=7 format=3 uid="uid://bhljayf8hhj62"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bujvx"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+[ext_resource type="PackedScene" uid="uid://ver6m6pepogb" path="res://scenes/player.tscn" id="1_gwoqi"]
 
-[sub_resource type="Sky" id="Sky_iq6ow"]
-sky_material = SubResource("ProceduralSkyMaterial_bujvx")
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u1dy7"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0.189103, 0.0697177, 0.298276, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0.46006, 0.284444, 0.82962, 1)
+
+[sub_resource type="Sky" id="Sky_bchi3"]
+sky_material = SubResource("ProceduralSkyMaterial_u1dy7")
 
 [sub_resource type="Environment" id="Environment_je1at"]
 background_mode = 2
-sky = SubResource("Sky_iq6ow")
+sky = SubResource("Sky_bchi3")
 tonemap_mode = 2
 glow_enabled = true
 
@@ -17,6 +21,8 @@ glow_enabled = true
 albedo_color = Color(0, 0, 0, 1)
 metallic_specular = 0.2
 roughness = 0.0
+rim_enabled = true
+rim_tint = 0.6
 
 [sub_resource type="SphereMesh" id="SphereMesh_nas5n"]
 material = SubResource("StandardMaterial3D_rjn7x")
@@ -34,3 +40,10 @@ environment = SubResource("Environment_je1at")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/TheVoid"]
 mesh = SubResource("SphereMesh_nas5n")
+
+[node name="Player" parent="." instance=ExtResource("1_gwoqi")]
+
+[node name="WorldPivot" parent="Player" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[editable path="Player"]
