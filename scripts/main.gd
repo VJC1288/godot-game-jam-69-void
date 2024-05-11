@@ -12,6 +12,7 @@ var paused = null
 var playerSpawnLocation = Vector3(0,0,0)
 
 func _ready():
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	spawn_player(playerSpawnLocation)
 
 func spawn_player(location:Vector3):
@@ -26,8 +27,9 @@ func _input(event):
 		paused = PAUSE_MENU.instantiate()
 		ui_elements.add_child(paused)
 
-func playerLaser(firePoint):
+func playerLaser(firePoint, laserRotation):
 	var spawned_laser = PLAYERLASER.instantiate()
 	player_projectile_container.add_child(spawned_laser)
 	spawned_laser.laser.global_position = firePoint
+	spawned_laser.laser.rotation.y = laserRotation
 	print(firePoint)

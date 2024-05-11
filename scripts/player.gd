@@ -1,6 +1,6 @@
 extends Node3D
 
-signal fireLaser(muzzlePosition)
+signal fireLaser(muzzlePosition, laserRotation)
 
 @onready var world_pivot:Node3D = $WorldPivot
 @onready var camera_pivot = $WorldPivot/CameraPivot
@@ -41,4 +41,4 @@ func _physics_process(delta):
 	
 func _input(event):
 	if event.is_action_pressed("fire"):
-		fireLaser.emit(center_muzzle.global_position)
+		fireLaser.emit(center_muzzle.global_position, world_pivot.rotation.y)
