@@ -1,0 +1,118 @@
+[gd_scene load_steps=5 format=3 uid="uid://7s4v6k8xx1vl"]
+
+[ext_resource type="FontFile" uid="uid://bl5csexcm7nrv" path="res://assets/fonts/Rocket Rinder.otf" id="1_dgk0i"]
+[ext_resource type="StyleBox" uid="uid://dmbwwmi81vlqd" path="res://themes/barbackground.tres" id="2_od5bb"]
+[ext_resource type="StyleBox" uid="uid://dxurpi5esihxk" path="res://themes/shieldbartheme.tres" id="3_kud5n"]
+[ext_resource type="StyleBox" uid="uid://caqjbq3pc26en" path="res://themes/hullbartheme.tres" id="4_eguqq"]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("1_dgk0i")
+theme_override_font_sizes/font_size = 18
+text = "Shield"
+horizontal_alignment = 2
+
+[node name="Hull" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("1_dgk0i")
+theme_override_font_sizes/font_size = 18
+text = "Hull"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ShieldBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(300, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/background = ExtResource("2_od5bb")
+theme_override_styles/fill = ExtResource("3_kud5n")
+value = 100.0
+show_percentage = false
+
+[node name="HullBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(300, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/background = ExtResource("2_od5bb")
+theme_override_styles/fill = ExtResource("4_eguqq")
+value = 100.0
+show_percentage = false
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
