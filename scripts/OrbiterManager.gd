@@ -1,8 +1,11 @@
 extends Node3D
 
-class_name orbiter_manager
+class_name OrbiterManager
 
 const PLAYERLASER = preload("res://scenes/playerlaser.tscn")
+const ASTEROID = preload("res://scenes/asteroid.tscn")
+
+@export var num_of_asteroids:= 1000
 
 @export var DEFAULT_ORBIT_SPEED = .02
 @export var DEFAULT_FALL_SPEED = 5
@@ -11,8 +14,19 @@ const PLAYERLASER = preload("res://scenes/playerlaser.tscn")
 
 @onready var player_laser_container = $PlayerLaserContainer
 @onready var player_container = $PlayerContainer
+@onready var asteroid_manager = $AsteroidManager
 
 var current_player = null
+
+func _ready():
+	for a in num_of_asteroids:
+		var asteroid_to_spawn = ASTEROID.instantiate()
+		asteroid_to_spawn.position.z = randi_range(-1000, 1000)
+		asteroid_to_spawn.position.x = randi_range(-1000, 1000)
+		asteroid_to_spawn.position.y = randi_range(-20, 20)
+		asteroid_to_spawn.scale *= randf_range(0.5, 3.0)
+		asteroid_manager.add_child(asteroid_to_spawn)
+
 
 func _physics_process(delta):
 
@@ -28,6 +42,8 @@ func _physics_process(delta):
 		l.global_position += DEFAULT_FALL_SPEED * delta * direction
 	
 	player_laser_container.rotation.y += DEFAULT_LASER_ORBIT_SPEED * delta
+	
+	print(asteroid_manager.get_children().size())
 	
 
 func spawn_player_laser(firePoint):
