@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://bhljayf8hhj62"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bujvx"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_iq6ow"]
+sky_material = SubResource("ProceduralSkyMaterial_bujvx")
+
+[sub_resource type="Environment" id="Environment_je1at"]
+background_mode = 2
+sky = SubResource("Sky_iq6ow")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rjn7x"]
+albedo_color = Color(0, 0, 0, 1)
+metallic_specular = 0.2
+roughness = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_nas5n"]
+material = SubResource("StandardMaterial3D_rjn7x")
+radius = 100.0
+height = 200.0
+
+[node name="Main" type="Node3D"]
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = SubResource("Environment_je1at")
+
+[node name="TheVoid" type="Node3D" parent="World"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/TheVoid"]
+mesh = SubResource("SphereMesh_nas5n")
