@@ -17,19 +17,19 @@ height = 1.5
 radius = 0.0493419
 height = 1.49358
 
-[node name="Laser" type="Node3D"]
+[node name="LaserScene" type="Node3D"]
 script = ExtResource("1_cg1j2")
 
 [node name="WorldPivot" type="Node3D" parent="."]
 
-[node name="Area3D" type="Area3D" parent="WorldPivot"]
+[node name="Laser" type="Area3D" parent="WorldPivot"]
 collision_layer = 8
 collision_mask = 4
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldPivot/Area3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldPivot/Laser"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_sut18")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldPivot/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldPivot/Laser"]
 transform = Transform3D(-4.37114e-08, -1, 0, -4.37114e-08, 1.91069e-15, -1, 1, -4.37114e-08, -4.37114e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_88itf")
