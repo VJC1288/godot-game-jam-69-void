@@ -1,10 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bhljayf8hhj62"]
+[gd_scene load_steps=11 format=3 uid="uid://bhljayf8hhj62"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_4cpek"]
 [ext_resource type="PackedScene" uid="uid://dd3se6k2tyivf" path="res://scenes/damage_zone.tscn" id="1_6hpio"]
 [ext_resource type="Sky" uid="uid://byccagyu1qklg" path="res://assets/resources/sky.tres" id="2_dd1pd"]
-[ext_resource type="Script" path="res://scripts/OrbiterManager.gd" id="4_sy0xx"]
 [ext_resource type="PackedScene" uid="uid://7s4v6k8xx1vl" path="res://scenes/hud.tscn" id="4_nxr2l"]
+[ext_resource type="Script" path="res://scripts/OrbiterManager.gd" id="4_sy0xx"]
 [ext_resource type="AudioStream" uid="uid://bics4bpt8h3lt" path="res://assets/music/80s-retro-synthwave-186631.mp3" id="5_1ijl5"]
 
 [sub_resource type="Environment" id="Environment_je1at"]
@@ -53,8 +53,6 @@ shape = SubResource("CylinderShape3D_wqr05")
 
 [node name="OrbiterManager" type="Node3D" parent="."]
 script = ExtResource("4_sy0xx")
-DEFAULT_ORBIT_SPEED = 1.0
-DEFAULT_FALL_SPEED = 20
 
 [node name="PlayerContainer" type="Node3D" parent="OrbiterManager"]
 
