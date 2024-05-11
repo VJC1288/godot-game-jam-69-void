@@ -1,5 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://n0ihv481obi6"]
+[gd_scene load_steps=7 format=3 uid="uid://n0ihv481obi6"]
 
+[ext_resource type="PackedScene" uid="uid://hc8v5vg8566d" path="res://scenes/hurtbox_component.tscn" id="1_7ui6e"]
+[ext_resource type="Script" path="res://scripts/playerlaser.gd" id="1_nh3tw"]
 [ext_resource type="AudioStream" uid="uid://bg74io8npul72" path="res://assets/sounds/space-laser-38082.mp3" id="2_0q6cv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1pqfh"]
@@ -17,16 +19,20 @@ height = 1.5
 radius = 0.0493419
 height = 1.49358
 
-[node name="Laser" type="Area3D"]
-collision_layer = 8
-collision_mask = 4
+[node name="Laser" type="Node3D"]
+script = ExtResource("1_nh3tw")
+damage = -50
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_sut18")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="HurtboxComponent" parent="." instance=ExtResource("1_7ui6e")]
 transform = Transform3D(-4.37114e-08, -1, 0, -4.37114e-08, 1.91069e-15, -1, 1, -4.37114e-08, -4.37114e-08, 0, 0, 0)
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtboxComponent"]
 shape = SubResource("CapsuleShape3D_88itf")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

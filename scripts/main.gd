@@ -21,6 +21,7 @@ func spawn_player(location:Vector3):
 	orbiter_manager.player_container.add_child(player)
 	orbiter_manager.current_player = player
 	player.global_position = location
+	Globals.current_player = player
 
 func _input(event):
 	if event.is_action_pressed("pause") and paused == null:

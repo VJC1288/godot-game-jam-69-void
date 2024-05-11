@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://1nlrcogbuus8"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_mt5nw"]
+[ext_resource type="PackedScene" uid="uid://c62l4dsmtajn2" path="res://scenes/health_component.tscn" id="2_jahoj"]
+[ext_resource type="PackedScene" uid="uid://c0vpaxv5fjd7q" path="res://scenes/hitbox_component.tscn" id="3_5sew1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ea8pw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_4q4q3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ym4x0"]
+
+[node name="Enemy" type="RigidBody3D" node_paths=PackedStringArray("health_component")]
+collision_layer = 2
+gravity_scale = 0.0
+script = ExtResource("1_mt5nw")
+health_component = NodePath("HealthComponent")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ea8pw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_4q4q3")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_jahoj")]
+max_health = 100
+
+[node name="HitboxComponent" parent="." instance=ExtResource("3_5sew1")]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent"]
+shape = SubResource("BoxShape3D_ym4x0")

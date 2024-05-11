@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bhljayf8hhj62"]
+[gd_scene load_steps=12 format=3 uid="uid://bhljayf8hhj62"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_4cpek"]
 [ext_resource type="PackedScene" uid="uid://dd3se6k2tyivf" path="res://scenes/damage_zone.tscn" id="1_6hpio"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://7s4v6k8xx1vl" path="res://scenes/hud.tscn" id="4_nxr2l"]
 [ext_resource type="Script" path="res://scripts/OrbiterManager.gd" id="4_sy0xx"]
 [ext_resource type="AudioStream" uid="uid://bics4bpt8h3lt" path="res://assets/music/80s-retro-synthwave-186631.mp3" id="5_1ijl5"]
+[ext_resource type="Script" path="res://scripts/EnemySpawner.gd" id="5_43tn4"]
 
 [sub_resource type="Environment" id="Environment_je1at"]
 background_mode = 2
@@ -57,6 +58,12 @@ script = ExtResource("4_sy0xx")
 [node name="PlayerContainer" type="Node3D" parent="OrbiterManager"]
 
 [node name="PlayerLaserContainer" type="Node3D" parent="OrbiterManager"]
+
+[node name="EnemyContainer" type="Node3D" parent="OrbiterManager"]
+script = ExtResource("5_43tn4")
+
+[node name="EnemySpawnLocation" type="Marker3D" parent="OrbiterManager/EnemyContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, -1000)
 
 [node name="UIElements" type="Node" parent="."]
 

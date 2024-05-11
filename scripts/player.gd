@@ -1,5 +1,7 @@
 extends Node3D
 
+class_name Player
+
 signal fireLaser(muzzlePosition)
 
 @onready var camera_pivot = $CameraPivot

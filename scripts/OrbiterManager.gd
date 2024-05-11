@@ -11,6 +11,7 @@ const PLAYERLASER = preload("res://scenes/playerlaser.tscn")
 
 @onready var player_laser_container = $PlayerLaserContainer
 @onready var player_container = $PlayerContainer
+@onready var enemy_container = $EnemyContainer
 
 var current_player = null
 
@@ -27,12 +28,11 @@ func _physics_process(delta):
 		l.global_position += DEFAULT_FALL_SPEED * delta * direction
 	
 	player_laser_container.rotation.y += DEFAULT_LASER_ORBIT_SPEED * delta
-	
-	prints("Player Rotation:", player_container.rotation)
-	prints("Laser Rotation:", player_laser_container.rotation)
-	
 
-
+	for e in enemy_container.get_children():
+		if e is Enemy:
+			enemy_container.rotation.y += DEFAULT_ORBIT_SPEED * delta
+			e.position.z += DEFAULT_FALL_SPEED * delta
 
 func spawn_player_laser(firePoint):
 	var spawned_laser = PLAYERLASER.instantiate()
