@@ -88,7 +88,16 @@ script = ExtResource("4_sy0xx")
 
 [node name="PlayerContainer" type="Node3D" parent="OrbiterManager"]
 
+[node name="CameraPivot" type="Node3D" parent="OrbiterManager/PlayerContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1500)
+
+[node name="Camera3D" type="Camera3D" parent="OrbiterManager/PlayerContainer/CameraPivot"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -21.2333)
+current = true
+
 [node name="PlayerLaserContainer" type="Node3D" parent="OrbiterManager"]
+
+[node name="AsteroidManager" type="Node3D" parent="OrbiterManager"]
 
 [node name="EnemyAttacksContainer" type="Node3D" parent="OrbiterManager"]
 
@@ -97,8 +106,6 @@ script = ExtResource("5_43tn4")
 
 [node name="EnemySpawnLocation" type="Marker3D" parent="OrbiterManager/EnemyContainer"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -1000)
-
-[node name="AsteroidManager" type="Node3D" parent="OrbiterManager"]
 
 [node name="UIElements" type="Node" parent="."]
 
