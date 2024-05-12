@@ -1,25 +1,56 @@
-[gd_scene load_steps=12 format=3 uid="uid://bhljayf8hhj62"]
+[gd_scene load_steps=16 format=3 uid="uid://bhljayf8hhj62"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_4cpek"]
 [ext_resource type="PackedScene" uid="uid://dd3se6k2tyivf" path="res://scenes/damage_zone.tscn" id="1_6hpio"]
-[ext_resource type="Sky" uid="uid://byccagyu1qklg" path="res://assets/resources/sky.tres" id="2_dd1pd"]
+[ext_resource type="Texture2D" uid="uid://vq4ej0g7dxii" path="res://assets/textures/panorama_image -lowestres.png" id="2_2onax"]
 [ext_resource type="PackedScene" uid="uid://7s4v6k8xx1vl" path="res://scenes/hud.tscn" id="4_nxr2l"]
 [ext_resource type="Script" path="res://scripts/OrbiterManager.gd" id="4_sy0xx"]
 [ext_resource type="AudioStream" uid="uid://bics4bpt8h3lt" path="res://assets/music/80s-retro-synthwave-186631.mp3" id="5_1ijl5"]
 [ext_resource type="Script" path="res://scripts/EnemySpawner.gd" id="5_43tn4"]
 
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_jevuy"]
+panorama = ExtResource("2_2onax")
+
+[sub_resource type="Sky" id="Sky_nvuxe"]
+sky_material = SubResource("PanoramaSkyMaterial_jevuy")
+
 [sub_resource type="Environment" id="Environment_je1at"]
 background_mode = 2
-sky = ExtResource("2_dd1pd")
+sky = SubResource("Sky_nvuxe")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="Gradient" id="Gradient_hi1s3"]
+offsets = PackedFloat32Array(0, 0.36478)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qp2wo"]
+frequency = 0.0026
+fractal_type = 3
+fractal_octaves = 10
+fractal_lacunarity = 2.26
+cellular_return_type = 4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6tp3i"]
+in_3d_space = true
+seamless = true
+color_ramp = SubResource("Gradient_hi1s3")
+noise = SubResource("FastNoiseLite_qp2wo")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rjn7x"]
 albedo_color = Color(0, 0, 0, 1)
-metallic_specular = 0.2
-roughness = 0.0
+metallic_specular = 0.05
+roughness = 0.98
 rim_enabled = true
 rim_tint = 0.6
+clearcoat = 0.25
+clearcoat_roughness = 0.0
+anisotropy = -1.0
+refraction_scale = -0.06
+detail_mask = SubResource("NoiseTexture2D_6tp3i")
+grow_amount = -3.003
+proximity_fade_distance = 76.56
+distance_fade_max_distance = 863.17
 
 [sub_resource type="SphereMesh" id="SphereMesh_nas5n"]
 material = SubResource("StandardMaterial3D_rjn7x")
@@ -28,7 +59,7 @@ height = 400.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_wqr05"]
 height = 75.0
-radius = 198.0
+radius = 197.475
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_4cpek")
@@ -64,6 +95,7 @@ script = ExtResource("5_43tn4")
 
 [node name="EnemySpawnLocation" type="Marker3D" parent="OrbiterManager/EnemyContainer"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, -1000)
+[node name="AsteroidManager" type="Node3D" parent="OrbiterManager"]
 
 [node name="UIElements" type="Node" parent="."]
 
