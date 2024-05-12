@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://cibyt6t30mteu"]
+
+[ext_resource type="PackedScene" uid="uid://1nlrcogbuus8" path="res://scenes/enemies/baseEnemy.tscn" id="1_mbot2"]
+[ext_resource type="PackedScene" uid="uid://bggo8itknjmlx" path="res://assets/models/enemyfigher.glb" id="2_i2cyh"]
+[ext_resource type="Script" path="res://scripts/fighter.gd" id="2_jyf71"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ivppm"]
+size = Vector3(1.89153, 1.85306, 3.06584)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sp4wa"]
+size = Vector3(1.892, 1.853, 3.066)
+
+[node name="Fighter" instance=ExtResource("1_mbot2")]
+script = ExtResource("2_jyf71")
+
+[node name="enemyfigher" parent="." index="0" instance=ExtResource("2_i2cyh")]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
+
+[node name="WingShip" parent="enemyfigher" index="0"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" parent="." index="1"]
+shape = SubResource("BoxShape3D_ivppm")
+
+[node name="CollisionShape3D2" parent="HitboxComponent" index="1"]
+shape = SubResource("BoxShape3D_sp4wa")
+
+[node name="FireDetection" type="RayCast3D" parent="." index="5"]
+target_position = Vector3(50, 0, 0)
+collide_with_areas = true
+
+[node name="CenterMuzzle" type="Marker3D" parent="." index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46646, -0.242096, 0)
+
+[node name="FireCooldown" type="Timer" parent="." index="7"]
+one_shot = true
+
+[editable path="enemyfigher"]

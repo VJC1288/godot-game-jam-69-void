@@ -10,5 +10,5 @@ func _ready():
 func _on_area_entered(area):
 	if area.get_parent() is Enemy:
 		area.take_damage(actor.damage)
-		if actor.isLaser:
-			actor.queue_free()
+	if actor.isLaser:
+		actor.queue_free()

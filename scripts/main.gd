@@ -2,11 +2,11 @@ extends Node3D
 
 const PLAYER = preload("res://scenes/player.tscn")
 const PAUSE_MENU = preload("res://scenes/pause_menu.tscn")
-const PLAYERLASER = preload("res://scenes/playerlaser.tscn")
 
 @onready var ui_elements = $UIElements
 @onready var orbiter_manager = $OrbiterManager
 @onready var player_laser_container = $OrbiterManager/PlayerLaserContainer
+@onready var enemy_attacks_container = $OrbiterManager/EnemyAttacksContainer
 
 var paused = null
 var playerSpawnLocation = Vector3(0,0,-1000)
