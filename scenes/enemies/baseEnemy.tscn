@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://1nlrcogbuus8"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_ysbwp"]
+[ext_resource type="PackedScene" uid="uid://c62l4dsmtajn2" path="res://scenes/health_component.tscn" id="2_apw0h"]
+[ext_resource type="PackedScene" uid="uid://c0vpaxv5fjd7q" path="res://scenes/hitbox_component.tscn" id="3_gd66y"]
+
+[node name="Enemy" type="RigidBody3D" node_paths=PackedStringArray("health_component")]
+collision_layer = 2
+gravity_scale = 0.0
+script = ExtResource("1_ysbwp")
+health_component = NodePath("HealthComponent")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_apw0h")]
+max_health = 100
+
+[node name="HitboxComponent" parent="." instance=ExtResource("3_gd66y")]
+collision_layer = 2
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="HitboxComponent"]
+
+[node name="MovementTimer" type="Timer" parent="."]
+wait_time = 4.0
+
+[connection signal="timeout" from="MovementTimer" to="." method="_on_movement_timer_timeout"]

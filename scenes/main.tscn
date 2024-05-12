@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://7s4v6k8xx1vl" path="res://scenes/hud.tscn" id="4_nxr2l"]
 [ext_resource type="Script" path="res://scripts/OrbiterManager.gd" id="4_sy0xx"]
 [ext_resource type="AudioStream" uid="uid://bics4bpt8h3lt" path="res://assets/music/80s-retro-synthwave-186631.mp3" id="5_1ijl5"]
-[ext_resource type="Script" path="res://scripts/EnemySpawner.gd" id="5_43tn4"]
+[ext_resource type="Script" path="res://scripts/enemycontainer.gd" id="5_43tn4"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_jevuy"]
 panorama = ExtResource("2_s47m1")
@@ -91,6 +91,7 @@ script = ExtResource("4_sy0xx")
 [node name="PlayerLaserContainer" type="Node3D" parent="OrbiterManager"]
 
 [node name="AsteroidManager" type="Node3D" parent="OrbiterManager"]
+[node name="EnemyAttacksContainer" type="Node3D" parent="OrbiterManager"]
 
 [node name="EnemyContainer" type="Node3D" parent="OrbiterManager"]
 script = ExtResource("5_43tn4")

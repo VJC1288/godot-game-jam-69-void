@@ -11,11 +11,13 @@ const ASTEROID = preload("res://scenes/asteroid.tscn")
 @export var DEFAULT_FALL_SPEED = 5
 
 @export var DEFAULT_LASER_ORBIT_SPEED = DEFAULT_ORBIT_SPEED * 8
+@export var DEFAULT_ENEMY_LASER_ORBIT_SPEED = DEFAULT_ORBIT_SPEED * 1
 
 @onready var player_laser_container = $PlayerLaserContainer
 @onready var player_container = $PlayerContainer
 @onready var enemy_container = $EnemyContainer
 @onready var asteroid_manager = $AsteroidManager
+@onready var enemy_attacks_container = $EnemyAttacksContainer
 
 var current_player = null
 
@@ -47,13 +49,20 @@ func _physics_process(delta):
 		l.global_position += DEFAULT_FALL_SPEED * delta * direction
 	
 	player_laser_container.rotation.y += DEFAULT_LASER_ORBIT_SPEED * delta
+	
+	#Enemy attack movement management
+	for a in enemy_attacks_container.get_children():
+		var direction = a.global_position.direction_to(Vector3.ZERO)
+		a.global_position += DEFAULT_FALL_SPEED * delta * direction
+	
+	enemy_attacks_container.rotation.y -= DEFAULT_ENEMY_LASER_ORBIT_SPEED * delta
 
 	#Enemy movement management
 	for e in enemy_container.get_children():
-		enemy_container.rotation.y += DEFAULT_ORBIT_SPEED * delta
 		e.position.z += DEFAULT_FALL_SPEED * delta
-	
-	print(asteroid_manager.get_children().size())
+		
+	enemy_container.rotation.y += DEFAULT_ORBIT_SPEED * delta
+	#print(asteroid_manager.get_children().size())
 	
 
 func spawn_player_laser(firePoint):
