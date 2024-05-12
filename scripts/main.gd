@@ -23,6 +23,7 @@ func spawn_player():
 	player.fireLaser.connect(orbiter_manager.spawn_player_laser)
 	player.player_hull_changed.connect(update_hull_bar)
 	player.player_shield_changed.connect(update_shield_bar)
+	player.player_energy_changed.connect(update_energy_cells)
 	orbiter_manager.camera_pivot.add_child(player)
 	orbiter_manager.current_player = player
 	Globals.current_player = player
@@ -40,6 +41,9 @@ func update_hull_bar(new_value):
 
 func update_shield_bar(new_value):
 	hud.update_shield(new_value)
+
+func update_energy_cells(added_value):
+	hud.update_energy(added_value)
 
 func game_over():
 	var gameoverscreen = GAME_OVER.instantiate()

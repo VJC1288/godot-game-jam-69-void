@@ -108,6 +108,8 @@ current = true
 [node name="EnemyContainer" type="Node3D" parent="OrbiterManager"]
 script = ExtResource("5_43tn4")
 
+[node name="PickupContainer" type="Node3D" parent="OrbiterManager"]
+
 [node name="UIElements" type="Node" parent="."]
 
 [node name="HUD" parent="UIElements" instance=ExtResource("4_nxr2l")]

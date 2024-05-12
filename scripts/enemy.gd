@@ -2,12 +2,15 @@ extends RigidBody3D
 
 class_name Enemy
 
+signal enemyDefeated(location, value)
+
 @onready var movement_timer = $MovementTimer
 @onready var visible_on_screen_notifier_3d = $VisibleOnScreenNotifier3D
 
 enum EnemyStates {ENTERING, ENGAGING}
 
 @export var hull_component: HullComponent
+@export var void_value:int
 
 var movement_clamp_vertical = 15
 #var movement_clamp_horizontal = movement_clamp_vertical * (16.0/9.0)
@@ -60,3 +63,6 @@ func _on_movement_timer_timeout():
 
 func fireDetection():
 	pass
+
+func _on_hull_component_defeated():
+	enemyDefeated.emit(global_position, void_value)

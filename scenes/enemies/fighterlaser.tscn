@@ -20,7 +20,7 @@ height = 1.49358
 
 [node name="Laser" type="Node3D"]
 script = ExtResource("1_v7nnb")
-damage = -20
+damage = -40
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)

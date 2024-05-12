@@ -25,4 +25,5 @@ wait_time = 4.0
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
 
+[connection signal="defeated" from="HullComponent" to="." method="_on_hull_component_defeated"]
 [connection signal="timeout" from="MovementTimer" to="." method="_on_movement_timer_timeout"]

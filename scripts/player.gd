@@ -5,6 +5,7 @@ class_name Player
 signal fireLaser(muzzlePosition)
 signal player_hull_changed(new_hull)
 signal player_shield_changed(new_shield)
+signal player_energy_changed(new_energy)
 
 @onready var center_muzzle = $CenterMuzzle
 
@@ -14,6 +15,9 @@ signal player_shield_changed(new_shield)
 
 var movement_clamp_vertical = 15
 var movement_clamp_horizontal = movement_clamp_vertical * (16.0/9.0) #Aspect Ratio
+
+var max_energy = 500
+var current_energy = 0
 
 func _physics_process(delta):
 
@@ -46,3 +50,7 @@ func _on_hull_component_hull_changed(new_hull):
 
 func _on_shield_component_shield_changed(new_shield):
 	player_shield_changed.emit(new_shield)
+
+func adjust_void_energy(adjustment):
+	current_energy = clamp(current_energy + adjustment, 0 , max_energy)
+	player_energy_changed.emit(adjustment)

@@ -2,6 +2,8 @@ extends Node
 
 class_name HullComponent
 
+signal defeated()
+
 signal hull_changed(new_hull)
 
 @export var max_hull: int
@@ -18,6 +20,7 @@ func adjust_hull(adjustment: int):
 	if ownerNode is Enemy:
 		current_hull += adjustment
 		if current_hull <= 0:
+			defeated.emit()
 			ownerNode.queue_free()
 	elif ownerNode is Player:
 		current_hull = clamp(current_hull + adjustment, 0 , max_hull)

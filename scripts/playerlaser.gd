@@ -1,6 +1,6 @@
 extends Node3D
 
-class_name PlayerLaser
+class_name Laser
 
 @export var damage: int
 
