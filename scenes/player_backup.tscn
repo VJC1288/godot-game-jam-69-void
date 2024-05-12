@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://ver6m6pepogb"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_y1evw"]
+[ext_resource type="PackedScene" uid="uid://c0vpaxv5fjd7q" path="res://scenes/hitbox_component.tscn" id="2_6axoe"]
+[ext_resource type="PackedScene" uid="uid://dwwhc0tog5gsq" path="res://assets/models/starship.glb" id="3_7t0cy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i310b"]
+size = Vector3(4.33978, 1, 3.86194)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u0mrh"]
+radius = 0.6076
+height = 3.82652
+
+[node name="Player" type="Node3D" node_paths=PackedStringArray("health_component")]
+script = ExtResource("1_y1evw")
+health_component = NodePath("")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -21.2333)
+current = true
+
+[node name="Starship" type="RigidBody3D" parent="." groups=["player"]]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+mass = 1000.0
+gravity_scale = 0.0
+
+[node name="HitboxComponent" parent="Starship" instance=ExtResource("2_6axoe")]
+collision_mask = 0
+
+[node name="CollisionShape3D" parent="Starship/HitboxComponent" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0166931, 0, 0.104309)
+shape = SubResource("BoxShape3D_i310b")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Starship"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_u0mrh")
+
+[node name="StarshipModel" parent="Starship" instance=ExtResource("3_7t0cy")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.143352, 0.310352)
+
+[node name="CenterMuzzle" type="Marker3D" parent="Starship"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.77636e-15, -0.15, 2.1)
+
+[editable path="Starship/HitboxComponent"]
