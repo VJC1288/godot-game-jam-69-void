@@ -9,6 +9,7 @@ signal fireLaser(muzzlePosition)
 @onready var center_muzzle = $Starship/CenterMuzzle
 
 @export var SPEED = 20
+@export var health_component: HealthComponent
 
 var movement_clamp_vertical = 15
 var movement_clamp_horizontal = movement_clamp_vertical * (16.0/9.0) #Aspect Ratio

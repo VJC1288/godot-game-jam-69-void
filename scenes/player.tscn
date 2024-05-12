@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ver6m6pepogb"]
+[gd_scene load_steps=7 format=3 uid="uid://ver6m6pepogb"]
 
 [ext_resource type="PackedScene" uid="uid://dwwhc0tog5gsq" path="res://assets/models/starship.glb" id="1_ngwxl"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_tboqh"]
 [ext_resource type="PackedScene" uid="uid://c0vpaxv5fjd7q" path="res://scenes/hitbox_component.tscn" id="2_1j4cu"]
+[ext_resource type="PackedScene" uid="uid://c62l4dsmtajn2" path="res://scenes/health_component.tscn" id="2_eachf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i310b"]
 size = Vector3(4.33978, 1, 3.86194)
@@ -11,8 +12,12 @@ size = Vector3(4.33978, 1, 3.86194)
 radius = 0.6076
 height = 3.82652
 
-[node name="Player" type="Node3D"]
+[node name="Player" type="Node3D" node_paths=PackedStringArray("health_component")]
 script = ExtResource("1_tboqh")
+health_component = NodePath("HealthComponent")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_eachf")]
+max_health = 100
 
 [node name="CameraPivot" type="Node3D" parent="."]
 

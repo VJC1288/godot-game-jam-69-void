@@ -16,3 +16,6 @@ func adjust_health(adjustment: int):
 		current_health += adjustment
 		if current_health <= 0:
 			ownerNode.queue_free()
+	elif ownerNode.get_parent() is Player:
+		current_health += adjustment
+		print(current_health)
