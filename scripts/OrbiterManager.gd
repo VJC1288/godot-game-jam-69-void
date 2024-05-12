@@ -37,19 +37,19 @@ func _physics_process(delta):
 		player_container.rotation.y += DEFAULT_ORBIT_SPEED * delta
 		current_player.position.z += DEFAULT_FALL_SPEED * delta
 	
-	#Laser movement managerment
+	#Laser movement management
 	for l in player_laser_container.get_children():
 		var direction = l.global_position.direction_to(Vector3.ZERO)
 		l.global_position += DEFAULT_FALL_SPEED * delta * direction
 	
 	player_laser_container.rotation.y += DEFAULT_LASER_ORBIT_SPEED * delta
 
+	#Enemy movement management
 	for e in enemy_container.get_children():
-		if e is Enemy:
-			enemy_container.rotation.y += DEFAULT_ORBIT_SPEED * delta
-			e.position.z += DEFAULT_FALL_SPEED * delta
+		enemy_container.rotation.y += DEFAULT_ORBIT_SPEED * delta
+		e.position.z += DEFAULT_FALL_SPEED * delta
 	
-	print(asteroid_manager.get_children().size())
+	#print(asteroid_manager.get_children().size())
 	
 
 func spawn_player_laser(firePoint):

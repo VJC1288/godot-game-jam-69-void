@@ -28,5 +28,3 @@ func _input(event):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		paused = PAUSE_MENU.instantiate()
 		ui_elements.add_child(paused)
-
-

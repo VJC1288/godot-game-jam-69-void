@@ -32,5 +32,6 @@ collision_layer = 2
 shape = SubResource("BoxShape3D_ym4x0")
 
 [node name="MovementTimer" type="Timer" parent="."]
+wait_time = 4.0
 
 [connection signal="timeout" from="MovementTimer" to="." method="_on_movement_timer_timeout"]

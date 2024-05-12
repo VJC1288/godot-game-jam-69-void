@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bhljayf8hhj62"]
+[gd_scene load_steps=17 format=3 uid="uid://bhljayf8hhj62"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_4cpek"]
 [ext_resource type="PackedScene" uid="uid://dd3se6k2tyivf" path="res://scenes/damage_zone.tscn" id="1_6hpio"]
@@ -94,7 +94,8 @@ script = ExtResource("4_sy0xx")
 script = ExtResource("5_43tn4")
 
 [node name="EnemySpawnLocation" type="Marker3D" parent="OrbiterManager/EnemyContainer"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, -1000)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -1000)
+
 [node name="AsteroidManager" type="Node3D" parent="OrbiterManager"]
 
 [node name="UIElements" type="Node" parent="."]
@@ -105,3 +106,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, -1000)
 stream = ExtResource("5_1ijl5")
 volume_db = -22.0
 autoplay = true
+
+[node name="SpawnTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 4.0
+
+[connection signal="timeout" from="SpawnTimer" to="OrbiterManager/EnemyContainer" method="_on_spawn_timer_timeout"]
