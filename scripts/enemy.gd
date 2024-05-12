@@ -3,6 +3,7 @@ extends RigidBody3D
 class_name Enemy
 
 @onready var movement_timer = $MovementTimer
+@onready var visible_on_screen_notifier_3d = $VisibleOnScreenNotifier3D
 
 enum EnemyStates {ENTERING, ENGAGING}
 
@@ -44,9 +45,9 @@ func _physics_process(delta):
 				rotation.x = lerp_angle(rotation.x, deg_to_rad(0), 0.5)
 			
 func checkPlayerDistance():
-	if global_transform.origin.distance_to(Globals.current_player.global_position) < 20:
+	if global_transform.origin.distance_to(Globals.current_player.global_position) < 30 and visible_on_screen_notifier_3d.is_on_screen():
 		currentState = EnemyStates.ENGAGING
-		print("Engage Player!!")
+		#print("Engage Player!!")
 		randomizeMovement()
 
 func randomizeMovement():

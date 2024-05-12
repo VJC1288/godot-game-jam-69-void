@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://ric350m5845j"]
+
+[ext_resource type="Script" path="res://scripts/shield_component.gd" id="1_y3liv"]
+
+[node name="ShieldComponent" type="Node"]
+script = ExtResource("1_y3liv")
+
+[node name="ShieldRegenDelay" type="Timer" parent="."]
+one_shot = true
+
+[node name="ShieldRegenTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="ShieldRegenDelay" to="." method="_on_shield_regen_delay_timeout"]
+[connection signal="timeout" from="ShieldRegenTimer" to="." method="_on_shield_regen_timer_timeout"]

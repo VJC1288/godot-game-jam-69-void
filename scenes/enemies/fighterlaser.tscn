@@ -11,11 +11,11 @@ emission_energy_multiplier = 0.05
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_sut18"]
 material = SubResource("StandardMaterial3D_2kev4")
-radius = 0.05
+radius = 0.125
 height = 1.5
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_88itf"]
-radius = 0.0493419
+radius = 0.121548
 height = 1.49358
 
 [node name="Laser" type="Node3D"]

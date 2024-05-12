@@ -1,14 +1,16 @@
-extends Node3D
+extends RigidBody3D
 
 class_name Player
 
 signal fireLaser(muzzlePosition)
 signal player_hull_changed(new_hull)
+signal player_shield_changed(new_shield)
 
 @onready var center_muzzle = $CenterMuzzle
 
 @export var SPEED = 20
 @export var hull_component: HullComponent
+@export var shield_component: ShieldComponent
 
 var movement_clamp_vertical = 15
 var movement_clamp_horizontal = movement_clamp_vertical * (16.0/9.0) #Aspect Ratio
@@ -41,3 +43,6 @@ func _input(event):
 
 func _on_hull_component_hull_changed(new_hull):
 	player_hull_changed.emit(new_hull)
+
+func _on_shield_component_shield_changed(new_shield):
+	player_shield_changed.emit(new_shield)

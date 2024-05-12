@@ -14,7 +14,7 @@ func _ready():
 	ownerNode = get_parent()
 	hull_changed.emit(current_hull)
 	
-func adjust_health(adjustment: int):
+func adjust_hull(adjustment: int):
 	if ownerNode is Enemy:
 		current_hull += adjustment
 		if current_hull <= 0:
@@ -22,4 +22,5 @@ func adjust_health(adjustment: int):
 	elif ownerNode is Player:
 		current_hull = clamp(current_hull + adjustment, 0 , max_hull)
 		hull_changed.emit(current_hull)
-		print(current_hull)
+		if current_hull <= 0:
+			ownerNode.queue_free()

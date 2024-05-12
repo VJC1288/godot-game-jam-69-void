@@ -5,3 +5,6 @@ extends CanvasLayer
 
 func update_hull(new_value):
 	hull_bar.value = new_value
+
+func update_shield(new_value):
+	shield_bar.value = new_value

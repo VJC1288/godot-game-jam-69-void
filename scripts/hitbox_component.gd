@@ -9,4 +9,4 @@ func _ready():
 	
 func take_damage(amount):
 	if parentNode.hull_component != null:
-		parentNode.hull_component.adjust_health(amount)
+		parentNode.hull_component.adjust_hull(amount)

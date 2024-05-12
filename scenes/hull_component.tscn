@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c62l4dsmtajn2"]
+
+[ext_resource type="Script" path="res://scripts/hull_component.gd" id="1_e4bxu"]
+
+[node name="HullComponent" type="Node"]
+script = ExtResource("1_e4bxu")

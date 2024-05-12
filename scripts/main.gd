@@ -2,9 +2,11 @@ extends Node3D
 
 const PLAYER = preload("res://scenes/player.tscn")
 const PAUSE_MENU = preload("res://scenes/pause_menu.tscn")
+const GAME_OVER = preload("res://scenes/game_over.tscn")
 
 @onready var ui_elements = $UIElements
 @onready var orbiter_manager = $OrbiterManager
+@onready var enemy_container = $OrbiterManager/EnemyContainer
 @onready var player_laser_container = $OrbiterManager/PlayerLaserContainer
 @onready var enemy_attacks_container = $OrbiterManager/EnemyAttacksContainer
 @onready var hud = $UIElements/HUD
@@ -20,7 +22,7 @@ func spawn_player():
 	var player = PLAYER.instantiate()
 	player.fireLaser.connect(orbiter_manager.spawn_player_laser)
 	player.player_hull_changed.connect(update_hull_bar)
-	orbiter_manager.player_container.add_child(player)
+	player.player_shield_changed.connect(update_shield_bar)
 	orbiter_manager.camera_pivot.add_child(player)
 	orbiter_manager.current_player = player
 	Globals.current_player = player
@@ -33,3 +35,16 @@ func _input(event):
 
 func update_hull_bar(new_value):
 	hud.update_hull(new_value)
+	if new_value <= 0:
+		game_over()
+
+func update_shield_bar(new_value):
+	hud.update_shield(new_value)
+
+func game_over():
+	var gameoverscreen = GAME_OVER.instantiate()
+	gameoverscreen.restart_game.connect(restart_game)
+	ui_elements.add_child(gameoverscreen)
+
+func restart_game():
+	get_tree().call_deferred("reload_current_scene")

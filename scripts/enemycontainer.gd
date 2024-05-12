@@ -2,7 +2,7 @@ extends Node3D
 
 signal containerFighterLaser(fighter_muzzle)
 
-@onready var enemy_spawn_location = $EnemySpawnLocation
+@onready var enemy_spawn_location = %EnemySpawnLocation
 @onready var spawn_timer = %SpawnTimer
 @onready var enemy_attacks_container = $"../EnemyAttacksContainer"
 
@@ -33,3 +33,7 @@ func spawn_fighter_laser(firePoint):
 	enemy_attacks_container.add_child(spawned_laser)
 	spawned_laser.global_rotation = rotation
 	spawned_laser.global_position = firePoint
+
+func clear_enemies():
+	for e in get_children():
+		e.queue_free()
