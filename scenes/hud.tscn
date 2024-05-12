@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://7s4v6k8xx1vl"]
+[gd_scene load_steps=6 format=3 uid="uid://7s4v6k8xx1vl"]
 
 [ext_resource type="FontFile" uid="uid://bl5csexcm7nrv" path="res://assets/fonts/Rocket Rinder.otf" id="1_dgk0i"]
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_nvsju"]
 [ext_resource type="StyleBox" uid="uid://dmbwwmi81vlqd" path="res://themes/barbackground.tres" id="2_od5bb"]
 [ext_resource type="StyleBox" uid="uid://dxurpi5esihxk" path="res://themes/shieldbartheme.tres" id="3_kud5n"]
 [ext_resource type="StyleBox" uid="uid://caqjbq3pc26en" path="res://themes/hullbartheme.tres" id="4_eguqq"]
 
 [node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_nvsju")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -60,6 +62,7 @@ horizontal_alignment = 1
 layout_mode = 2
 
 [node name="ShieldBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 20)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -69,6 +72,7 @@ value = 100.0
 show_percentage = false
 
 [node name="HullBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 20)
 layout_mode = 2
 size_flags_horizontal = 3

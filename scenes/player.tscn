@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://ver6m6pepogb"]
+[gd_scene load_steps=8 format=3 uid="uid://ver6m6pepogb"]
 
 [ext_resource type="PackedScene" uid="uid://dwwhc0tog5gsq" path="res://assets/models/starship.glb" id="1_ngwxl"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_tboqh"]
 [ext_resource type="PackedScene" uid="uid://c0vpaxv5fjd7q" path="res://scenes/hitbox_component.tscn" id="2_1j4cu"]
 [ext_resource type="PackedScene" uid="uid://c62l4dsmtajn2" path="res://scenes/health_component.tscn" id="2_eachf"]
+[ext_resource type="Script" path="res://scripts/player_hitbox.gd" id="4_7pbhp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i310b"]
 size = Vector3(4.33978, 1, 3.86194)
@@ -12,12 +13,12 @@ size = Vector3(4.33978, 1, 3.86194)
 radius = 0.6076
 height = 3.82652
 
-[node name="Player" type="Node3D" node_paths=PackedStringArray("health_component")]
+[node name="Player" type="Node3D" node_paths=PackedStringArray("hull_component")]
 script = ExtResource("1_tboqh")
-health_component = NodePath("HealthComponent")
+hull_component = NodePath("HullComponent")
 
-[node name="HealthComponent" parent="." instance=ExtResource("2_eachf")]
-max_health = 100
+[node name="HullComponent" parent="." instance=ExtResource("2_eachf")]
+max_hull = 100
 
 [node name="CameraPivot" type="Node3D" parent="."]
 
@@ -32,6 +33,7 @@ gravity_scale = 0.0
 
 [node name="HitboxComponent" parent="Starship" instance=ExtResource("2_1j4cu")]
 collision_mask = 0
+script = ExtResource("4_7pbhp")
 
 [node name="CollisionShape3D" parent="Starship/HitboxComponent" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0166931, 0, 0.104309)
@@ -46,5 +48,7 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.143352, 0.310352)
 
 [node name="CenterMuzzle" type="Marker3D" parent="Starship"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.77636e-15, -0.15, 2.1)
+
+[connection signal="hull_changed" from="HullComponent" to="." method="_on_hull_component_hull_changed"]
 
 [editable path="Starship/HitboxComponent"]

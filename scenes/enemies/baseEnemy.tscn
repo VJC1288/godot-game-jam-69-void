@@ -4,16 +4,15 @@
 [ext_resource type="PackedScene" uid="uid://c62l4dsmtajn2" path="res://scenes/health_component.tscn" id="2_apw0h"]
 [ext_resource type="PackedScene" uid="uid://c0vpaxv5fjd7q" path="res://scenes/hitbox_component.tscn" id="3_gd66y"]
 
-[node name="Enemy" type="RigidBody3D" node_paths=PackedStringArray("health_component")]
+[node name="Enemy" type="RigidBody3D" node_paths=PackedStringArray("hull_component")]
 collision_layer = 2
 gravity_scale = 0.0
 script = ExtResource("1_ysbwp")
-health_component = NodePath("HealthComponent")
+hull_component = NodePath("HullComponent")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 
-[node name="HealthComponent" parent="." instance=ExtResource("2_apw0h")]
-max_health = 100
+[node name="HullComponent" parent="." instance=ExtResource("2_apw0h")]
 
 [node name="HitboxComponent" parent="." instance=ExtResource("3_gd66y")]
 collision_layer = 2

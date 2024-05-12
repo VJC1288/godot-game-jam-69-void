@@ -3,13 +3,14 @@ extends Node3D
 class_name Player
 
 signal fireLaser(muzzlePosition)
+signal player_hull_changed(new_hull)
 
 @onready var camera_pivot = $CameraPivot
 @onready var starship = $Starship
 @onready var center_muzzle = $Starship/CenterMuzzle
 
 @export var SPEED = 20
-@export var health_component: HealthComponent
+@export var hull_component: HullComponent
 
 var movement_clamp_vertical = 15
 var movement_clamp_horizontal = movement_clamp_vertical * (16.0/9.0) #Aspect Ratio
@@ -39,3 +40,6 @@ func _physics_process(delta):
 func _input(event):
 	if event.is_action_pressed("fire"):
 		fireLaser.emit(center_muzzle.global_position)
+
+func _on_hull_component_hull_changed(new_hull):
+	player_hull_changed.emit(new_hull)

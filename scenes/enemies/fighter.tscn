@@ -22,6 +22,9 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 [node name="CollisionShape3D" parent="." index="1"]
 shape = SubResource("BoxShape3D_ivppm")
 
+[node name="HullComponent" parent="." index="2"]
+max_hull = 100
+
 [node name="CollisionShape3D2" parent="HitboxComponent" index="1"]
 shape = SubResource("BoxShape3D_sp4wa")
 

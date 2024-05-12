@@ -1,21 +1,25 @@
 extends Node
 
-class_name HealthComponent
+class_name HullComponent
 
-@export var max_health: int
+signal hull_changed(new_hull)
 
-var current_health
+@export var max_hull: int
+
+var current_hull
 var ownerNode: Node
 
 func _ready():
-	current_health = max_health
+	current_hull = max_hull
 	ownerNode = get_parent()
+	hull_changed.emit(current_hull)
 	
 func adjust_health(adjustment: int):
 	if ownerNode is Enemy:
-		current_health += adjustment
-		if current_health <= 0:
+		current_hull += adjustment
+		if current_hull <= 0:
 			ownerNode.queue_free()
-	elif ownerNode.get_parent() is Player:
-		current_health += adjustment
-		print(current_health)
+	elif ownerNode is Player:
+		current_hull = clamp(current_hull + adjustment, 0 , max_hull)
+		hull_changed.emit(current_hull)
+		print(current_hull)

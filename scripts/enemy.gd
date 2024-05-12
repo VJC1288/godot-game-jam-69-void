@@ -6,7 +6,7 @@ class_name Enemy
 
 enum EnemyStates {ENTERING, ENGAGING}
 
-@export var health_component: HealthComponent
+@export var hull_component: HullComponent
 
 var movement_clamp_vertical = 15
 #var movement_clamp_horizontal = movement_clamp_vertical * (16.0/9.0)
