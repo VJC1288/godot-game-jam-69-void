@@ -26,7 +26,11 @@ func _ready():
 		asteroid_to_spawn.position.x = randi_range(-1000, 1000)
 		asteroid_to_spawn.position.y = randi_range(-20, 20)
 		asteroid_to_spawn.scale *= randf_range(0.5, 3.0)
-		asteroid_manager.add_child(asteroid_to_spawn)
+		if abs(asteroid_to_spawn.position.x) < 200 and abs(asteroid_to_spawn.position.z) < 200:
+			pass
+		else:
+			asteroid_manager.add_child(asteroid_to_spawn)
+		
 
 
 func _physics_process(delta):
@@ -49,7 +53,7 @@ func _physics_process(delta):
 		enemy_container.rotation.y += DEFAULT_ORBIT_SPEED * delta
 		e.position.z += DEFAULT_FALL_SPEED * delta
 	
-	#print(asteroid_manager.get_children().size())
+	print(asteroid_manager.get_children().size())
 	
 
 func spawn_player_laser(firePoint):

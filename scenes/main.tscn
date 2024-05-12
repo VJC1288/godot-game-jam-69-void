@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_4cpek"]
 [ext_resource type="PackedScene" uid="uid://dd3se6k2tyivf" path="res://scenes/damage_zone.tscn" id="1_6hpio"]
-[ext_resource type="Texture2D" uid="uid://vq4ej0g7dxii" path="res://assets/textures/panorama_image -lowestres.png" id="2_2onax"]
+[ext_resource type="Texture2D" uid="uid://bkcmrnvoqn0v8" path="res://assets/textures/outrunimage-lowres.png" id="2_s47m1"]
 [ext_resource type="PackedScene" uid="uid://7s4v6k8xx1vl" path="res://scenes/hud.tscn" id="4_nxr2l"]
 [ext_resource type="Script" path="res://scripts/OrbiterManager.gd" id="4_sy0xx"]
 [ext_resource type="AudioStream" uid="uid://bics4bpt8h3lt" path="res://assets/music/80s-retro-synthwave-186631.mp3" id="5_1ijl5"]
 [ext_resource type="Script" path="res://scripts/EnemySpawner.gd" id="5_43tn4"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_jevuy"]
-panorama = ExtResource("2_2onax")
+panorama = ExtResource("2_s47m1")
 
 [sub_resource type="Sky" id="Sky_nvuxe"]
 sky_material = SubResource("PanoramaSkyMaterial_jevuy")
