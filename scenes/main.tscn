@@ -90,13 +90,13 @@ script = ExtResource("4_sy0xx")
 
 [node name="PlayerLaserContainer" type="Node3D" parent="OrbiterManager"]
 
+[node name="AsteroidManager" type="Node3D" parent="OrbiterManager"]
+
 [node name="EnemyContainer" type="Node3D" parent="OrbiterManager"]
 script = ExtResource("5_43tn4")
 
 [node name="EnemySpawnLocation" type="Marker3D" parent="OrbiterManager/EnemyContainer"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -1000)
-
-[node name="AsteroidManager" type="Node3D" parent="OrbiterManager"]
 
 [node name="UIElements" type="Node" parent="."]
 
