@@ -13,6 +13,7 @@ size = Vector3(1.892, 1.853, 3.066)
 [node name="Fighter" instance=ExtResource("1_mbot2")]
 script = ExtResource("2_jyf71")
 void_value = 5
+enemy_type = "Fighter"
 
 [node name="enemyfigher" parent="." index="0" instance=ExtResource("2_i2cyh")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)

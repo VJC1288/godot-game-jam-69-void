@@ -6,6 +6,7 @@ signal containerFighterLaser(fighter_muzzle)
 @onready var spawn_timer = %SpawnTimer
 @onready var enemy_attacks_container = $"../EnemyAttacksContainer"
 @onready var pickup_container = $"../PickupContainer"
+@onready var fighter_death = $"../../Sounds/FighterDeath"
 
 const FIGHTER = preload("res://scenes/enemies/fighter.tscn")
 const FIGHTERLASER = preload("res://scenes/enemies/fighterlaser.tscn")
@@ -41,8 +42,10 @@ func clear_enemies():
 	for e in get_children():
 		e.queue_free()
 
-func spawnVoidEnergy(location, value):
+func spawnVoidEnergy(location, value, type):
 	var energy_drop = VOID_ENERGY.instantiate()
 	pickup_container.add_child(energy_drop)
 	energy_drop.energy_value = value
 	energy_drop.global_position = location
+	if type == "Fighter":
+		fighter_death.play()
