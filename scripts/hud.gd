@@ -19,7 +19,7 @@ func update_shield(new_value):
 
 func update_energy(adjustment):
 	total_energy = clamp(total_energy + adjustment, 0, 500)
-	print(total_energy)
+	#print(total_energy)
 	
 	if total_energy < 100:
 		void_cell_1.value = total_energy

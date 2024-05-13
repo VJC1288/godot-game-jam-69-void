@@ -116,6 +116,8 @@ shortwarp={
 3d_physics/layer_5="enemyweapon"
 3d_physics/layer_6="asteroids"
 3d_physics/layer_7="pickups"
+3d_physics/layer_8="playerbody"
+3d_physics/layer_9="enemybody"
 
 [physics]
 

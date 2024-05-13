@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c0vpaxv5fjd7q" path="res://scenes/hitbox_component.tscn" id="3_gd66y"]
 
 [node name="Enemy" type="RigidBody3D" node_paths=PackedStringArray("hull_component")]
-collision_layer = 2
+collision_layer = 256
 collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_ysbwp")
@@ -17,7 +17,7 @@ hull_component = NodePath("HullComponent")
 
 [node name="HitboxComponent" parent="." instance=ExtResource("3_gd66y")]
 collision_layer = 2
-collision_mask = 3
+collision_mask = 0
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="HitboxComponent"]
 
