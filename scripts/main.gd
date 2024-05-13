@@ -13,7 +13,6 @@ const GAME_OVER = preload("res://scenes/game_over.tscn")
 
 var paused = null
 
-
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	spawn_player()

@@ -12,7 +12,7 @@ enum EnemyStates {ENTERING, ENGAGING, DYING}
 @export var hull_component: HullComponent
 @export var void_value:int
 @export var ENGAGE_SPEED:int = 8
-@export var DEATH_SPEED:int = 50
+@export var DEATH_SPEED:int = 100
 @export_enum("Fighter", "Beam_Fighter", "Bomber") var enemy_type:String
 
 var movement_clamp_vertical = 15
@@ -51,7 +51,7 @@ func _physics_process(delta):
 		EnemyStates.DYING:
 			direction = global_position.direction_to(Vector3.ZERO)
 			direction = direction.normalized()
-			position = position + direction * DEATH_SPEED * delta
+			global_position = global_position + direction * DEATH_SPEED * delta
 			
 func checkPlayerDistance():
 	if global_transform.origin.distance_to(Globals.current_player.global_position) < 30 and visible_on_screen_notifier_3d.is_on_screen():

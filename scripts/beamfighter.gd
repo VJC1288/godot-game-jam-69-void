@@ -16,9 +16,9 @@ func fireDetection():
 		
 func fireBeam():
 	if !fire_cooldown.is_stopped():
-		prints("beam mode:" , beam_ready)
+
 		if shot_cooldown.is_stopped() and beam_ready:
-			print("firing")
+
 			fireBeamLaser.emit(center_muzzle.global_position)
 			shot_cooldown.start()
 			

@@ -27,7 +27,7 @@ func _physics_process(delta):
 		EnemyStates.DYING:
 			direction = global_position.direction_to(Vector3.ZERO)
 			direction = direction.normalized()
-			position = position + direction * DEATH_SPEED * delta
+			global_position = global_position + direction * DEATH_SPEED * delta
 
 func fireDetection():
 	if fire_detection.is_colliding() and fire_cooldown.time_left == 0:
