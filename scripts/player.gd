@@ -12,6 +12,7 @@ signal fireBottomLaser(muzzlePosition)
 signal player_hull_changed(new_hull)
 signal player_shield_changed(new_shield)
 signal player_energy_changed(new_energy)
+signal change_laser_color()
 
 @onready var center_muzzle = $CenterMuzzle
 @onready var top_muzzle = $TopMuzzle
@@ -22,6 +23,7 @@ signal player_energy_changed(new_energy)
 @export var SPEED = 20
 @export var hull_component: HullComponent
 @export var shield_component: ShieldComponent
+@export var has_laser_upgrade:bool
 
 var movement_clamp_vertical = 15
 var movement_clamp_horizontal = movement_clamp_vertical * (16.0/9.0) #Aspect Ratio
@@ -31,7 +33,7 @@ var current_energy = 0
 var direction: Vector2
 var warp_available:bool = true
 
-var has_laser_upgrade:bool = true
+
 
 func _physics_process(delta):
 
@@ -58,11 +60,15 @@ func _physics_process(delta):
 	
 func _input(event):
 	if event.is_action_pressed("fire"):
-		fireLaser.emit(center_muzzle.global_position)
-		muzzle_flash()
 		if has_laser_upgrade == true:
+			fireLaser.emit(center_muzzle.global_position)
 			fireTopLaser.emit(top_muzzle.global_position)
 			fireBottomLaser.emit(bottom_muzzle.global_position)
+			change_laser_color.emit()
+			muzzle_flash()
+		else:
+			fireLaser.emit(center_muzzle.global_position)
+			muzzle_flash()
 			
 	if event.is_action_pressed("shortwarp"):
 		short_warp()
@@ -87,7 +93,6 @@ func muzzle_flash():
 	flash.global_position = center_muzzle.global_position
 	await get_tree().create_timer(.5).timeout
 	flash.queue_free()
-
 
 func short_warp():
 	

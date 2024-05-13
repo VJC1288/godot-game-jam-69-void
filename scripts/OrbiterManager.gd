@@ -23,6 +23,7 @@ const ASTEROID = preload("res://scenes/asteroid.tscn")
 @onready var camera_pivot = $PlayerContainer/CameraPivot
 @onready var enemy_lasers = $EnemyAttacksContainer/EnemyLasers
 @onready var enemy_bombs = $EnemyAttacksContainer/EnemyBombs
+@onready var player_laser_sound = $"../Sounds/PlayerLaserSound"
 
 var current_player = null
 
@@ -88,6 +89,9 @@ func spawn_player_laser(firePoint):
 	player_laser_container.add_child(spawned_laser)
 	spawned_laser.global_rotation.y = player_container.rotation.y
 	spawned_laser.global_position = firePoint
+	player_laser_sound.play()
+	if Globals.current_player.has_laser_upgrade:
+		spawned_laser.mesh_instance_3d.mesh.material.albedo_color = Color(1,1,0,1)
 
 func spawn_top_laser(firePoint):
 	var spawned_laser = PLAYERLASER.instantiate()

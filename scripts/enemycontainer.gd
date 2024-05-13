@@ -6,7 +6,7 @@ extends Node3D
 @onready var enemy_lasers = $"../EnemyAttacksContainer/EnemyLasers"
 @onready var enemy_bombs = $"../EnemyAttacksContainer/EnemyBombs"
 @onready var pickup_container = $"../PickupContainer"
-@onready var fighter_death = $"../../Sounds/FighterDeath"
+@onready var fighter_death_sound = $"../../Sounds/FighterDeathSound"
 
 const FIGHTER = preload("res://scenes/enemies/fighter.tscn")
 const FIGHTERLASER = preload("res://scenes/enemies/fighterlaser.tscn")
@@ -100,4 +100,4 @@ func spawnVoidEnergy(location, value, type):
 	energy_drop.energy_value = value
 	energy_drop.global_position = location
 	if type == "Fighter":
-		fighter_death.play()
+		fighter_death_sound.play()
