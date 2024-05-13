@@ -50,6 +50,12 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.143352, 0.310352)
 [node name="CenterMuzzle" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.77636e-15, -0.15, 2.1)
 
+[node name="TopMuzzle" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2.1)
+
+[node name="BottomMuzzle" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 2.1)
+
 [node name="ShortWarpSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_ee0yj")
 volume_db = -20.0

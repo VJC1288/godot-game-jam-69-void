@@ -7,11 +7,12 @@ signal enemyDefeated(location, value, type)
 @onready var movement_timer = $MovementTimer
 @onready var visible_on_screen_notifier_3d = $VisibleOnScreenNotifier3D
 
-enum EnemyStates {ENTERING, ENGAGING}
+enum EnemyStates {ENTERING, ENGAGING, DYING}
 
 @export var hull_component: HullComponent
 @export var void_value:int
 @export var ENGAGE_SPEED:int = 8
+@export var DEATH_SPEED:int = 50
 @export_enum("Fighter", "Beam_Fighter", "Bomber") var enemy_type:String
 
 var movement_clamp_vertical = 15
@@ -27,7 +28,6 @@ func _ready():
 	currentDirection = directionArray[randi_range(0,1)]
 	
 func _physics_process(delta):
-	
 	match currentState:
 		
 		EnemyStates.ENTERING:
@@ -48,6 +48,11 @@ func _physics_process(delta):
 			else:
 				rotation.x = lerp_angle(rotation.x, deg_to_rad(0), 0.5)
 			
+		EnemyStates.DYING:
+			direction = global_position.direction_to(Vector3.ZERO)
+			direction = direction.normalized()
+			position = position + direction * DEATH_SPEED * delta
+			
 func checkPlayerDistance():
 	if global_transform.origin.distance_to(Globals.current_player.global_position) < 30 and visible_on_screen_notifier_3d.is_on_screen():
 		currentState = EnemyStates.ENGAGING
@@ -67,3 +72,4 @@ func fireDetection():
 
 func _on_hull_component_defeated():
 	enemyDefeated.emit(global_position, void_value, enemy_type)
+	currentState = EnemyStates.DYING

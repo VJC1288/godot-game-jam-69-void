@@ -113,6 +113,7 @@ size = Vector3(1.892, 1.853, 3.066)
 
 [node name="BeamFighter" instance=ExtResource("1_huip8")]
 script = ExtResource("2_l42ck")
+void_value = 10
 enemy_type = "Beam_Fighter"
 
 [node name="enemyfigher" parent="." index="0" instance=ExtResource("3_dsct1")]

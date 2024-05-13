@@ -12,12 +12,12 @@ size = Vector3(3.1, 1.6, 1)
 
 [node name="Bomber" instance=ExtResource("1_i5pci")]
 script = ExtResource("2_4uutc")
-void_value = 5
+void_value = 8
 ENGAGE_SPEED = 10
 enemy_type = "Bomber"
 
 [node name="littlebomber" parent="." index="0" instance=ExtResource("2_hlu66")]
-transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 0, -0.21, 0)
+transform = Transform3D(-0.55, -1.64452e-08, -4.51828e-08, 0, 0.516831, -0.188111, 4.80825e-08, -0.188111, -0.516831, 0, -0.21, 0)
 
 [node name="CollisionShape3D" parent="." index="1"]
 shape = SubResource("BoxShape3D_o57ai")

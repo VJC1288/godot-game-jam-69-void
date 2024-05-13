@@ -21,7 +21,6 @@ func adjust_hull(adjustment: int):
 		current_hull += adjustment
 		if current_hull <= 0:
 			defeated.emit()
-			ownerNode.queue_free()
 	elif ownerNode is Player:
 		current_hull = clamp(current_hull + adjustment, 0 , max_hull)
 		hull_changed.emit(current_hull)

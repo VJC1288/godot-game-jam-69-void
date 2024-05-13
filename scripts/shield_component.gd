@@ -30,10 +30,13 @@ func adjust_shield(adjustment: int):
 
 func shield_regen():
 	if shield_regen_delay.time_left == 0:
-		adjust_shield(1)
-		shield_regen_delay.stop()
-		shield_regen_timer.start(regen_rate)
-		
+		if ownerNode is Player and ownerNode.current_energy > 0 and current_shield != max_shield:
+			adjust_shield(1)
+			shield_regen_delay.stop()
+			shield_regen_timer.start(regen_rate)
+			ownerNode.adjust_void_energy(-.05)
+	print(ownerNode.current_energy)
+	
 func _on_shield_regen_delay_timeout():
 	shield_regen()
 	

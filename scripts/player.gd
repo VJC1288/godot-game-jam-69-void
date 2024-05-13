@@ -4,13 +4,18 @@ class_name Player
 
 const SHIELD_EFFECT = preload("res://scenes/shield_effect.tscn")
 const SHORT_WARP_EFFECT = preload("res://scenes/short_warp_effect.tscn")
+const PLAYERMUZZLEFLASH = preload("res://scenes/playermuzzleflash.tscn")
 
 signal fireLaser(muzzlePosition)
+signal fireTopLaser(muzzlePosition)
+signal fireBottomLaser(muzzlePosition)
 signal player_hull_changed(new_hull)
 signal player_shield_changed(new_shield)
 signal player_energy_changed(new_energy)
 
 @onready var center_muzzle = $CenterMuzzle
+@onready var top_muzzle = $TopMuzzle
+@onready var bottom_muzzle = $BottomMuzzle
 @onready var short_warp_sound = $ShortWarpSound
 @onready var starship_model = $StarshipModel
 
@@ -25,6 +30,8 @@ var max_energy = 500
 var current_energy = 0
 var direction: Vector2
 var warp_available:bool = true
+
+var has_laser_upgrade:bool = true
 
 func _physics_process(delta):
 
@@ -52,7 +59,11 @@ func _physics_process(delta):
 func _input(event):
 	if event.is_action_pressed("fire"):
 		fireLaser.emit(center_muzzle.global_position)
-
+		muzzle_flash()
+		if has_laser_upgrade == true:
+			fireTopLaser.emit(top_muzzle.global_position)
+			fireBottomLaser.emit(bottom_muzzle.global_position)
+			
 	if event.is_action_pressed("shortwarp"):
 		short_warp()
 		
@@ -69,6 +80,14 @@ func adjust_void_energy(adjustment):
 func shield_effect():
 	var shieldeffect = SHIELD_EFFECT.instantiate()
 	add_child.call_deferred(shieldeffect)
+	
+func muzzle_flash():
+	var flash = PLAYERMUZZLEFLASH.instantiate()
+	add_child(flash)
+	flash.global_position = center_muzzle.global_position
+	await get_tree().create_timer(.5).timeout
+	flash.queue_free()
+
 
 func short_warp():
 	

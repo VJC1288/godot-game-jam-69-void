@@ -23,12 +23,11 @@ func _physics_process(delta):
 			direction = direction.normalized()
 			position.x = clamp(position.x + direction.x * ENGAGE_SPEED * delta, -movement_clamp_horizontal, movement_clamp_horizontal)
 			fireDetection()
-			#if currentDirection > 0:
-				#rotation.y = lerp_angle(rotation.x, deg_to_rad(20), 0.5)
-			#elif currentDirection < 0:
-				#rotation.y = lerp_angle(rotation.x, deg_to_rad(-20), 0.5)
-			#else:
-				#rotation.y = lerp_angle(rotation.x, deg_to_rad(0), 0.5)
+
+		EnemyStates.DYING:
+			direction = global_position.direction_to(Vector3.ZERO)
+			direction = direction.normalized()
+			position = position + direction * DEATH_SPEED * delta
 
 func fireDetection():
 	if fire_detection.is_colliding() and fire_cooldown.time_left == 0:

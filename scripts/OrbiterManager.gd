@@ -24,7 +24,6 @@ const ASTEROID = preload("res://scenes/asteroid.tscn")
 @onready var enemy_lasers = $EnemyAttacksContainer/EnemyLasers
 @onready var enemy_bombs = $EnemyAttacksContainer/EnemyBombs
 
-
 var current_player = null
 
 func _ready():
@@ -85,6 +84,18 @@ func _physics_process(delta):
 	
 
 func spawn_player_laser(firePoint):
+	var spawned_laser = PLAYERLASER.instantiate()
+	player_laser_container.add_child(spawned_laser)
+	spawned_laser.global_rotation.y = player_container.rotation.y
+	spawned_laser.global_position = firePoint
+
+func spawn_top_laser(firePoint):
+	var spawned_laser = PLAYERLASER.instantiate()
+	player_laser_container.add_child(spawned_laser)
+	spawned_laser.global_rotation.y = player_container.rotation.y
+	spawned_laser.global_position = firePoint
+
+func spawn_bottom_laser(firePoint):
 	var spawned_laser = PLAYERLASER.instantiate()
 	player_laser_container.add_child(spawned_laser)
 	spawned_laser.global_rotation.y = player_container.rotation.y

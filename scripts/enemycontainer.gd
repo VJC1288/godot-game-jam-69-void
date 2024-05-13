@@ -20,6 +20,7 @@ const BEAMLASER = preload("res://scenes/enemies/beamlaser.tscn")
 func _ready():
 	spawnFighter()
 	#spawnBeamFighter()
+	#spawnBomber()
 	
 func spawnFighter():
 	spawn_timer.start(randf_range(3,5))
