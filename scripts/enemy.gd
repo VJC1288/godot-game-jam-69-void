@@ -12,7 +12,7 @@ enum EnemyStates {ENTERING, ENGAGING}
 @export var hull_component: HullComponent
 @export var void_value:int
 @export var ENGAGE_SPEED:int = 8
-@export_enum("Fighter", "Bomber") var enemy_type:String
+@export_enum("Fighter", "Beam_Fighter", "Bomber") var enemy_type:String
 
 var movement_clamp_vertical = 15
 var movement_clamp_horizontal = movement_clamp_vertical * (16.0/9.0)

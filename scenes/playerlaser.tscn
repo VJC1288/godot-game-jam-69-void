@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://n0ihv481obi6"]
 
 [ext_resource type="PackedScene" uid="uid://hc8v5vg8566d" path="res://scenes/hurtbox_component.tscn" id="1_7ui6e"]
-[ext_resource type="Script" path="res://scripts/playerlaser.gd" id="1_nh3tw"]
+[ext_resource type="Script" path="res://scripts/laser.gd" id="1_nh3tw"]
 [ext_resource type="AudioStream" uid="uid://bg74io8npul72" path="res://assets/sounds/space-laser-38082.mp3" id="2_0q6cv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1pqfh"]
