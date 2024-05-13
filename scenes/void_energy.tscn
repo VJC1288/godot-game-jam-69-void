@@ -10,7 +10,7 @@ emission_enabled = true
 emission = Color(0.290196, 0, 1, 1)
 emission_energy_multiplier = 0.5
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_6pvwp"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bgv7o"]
 
 [node name="VoidEnergy" type="Area3D"]
 collision_layer = 64
@@ -21,6 +21,6 @@ mesh = SubResource("SphereMesh_p854k")
 surface_material_override/0 = SubResource("StandardMaterial3D_7hnti")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("SphereShape3D_6pvwp")
+shape = SubResource("CapsuleShape3D_bgv7o")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
