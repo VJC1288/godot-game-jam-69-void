@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bhljayf8hhj62"]
+[gd_scene load_steps=18 format=3 uid="uid://bhljayf8hhj62"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_4cpek"]
 [ext_resource type="PackedScene" uid="uid://dd3se6k2tyivf" path="res://scenes/damage_zone.tscn" id="1_6hpio"]
@@ -8,7 +8,6 @@
 [ext_resource type="AudioStream" uid="uid://bics4bpt8h3lt" path="res://assets/music/80s-retro-synthwave-186631.mp3" id="5_1ijl5"]
 [ext_resource type="Script" path="res://scripts/enemycontainer.gd" id="5_43tn4"]
 [ext_resource type="AudioStream" uid="uid://7ocendl50uf3" path="res://assets/sounds/cinematic-glitch-fast-183843.mp3" id="8_xgdov"]
-[ext_resource type="PackedScene" uid="uid://cna2up0x6o73" path="res://scenes/shield_effect.tscn" id="9_va0lt"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_jevuy"]
 panorama = ExtResource("2_s47m1")
@@ -93,9 +92,13 @@ script = ExtResource("4_sy0xx")
 [node name="CameraPivot" type="Node3D" parent="OrbiterManager/PlayerContainer"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1500)
 
-[node name="EnemySpawnLocation" type="Marker3D" parent="OrbiterManager/PlayerContainer/CameraPivot"]
+[node name="RightEnemySpawnLocation" type="Marker3D" parent="OrbiterManager/PlayerContainer/CameraPivot"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 0, 0)
+
+[node name="TopEnemySpawnLocation" type="Marker3D" parent="OrbiterManager/PlayerContainer/CameraPivot"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0)
 
 [node name="Camera3D" type="Camera3D" parent="OrbiterManager/PlayerContainer/CameraPivot"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -21.2333)
@@ -106,6 +109,10 @@ current = true
 [node name="AsteroidManager" type="Node3D" parent="OrbiterManager"]
 
 [node name="EnemyAttacksContainer" type="Node3D" parent="OrbiterManager"]
+
+[node name="EnemyLasers" type="Node3D" parent="OrbiterManager/EnemyAttacksContainer"]
+
+[node name="EnemyBombs" type="Node3D" parent="OrbiterManager/EnemyAttacksContainer"]
 
 [node name="EnemyContainer" type="Node3D" parent="OrbiterManager"]
 script = ExtResource("5_43tn4")
@@ -131,8 +138,5 @@ wait_time = 4.0
 stream = ExtResource("8_xgdov")
 volume_db = -18.0
 pitch_scale = 0.75
-
-[node name="ShieldEffect" parent="." instance=ExtResource("9_va0lt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1516)
 
 [connection signal="timeout" from="SpawnTimer" to="OrbiterManager/EnemyContainer" method="_on_spawn_timer_timeout"]

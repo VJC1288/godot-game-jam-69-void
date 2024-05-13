@@ -21,6 +21,9 @@ const ASTEROID = preload("res://scenes/asteroid.tscn")
 @onready var asteroid_manager = $AsteroidManager
 @onready var enemy_attacks_container = $EnemyAttacksContainer
 @onready var camera_pivot = $PlayerContainer/CameraPivot
+@onready var enemy_lasers = $EnemyAttacksContainer/EnemyLasers
+@onready var enemy_bombs = $EnemyAttacksContainer/EnemyBombs
+
 
 var current_player = null
 
@@ -53,12 +56,18 @@ func _physics_process(delta):
 	
 	player_laser_container.rotation.y += DEFAULT_LASER_ORBIT_SPEED * delta
 	
-	#Enemy attack movement management
-	for a in enemy_attacks_container.get_children():
+	#Enemy lasers movement management
+	for a in enemy_lasers.get_children():
 		var direction = a.global_position.direction_to(Vector3.ZERO)
 		a.global_position += DEFAULT_FALL_SPEED * delta * direction
 		
-	enemy_attacks_container.rotation.y -= DEFAULT_ENEMY_LASER_ORBIT_SPEED * delta
+	enemy_lasers.rotation.y -= DEFAULT_ENEMY_LASER_ORBIT_SPEED * delta
+	
+	for b in enemy_bombs.get_children():
+		var direction = b.global_position.direction_to(Vector3.ZERO)
+		b.global_position += DEFAULT_FALL_SPEED * delta * direction
+		
+	enemy_bombs.rotation.y += DEFAULT_ORBIT_SPEED * delta
 	
 	#Pickup movement management
 	for p in pickup_container.get_children():

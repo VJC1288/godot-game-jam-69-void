@@ -6,6 +6,7 @@
 
 [node name="Enemy" type="RigidBody3D" node_paths=PackedStringArray("hull_component")]
 collision_layer = 2
+collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_ysbwp")
 hull_component = NodePath("HullComponent")

@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://dkhv4cboubdlv"]
+
+[ext_resource type="PackedScene" uid="uid://1nlrcogbuus8" path="res://scenes/enemies/baseEnemy.tscn" id="1_i5pci"]
+[ext_resource type="Script" path="res://scripts/bomber.gd" id="2_4uutc"]
+[ext_resource type="PackedScene" uid="uid://bjomf235fuolr" path="res://assets/models/littlebomber.glb" id="2_hlu66"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o57ai"]
+size = Vector3(3.1, 1.6, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ckdsm"]
+size = Vector3(3.1, 1.6, 1)
+
+[node name="Bomber" instance=ExtResource("1_i5pci")]
+script = ExtResource("2_4uutc")
+void_value = 5
+enemy_type = "Bomber"
+
+[node name="littlebomber" parent="." index="0" instance=ExtResource("2_hlu66")]
+transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 0, -0.21, 0)
+
+[node name="CollisionShape3D" parent="." index="1"]
+shape = SubResource("BoxShape3D_o57ai")
+
+[node name="HullComponent" parent="." index="2"]
+max_hull = 150
+
+[node name="CollisionShape3D2" parent="HitboxComponent" index="1"]
+shape = SubResource("BoxShape3D_ckdsm")
+
+[node name="VisibleOnScreenNotifier3D" parent="." index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)
+
+[node name="FireDetection" type="RayCast3D" parent="." index="6"]
+target_position = Vector3(0, -30, 0)
+collide_with_areas = true
+
+[node name="BottomMuzzle" type="Marker3D" parent="." index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.922463, 0)
+
+[node name="FireCooldown" type="Timer" parent="." index="8"]
+one_shot = true
