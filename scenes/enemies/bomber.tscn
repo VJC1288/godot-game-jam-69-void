@@ -12,7 +12,7 @@ size = Vector3(3.02954, 1.6, 4.67383)
 
 [node name="Bomber" instance=ExtResource("1_i5pci")]
 script = ExtResource("2_4uutc")
-void_value = 40
+void_value = 50
 ENGAGE_SPEED = 10
 enemy_type = "Bomber"
 
@@ -28,8 +28,8 @@ max_hull = 150
 [node name="CollisionShape3D2" parent="HitboxComponent" index="1"]
 shape = SubResource("BoxShape3D_ckdsm")
 
-[node name="VisibleOnScreenNotifier3D" parent="." index="5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)
+[node name="WallDetector" parent="." index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.62018, 0, 0)
 
 [node name="FireDetection" type="RayCast3D" parent="." index="6"]
 target_position = Vector3(0, -30, 0)
@@ -41,5 +41,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.922463, 0)
 [node name="FireCooldown" type="Timer" parent="." index="8"]
 one_shot = true
 
-[node name="WallDetector" parent="." index="9"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.62018, 0, 0)
+[node name="CollisionShape3D" parent="OnScreenDetect" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 3, 0)

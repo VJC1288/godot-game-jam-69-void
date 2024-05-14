@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://bhljayf8hhj62"]
+[gd_scene load_steps=44 format=3 uid="uid://bhljayf8hhj62"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_4cpek"]
 [ext_resource type="PackedScene" uid="uid://dd3se6k2tyivf" path="res://scenes/damage_zone.tscn" id="1_6hpio"]
@@ -283,6 +283,9 @@ height = 975.0
 height = 200.0
 radius = 487.818
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_mwojy"]
+size = Vector3(44, 58, 83)
+
 [node name="Main" type="Node3D"]
 script = ExtResource("1_4cpek")
 
@@ -337,13 +340,32 @@ spot_angle_attenuation = 1.27456
 [node name="EnemyAttacksContainer" type="Node3D" parent="OrbiterManager"]
 
 [node name="EnemyLasers" type="Node3D" parent="OrbiterManager/EnemyAttacksContainer"]
+unique_name_in_owner = true
 
 [node name="EnemyBombs" type="Node3D" parent="OrbiterManager/EnemyAttacksContainer"]
+unique_name_in_owner = true
+
+[node name="VerticalEnemyBombs" type="Node3D" parent="OrbiterManager/EnemyAttacksContainer/EnemyBombs"]
+unique_name_in_owner = true
+
+[node name="HorizontalEnemyBombs" type="Node3D" parent="OrbiterManager/EnemyAttacksContainer/EnemyBombs"]
+unique_name_in_owner = true
 
 [node name="EnemyContainer" type="Node3D" parent="OrbiterManager"]
 script = ExtResource("5_43tn4")
 
 [node name="PickupContainer" type="Node3D" parent="OrbiterManager"]
+
+[node name="ScreenEdgeContainer" type="Node3D" parent="OrbiterManager"]
+
+[node name="Area3D" type="Area3D" parent="OrbiterManager/ScreenEdgeContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1519.54)
+collision_layer = 512
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OrbiterManager/ScreenEdgeContainer/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.12891, -15.3495, 0.5)
+shape = SubResource("BoxShape3D_mwojy")
 
 [node name="UIElements" type="Node" parent="."]
 
@@ -367,7 +389,7 @@ pitch_scale = 0.75
 
 [node name="BomberDeathSound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("9_xtjhc")
-volume_db = -28.0
+volume_db = -32.0
 pitch_scale = 1.2
 
 [node name="PlayerLaserSound" type="AudioStreamPlayer" parent="Sounds"]

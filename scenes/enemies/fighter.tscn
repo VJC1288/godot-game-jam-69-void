@@ -12,7 +12,7 @@ size = Vector3(1.892, 1.853, 6.14868)
 
 [node name="Fighter" instance=ExtResource("1_mbot2")]
 script = ExtResource("2_jyf71")
-void_value = 25
+void_value = 35
 enemy_type = "Fighter"
 
 [node name="enemyfigher" parent="." index="0" instance=ExtResource("2_i2cyh")]
@@ -40,7 +40,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46646, -0.242096, 0)
 [node name="FireCooldown" type="Timer" parent="." index="7"]
 one_shot = true
 
-[node name="VisibleOnScreenNotifier3D" parent="." index="8"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 0)
+[node name="OnScreenDetect" parent="." index="9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CollisionShape3D" parent="OnScreenDetect" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 
 [editable path="enemyfigher"]

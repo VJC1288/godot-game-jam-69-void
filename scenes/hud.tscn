@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://7s4v6k8xx1vl"]
+[gd_scene load_steps=10 format=3 uid="uid://7s4v6k8xx1vl"]
 
 [ext_resource type="FontFile" uid="uid://bl5csexcm7nrv" path="res://assets/fonts/Rocket Rinder.otf" id="1_dgk0i"]
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_nvsju"]
@@ -8,6 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://d2jft664wb0g8" path="res://assets/textures/void_cell_texture.svg" id="6_o0usi"]
 [ext_resource type="Texture2D" uid="uid://6mqopx4seuvc" path="res://assets/textures/void_cell_fill.svg" id="7_xor1d"]
 [ext_resource type="FontFile" uid="uid://mh42ommv3vnq" path="res://assets/fonts/vermin_vibes.ttf" id="8_1jsox"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_obyd0"]
+font = ExtResource("8_1jsox")
+font_size = 35
+shadow_color = Color(0, 0, 0, 1)
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_nvsju")
@@ -92,7 +97,8 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer3"]
+[node name="VoidCellLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_dgk0i")
 theme_override_font_sizes/font_size = 18
@@ -167,6 +173,19 @@ texture_under = ExtResource("6_o0usi")
 texture_progress = ExtResource("7_xor1d")
 texture_progress_offset = Vector2(0, 12)
 
+[node name="VoidCell6" type="TextureProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer4"]
+unique_name_in_owner = true
+visible = false
+texture_filter = 2
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+max_value = 500.0
+fill_mode = 3
+texture_under = ExtResource("6_o0usi")
+texture_progress = ExtResource("7_xor1d")
+texture_progress_offset = Vector2(0, 12)
+
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -187,10 +206,7 @@ size_flags_vertical = 3
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("8_1jsox")
-theme_override_font_sizes/font_size = 35
+label_settings = SubResource("LabelSettings_obyd0")
 horizontal_alignment = 1
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]

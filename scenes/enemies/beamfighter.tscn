@@ -13,7 +13,7 @@ size = Vector3(1.892, 1.853, 5.86499)
 [node name="BeamFighter" instance=ExtResource("1_huip8")]
 collision_layer = 0
 script = ExtResource("2_l42ck")
-void_value = 50
+void_value = 60
 enemy_type = "Beam_Fighter"
 
 [node name="beamship" parent="." index="0" instance=ExtResource("3_p34hn")]
@@ -44,5 +44,5 @@ autostart = true
 wait_time = 0.05
 one_shot = true
 
-[node name="VisibleOnScreenNotifier3D" parent="." index="9"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 0)
+[node name="OnScreenDetect" parent="." index="10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)

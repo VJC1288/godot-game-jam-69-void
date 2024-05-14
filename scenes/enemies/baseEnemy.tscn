@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://1nlrcogbuus8"]
+[gd_scene load_steps=5 format=3 uid="uid://1nlrcogbuus8"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_ysbwp"]
 [ext_resource type="PackedScene" uid="uid://c62l4dsmtajn2" path="res://scenes/hull_component.tscn" id="2_sj8xs"]
 [ext_resource type="PackedScene" uid="uid://c0vpaxv5fjd7q" path="res://scenes/hitbox_component.tscn" id="3_gd66y"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1ah2v"]
 
 [node name="Enemy" type="RigidBody3D" node_paths=PackedStringArray("hull_component")]
 collision_layer = 256
@@ -24,11 +26,18 @@ collision_mask = 0
 [node name="MovementTimer" type="Timer" parent="."]
 wait_time = 4.0
 
-[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
-
 [node name="WallDetector" type="VisibleOnScreenNotifier3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.85178, 0)
+
+[node name="OnScreenDetect" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9505, 0, -0.00936604)
+collision_layer = 0
+collision_mask = 512
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OnScreenDetect"]
+shape = SubResource("BoxShape3D_1ah2v")
 
 [connection signal="defeated" from="HullComponent" to="." method="_on_hull_component_defeated"]
 [connection signal="timeout" from="MovementTimer" to="." method="_on_movement_timer_timeout"]
 [connection signal="screen_exited" from="WallDetector" to="." method="_on_wall_detector_screen_exited"]
+[connection signal="area_entered" from="OnScreenDetect" to="." method="_on_on_screen_detect_area_entered"]

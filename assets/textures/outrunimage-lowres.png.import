@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bkcmrnvoqn0v8"
-path.bptc="res://.godot/imported/outrunimage-lowres.png-0023db2c9bad79563f99ae0d88ef92f7.bptc.ctex"
+path="res://.godot/imported/outrunimage-lowres.png-0023db2c9bad79563f99ae0d88ef92f7.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/textures/outrunimage-lowres.png"
-dest_files=["res://.godot/imported/outrunimage-lowres.png-0023db2c9bad79563f99ae0d88ef92f7.bptc.ctex"]
+dest_files=["res://.godot/imported/outrunimage-lowres.png-0023db2c9bad79563f99ae0d88ef92f7.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=true
 compress/lossy_quality=0.7
 compress/hdr_compression=1

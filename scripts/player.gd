@@ -21,11 +21,13 @@ signal change_laser_color()
 @onready var starship_model = $StarshipModel
 @onready var shield_break_sound = $ShieldBreakSound
 @onready var shield_hit_sound = $ShieldHitSound
+@onready var heat_bar = $HeatBar
 
 @export var SPEED = 20
 @export var hull_component: HullComponent
 @export var shield_component: ShieldComponent
 @export var has_laser_upgrade:bool
+@export var has_reserve_cell:bool
 
 var movement_clamp_vertical = 15
 var movement_clamp_horizontal = movement_clamp_vertical * (16.0/9.0) #Aspect Ratio
@@ -35,10 +37,15 @@ var current_energy = 0
 var direction: Vector2
 var warp_available:bool = true
 var old_shield: int = 100
-
+var current_laser_heat: int = 0
+var max_laser_heat: int = 100
+var overheated:bool = false
 
 func _physics_process(delta):
-
+	
+	check_laser_heat()
+	update_laser_heat()
+	
 	direction = Vector2.ZERO
 	
 	if Input.is_action_pressed("move_up"):
@@ -61,7 +68,7 @@ func _physics_process(delta):
 	position.y = clamp(position.y + direction.y * SPEED * delta, -movement_clamp_vertical, movement_clamp_vertical)
 	
 func _input(event):
-	if event.is_action_pressed("fire"):
+	if event.is_action_pressed("fire") and !overheated:
 		if has_laser_upgrade == true:
 			fireLaser.emit(center_muzzle.global_position)
 			fireTopLaser.emit(top_muzzle.global_position)
@@ -71,7 +78,9 @@ func _input(event):
 		else:
 			fireLaser.emit(center_muzzle.global_position)
 			muzzle_flash()
-			
+		
+		current_laser_heat = clamp(current_laser_heat+15, 0, max_laser_heat)
+		
 	if event.is_action_pressed("shortwarp"):
 		short_warp()
 		
@@ -90,6 +99,7 @@ func _on_shield_component_shield_changed(new_shield):
 func adjust_void_energy(adjustment):
 	current_energy = clamp(current_energy + adjustment, 0 , max_energy)
 	player_energy_changed.emit(adjustment)
+	print(current_energy)
 
 func shield_effect():
 	var shieldeffect = SHIELD_EFFECT.instantiate()
@@ -102,6 +112,20 @@ func muzzle_flash():
 	await get_tree().create_timer(.5).timeout
 	flash.queue_free()
 
+func check_laser_heat():
+	if current_laser_heat == max_laser_heat:
+		overheated = true
+		await get_tree().create_timer(1.5).timeout
+		overheated = false
+
+func update_laser_heat():
+	current_laser_heat = clamp(current_laser_heat-1,0,100)
+	heat_bar.value = current_laser_heat
+	if current_laser_heat == 0:
+		heat_bar.visible = false
+	else:
+		heat_bar.visible = true
+	
 func short_warp():
 	
 	if warp_available:

@@ -5,8 +5,8 @@ class_name Enemy
 signal enemyDefeated(location, value, type)
 
 @onready var movement_timer = $MovementTimer
-@onready var visible_on_screen_notifier_3d = $VisibleOnScreenNotifier3D
 @onready var wall_detector = $WallDetector
+@onready var hitbox_component = $HitboxComponent
 
 enum EnemyStates {ENTERING, ENGAGING, DYING}
 
@@ -24,6 +24,7 @@ var currentState = EnemyStates.ENTERING
 var direction = Vector2.ZERO
 var directionArray:Array = [-1,1]
 var currentDirection:int
+var on_screen:bool = false
 
 func _ready():
 	currentDirection = directionArray[randi_range(0,1)]
@@ -40,6 +41,7 @@ func _physics_process(delta):
 			direction.x = 1
 			direction = direction.normalized()
 			position.x = position.x + direction.x * SPEED * delta
+			
 			
 		EnemyStates.ENGAGING:
 			direction.y = currentDirection
@@ -59,7 +61,7 @@ func _physics_process(delta):
 			global_position = global_position + direction * DEATH_SPEED * delta
 			
 func checkPlayerDistance():
-	if global_transform.origin.distance_to(Globals.current_player.global_position) < 30 and visible_on_screen_notifier_3d.is_on_screen():
+	if global_transform.origin.distance_to(Globals.current_player.global_position) < 30 and on_screen:
 		currentState = EnemyStates.ENGAGING
 		#print("Engage Player!!")
 		randomizeMovement()
@@ -78,9 +80,13 @@ func fireDetection():
 
 func _on_hull_component_defeated():
 	enemyDefeated.emit(global_position, void_value, enemy_type)
+	hitbox_component.set_deferred("monitorable", false)
 	currentState = EnemyStates.DYING
 
 
 func _on_wall_detector_screen_exited():
 	currentDirection *= -1
 	wall_detector.position.y *= -1
+
+func _on_on_screen_detect_area_entered(_area):
+	on_screen = true

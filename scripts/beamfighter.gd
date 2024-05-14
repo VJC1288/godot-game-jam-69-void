@@ -25,18 +25,3 @@ func fireBeam():
 	else:
 		fire_cooldown.start()
 		beam_ready = !beam_ready
-		
-#func fireDetection():
-	#fireBeam(4)
-	#beamCooldown(4)
-	#
-#func fireBeam(duration):
-	#if beam_ready:
-		#fireBeamLaser.emit(center_muzzle.global_position)
-		#await get_tree().create_timer(duration).timeout
-		#beam_ready = false
-	#
-#func beamCooldown(cooldown):
-	#if !beam_ready:
-		#await get_tree().create_timer(cooldown).timeout
-		#beam_ready = true

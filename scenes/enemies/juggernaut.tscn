@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://h740w4oxf64e"]
+[gd_scene load_steps=16 format=3 uid="uid://h740w4oxf64e"]
 
 [ext_resource type="PackedScene" uid="uid://1nlrcogbuus8" path="res://scenes/enemies/baseEnemy.tscn" id="1_0occh"]
 [ext_resource type="Script" path="res://scripts/juggernaut.gd" id="2_px8et"]
@@ -15,9 +15,6 @@ radius = 2.0
 [sub_resource type="SphereShape3D" id="SphereShape3D_6m2yk"]
 radius = 2.0
 
-[sub_resource type="BoxMesh" id="BoxMesh_bbk1d"]
-size = Vector3(12, 45, 30)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3mhxc"]
 albedo_color = Color(1, 0, 0, 1)
 
@@ -33,6 +30,17 @@ albedo_color = Color(1, 0, 0, 1)
 material = SubResource("StandardMaterial3D_vx6h8")
 radius = 2.0
 height = 4.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_bbk1d"]
+size = Vector3(12, 45, 30)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kfd2f"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_dkuj1"]
+material = SubResource("StandardMaterial3D_kfd2f")
+top_radius = 1.0
+bottom_radius = 1.0
 
 [node name="Juggernaut" node_paths=PackedStringArray("hull_component_top", "hull_component_bottom") instance=ExtResource("1_0occh")]
 collision_mask = 32
@@ -62,7 +70,7 @@ collision_mask = 8
 script = ExtResource("5_n5ren")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="JuggernautHitboxes/TopHitBox" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.44805, 12, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 12, 0)
 shape = SubResource("SphereShape3D_islll")
 
 [node name="BottomHitBox" type="Area3D" parent="JuggernautHitboxes" index="1"]
@@ -74,20 +82,52 @@ script = ExtResource("5_y6f30")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -12, 0)
 shape = SubResource("SphereShape3D_6m2yk")
 
-[node name="VisibleOnScreenNotifier3D" parent="." index="7"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3254, 0, 0)
+[node name="ModelParts" type="Node3D" parent="." index="8"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="9"]
-mesh = SubResource("BoxMesh_bbk1d")
-
-[node name="TopWeakPoint" type="MeshInstance3D" parent="." index="10"]
+[node name="TopWeakPoint" type="MeshInstance3D" parent="ModelParts" index="0"]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 12, 0)
 mesh = SubResource("SphereMesh_kph8g")
+skeleton = NodePath("../..")
 
-[node name="BottomWeakPoint" type="MeshInstance3D" parent="." index="11"]
+[node name="BottomWeakPoint" type="MeshInstance3D" parent="ModelParts" index="1"]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -12, 0)
 mesh = SubResource("SphereMesh_4ix3e")
 skeleton = NodePath("../TopWeakPoint")
+
+[node name="Body" type="MeshInstance3D" parent="ModelParts" index="2"]
+mesh = SubResource("BoxMesh_bbk1d")
+skeleton = NodePath("../..")
+
+[node name="TopBombPort" type="MeshInstance3D" parent="ModelParts" index="3"]
+transform = Transform3D(-4.37114e-08, -1, 0, -4.37114e-08, 1.91069e-15, -1, 1, -4.37114e-08, -4.37114e-08, 5.1, 8, 0)
+mesh = SubResource("CylinderMesh_dkuj1")
+
+[node name="TopBombMuzzle" type="Marker3D" parent="ModelParts/TopBombPort" index="0"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3, 0)
+
+[node name="BottomBombPort" type="MeshInstance3D" parent="ModelParts" index="4"]
+transform = Transform3D(-4.37114e-08, -1, 0, -4.37114e-08, 1.91069e-15, -1, 1, -4.37114e-08, -4.37114e-08, 5.1, -8, 0)
+mesh = SubResource("CylinderMesh_dkuj1")
+skeleton = NodePath("../..")
+
+[node name="BottomBombMuzzle" type="Marker3D" parent="ModelParts/BottomBombPort" index="0"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3, 0)
+
+[node name="AttackTimers" type="Node3D" parent="." index="9"]
+
+[node name="TopBombCooldown" type="Timer" parent="AttackTimers" index="0"]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="BottomBombCooldown" type="Timer" parent="AttackTimers" index="1"]
+unique_name_in_owner = true
+
+[node name="CollisionShape3D" parent="OnScreenDetect" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 0)
 
 [connection signal="defeated" from="HullComponentTop" to="." method="_on_hull_component_top_defeated"]
 [connection signal="defeated" from="HullComponentBottom" to="." method="_on_hull_component_bottom_defeated"]

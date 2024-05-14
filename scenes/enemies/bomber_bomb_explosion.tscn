@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bcc63qx127rpn"]
 
-[ext_resource type="Script" path="res://scripts/bomber_bomb_explosion.gd" id="1_u3uxf"]
-[ext_resource type="PackedScene" uid="uid://hc8v5vg8566d" path="res://scenes/hurtbox_component.tscn" id="2_wja1s"]
+[ext_resource type="Script" path="res://scripts/bomber_bomb_explosion.gd" id="1_844ip"]
+[ext_resource type="PackedScene" uid="uid://hc8v5vg8566d" path="res://scenes/hurtbox_component.tscn" id="2_xsr41"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5u7mx"]
 
@@ -17,10 +17,10 @@ material = SubResource("StandardMaterial3D_pp474")
 
 [node name="BomberBombExplosion" type="Area3D"]
 collision_layer = 0
-script = ExtResource("1_u3uxf")
+script = ExtResource("1_844ip")
 damage = -45
 
-[node name="HurtboxComponent" parent="." instance=ExtResource("2_wja1s")]
+[node name="HurtboxComponent" parent="." instance=ExtResource("2_xsr41")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtboxComponent"]
 shape = SubResource("SphereShape3D_5u7mx")

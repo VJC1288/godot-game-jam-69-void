@@ -22,8 +22,10 @@ const ASTEROID = preload("res://scenes/asteroid.tscn")
 @onready var enemy_attacks_container = $EnemyAttacksContainer
 @onready var camera_pivot = $PlayerContainer/CameraPivot
 @onready var enemy_lasers = $EnemyAttacksContainer/EnemyLasers
-@onready var enemy_bombs = $EnemyAttacksContainer/EnemyBombs
+@onready var vertical_enemy_bombs = %VerticalEnemyBombs
+@onready var horizontal_enemy_bombs = %HorizontalEnemyBombs
 @onready var player_laser_sound = $"../Sounds/PlayerLaserSound"
+@onready var screen_edge_container = $ScreenEdgeContainer
 
 var current_player = null
 
@@ -63,11 +65,19 @@ func _physics_process(delta):
 		
 	enemy_lasers.rotation.y -= DEFAULT_ENEMY_LASER_ORBIT_SPEED * delta
 	
-	for b in enemy_bombs.get_children():
+	#Enemy vertical bomb movement
+	for b in vertical_enemy_bombs.get_children():
 		var direction = b.global_position.direction_to(Vector3.ZERO)
 		b.global_position += DEFAULT_FALL_SPEED * delta * direction
 		
-	enemy_bombs.rotation.y += DEFAULT_ORBIT_SPEED * delta
+	vertical_enemy_bombs.rotation.y += DEFAULT_ORBIT_SPEED * delta
+	
+	#Enemy horizontal bomb movement
+	for b in horizontal_enemy_bombs.get_children():
+		var direction = b.global_position.direction_to(Vector3.ZERO)
+		b.global_position += DEFAULT_FALL_SPEED * delta * direction
+		
+	horizontal_enemy_bombs.rotation.y -= DEFAULT_ENEMY_LASER_ORBIT_SPEED * delta
 	
 	#Pickup movement management
 	for p in pickup_container.get_children():
@@ -81,9 +91,13 @@ func _physics_process(delta):
 		e.position.z += DEFAULT_FALL_SPEED * delta
 		
 	enemy_container.rotation.y += DEFAULT_ORBIT_SPEED * delta
-
 	
-
+	#Screen edge detector movement management
+	for e in screen_edge_container.get_children():
+		e.position.z += DEFAULT_FALL_SPEED * delta
+		
+	screen_edge_container.rotation.y += DEFAULT_ORBIT_SPEED * delta
+	
 func spawn_player_laser(firePoint):
 	var spawned_laser = PLAYERLASER.instantiate()
 	player_laser_container.add_child(spawned_laser)
