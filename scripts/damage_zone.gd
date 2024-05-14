@@ -8,7 +8,8 @@ func _on_body_entered(body):
 		restart_game()
 	elif body is Player and body.current_energy >= 2500:
 		var win = GAME_WIN.instantiate()
-		win.restart_game.connect(restart_game())
+		add_child(win)
+		win.restart_game.connect(restart_game)
 		
 	elif body is Enemy:
 

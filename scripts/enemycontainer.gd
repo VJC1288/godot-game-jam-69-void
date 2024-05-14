@@ -29,10 +29,10 @@ var juggernaut_spawned:bool = false
 
 func _ready():
 	#pass
-	#spawnFighter()
+	spawnFighter()
 	#spawnBeamFighter()
 	#spawnBomber()
-	spawnJuggernaut()
+	#spawnJuggernaut()
 	
 func spawnFighter():
 	spawn_timer.start(randf_range(3,5))
