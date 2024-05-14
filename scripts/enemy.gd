@@ -14,7 +14,7 @@ enum EnemyStates {ENTERING, ENGAGING, DYING}
 @export var void_value:int
 @export var ENGAGE_SPEED:int = 8
 @export var DEATH_SPEED:int = 100
-@export_enum("Fighter", "Beam_Fighter", "Bomber") var enemy_type:String
+@export_enum("Fighter", "Beam_Fighter", "Bomber", "Juggernaut") var enemy_type:String
 
 var movement_clamp_vertical = 15
 var movement_clamp_horizontal = movement_clamp_vertical * (16.0/9.0)

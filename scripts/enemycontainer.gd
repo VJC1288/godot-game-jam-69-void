@@ -1,5 +1,7 @@
 extends Node3D
 
+signal laser_upgraded()
+
 @onready var right_enemy_spawn_location = %RightEnemySpawnLocation
 @onready var top_enemy_spawn_location = %TopEnemySpawnLocation
 @onready var spawn_timer = %SpawnTimer
@@ -7,6 +9,7 @@ extends Node3D
 @onready var enemy_bombs = $"../EnemyAttacksContainer/EnemyBombs"
 @onready var pickup_container = $"../PickupContainer"
 @onready var fighter_death_sound = $"../../Sounds/FighterDeathSound"
+@onready var bomber_death_sound = $"../../Sounds/BomberDeathSound"
 
 const FIGHTER = preload("res://scenes/enemies/fighter.tscn")
 const FIGHTERLASER = preload("res://scenes/enemies/fighterlaser.tscn")
@@ -16,18 +19,22 @@ const BOMBER_BOMB = preload("res://scenes/enemies/bomber_bomb.tscn")
 const BOMBER_BOMB_EXPLOSION = preload("res://scripts/bomber_bomb_explosion.tscn")
 const BEAMFIGHTER = preload("res://scenes/enemies/beamfighter.tscn")
 const BEAMLASER = preload("res://scenes/enemies/beamlaser.tscn")
+const JUGGERNAUT = preload("res://scenes/enemies/juggernaut.tscn")
+
+var juggernaut_spawned:bool = false
 
 func _ready():
-	spawnFighter()
+	#spawnFighter()
 	#spawnBeamFighter()
 	#spawnBomber()
+	spawnJuggernaut()
 	
 func spawnFighter():
 	spawn_timer.start(randf_range(3,5))
 	var fighter = FIGHTER.instantiate()
 	add_child(fighter)
 	fighter.fireFighterLaser.connect(spawn_fighter_laser)
-	fighter.enemyDefeated.connect(spawnVoidEnergy)
+	fighter.enemyDefeated.connect(enemyDeathActions)
 	fighter.global_position = Vector3(right_enemy_spawn_location.global_position.x, randi_range(-14,14), right_enemy_spawn_location.global_position.z)
 	fighter = null
 
@@ -36,7 +43,7 @@ func spawnBeamFighter():
 	var beam_fighter = BEAMFIGHTER.instantiate()
 	add_child(beam_fighter)
 	beam_fighter.fireBeamLaser.connect(spawn_beam_laser)
-	beam_fighter.enemyDefeated.connect(spawnVoidEnergy)
+	beam_fighter.enemyDefeated.connect(enemyDeathActions)
 	beam_fighter.global_position = Vector3(right_enemy_spawn_location.global_position.x, randi_range(-14,14), right_enemy_spawn_location.global_position.z)
 	beam_fighter = null
 
@@ -45,22 +52,37 @@ func spawnBomber():
 	var bomber = BOMBER.instantiate()
 	add_child(bomber)
 	bomber.fireBomberBomb.connect(spawn_bomber_bomb)
-	bomber.enemyDefeated.connect(spawnVoidEnergy)
+	bomber.enemyDefeated.connect(enemyDeathActions)
 	bomber.global_position = Vector3(top_enemy_spawn_location.global_position.x, top_enemy_spawn_location.global_position.y, top_enemy_spawn_location.global_position.z)
 	bomber = null
+
+func spawnJuggernaut():
+	clear_enemies()
+	spawn_timer.stop()
+	juggernaut_spawned = true
+	var juggernaut = JUGGERNAUT.instantiate()
+	add_child(juggernaut)
+	#juggernaut.fireFighterLaser.connect(spawn_fighter_laser)
+	juggernaut.enemyDefeated.connect(enemyDeathActions)
+	juggernaut.global_position = right_enemy_spawn_location.global_position
+	juggernaut = null
 	
 func _on_spawn_timer_timeout():
-	spawnFighter()
-	
-	var bomber_chance: float = randi_range(1,100)
-	if bomber_chance <= 25:
-		await get_tree().create_timer(randf_range(0,2)).timeout
-		spawnBomber()
+	var juggernaut_chance: float = randi_range(1,100)
+	if Globals.current_player.current_energy >= 100 and juggernaut_chance <= 50 and juggernaut_spawned == false:
+		spawnJuggernaut()
+	else:
+		spawnFighter()
 		
-	var beam_fighter_chance: float = randi_range(1,100)
-	if beam_fighter_chance <= 25:
-		await get_tree().create_timer(randf_range(0,2)).timeout
-		spawnBeamFighter()
+		var bomber_chance: float = randi_range(1,100)
+		if bomber_chance <= 25:
+			await get_tree().create_timer(randf_range(0,2)).timeout
+			spawnBomber()
+			
+		var beam_fighter_chance: float = randi_range(1,100)
+		if beam_fighter_chance <= 25:
+			await get_tree().create_timer(randf_range(0,2)).timeout
+			spawnBeamFighter()
 
 func _input(event):
 	if event.is_action_pressed("debugspawnenemy"):
@@ -92,12 +114,24 @@ func spawn_bomb_explosion(location):
 
 func clear_enemies():
 	for e in get_children():
-		e.queue_free()
+		e.currentState = e.EnemyStates.DYING
 
-func spawnVoidEnergy(location, value, type):
+func enemyDeathActions(location, value, type):
+	if type == "Fighter":
+		fighter_death_sound.play()
+	elif type == "Bomber":
+		bomber_death_sound.play()
+	elif type == "Juggernaut":
+		spawn_timer.start(randf_range(3,5))
+		Globals.current_player.has_laser_upgrade = true
+		laser_upgraded.emit()
+		
+	spawnVoidEnergy(location, value)
+
+func spawnVoidEnergy(location, value):
 	var energy_drop = VOID_ENERGY.instantiate()
 	pickup_container.add_child(energy_drop)
 	energy_drop.energy_value = value
 	energy_drop.global_position = location
-	if type == "Fighter":
-		fighter_death_sound.play()
+	if value >= 500:
+		energy_drop.scale = Vector3(5,5,5)

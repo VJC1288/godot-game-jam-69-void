@@ -7,6 +7,7 @@ extends CanvasLayer
 @onready var void_cell_3 = %VoidCell3
 @onready var void_cell_4 = %VoidCell4
 @onready var void_cell_5 = %VoidCell5
+@onready var ui_splash_text = %UISplashText
 
 var total_energy:int = 0
 var spilloverenergy: int = 0
@@ -19,41 +20,48 @@ func update_shield(new_value):
 
 func update_energy(adjustment):
 	total_energy = clamp(total_energy + adjustment, 0, 500)
-	#print(total_energy)
 	
-	if total_energy < 100:
+	if total_energy < 500:
 		void_cell_1.value = total_energy
 		void_cell_2.value = void_cell_2.min_value
 		void_cell_3.value = void_cell_3.min_value
 		void_cell_4.value = void_cell_4.min_value
 		void_cell_5.value = void_cell_5.min_value
-	elif total_energy < 200:
+	elif total_energy < 1000:
 		void_cell_1.value = void_cell_1.max_value
 		void_cell_2.value = total_energy % 100
 		void_cell_3.value = void_cell_3.min_value
 		void_cell_4.value = void_cell_4.min_value
 		void_cell_5.value = void_cell_5.min_value
-	elif total_energy < 300:
+	elif total_energy < 1500:
 		void_cell_1.value = void_cell_1.max_value
 		void_cell_2.value = void_cell_2.max_value
 		void_cell_3.value = total_energy % 100
 		void_cell_4.value = void_cell_4.min_value
 		void_cell_5.value = void_cell_5.min_value
-	elif total_energy < 400:
+	elif total_energy < 2000:
 		void_cell_1.value = void_cell_1.max_value
 		void_cell_2.value = void_cell_2.max_value
 		void_cell_3.value = void_cell_3.max_value
 		void_cell_4.value = total_energy % 100
 		void_cell_5.value = void_cell_5.min_value
-	elif total_energy < 500:
+	elif total_energy < 2500:
 		void_cell_1.value = void_cell_1.max_value
 		void_cell_2.value = void_cell_2.max_value
 		void_cell_3.value = void_cell_3.max_value
 		void_cell_4.value = void_cell_4.max_value
 		void_cell_5.value = total_energy % 100
-	elif total_energy == 500:
+	elif total_energy == 2500:
 		void_cell_1.value = void_cell_1.max_value
 		void_cell_2.value = void_cell_2.max_value
 		void_cell_3.value = void_cell_3.max_value
 		void_cell_4.value = void_cell_4.max_value
 		void_cell_5.value = void_cell_5.max_value
+
+func _on_enemy_container_laser_upgraded():
+	ui_splash_text.text = "Laser Upgrade \n Acquired"
+	await get_tree().create_timer(2).timeout
+	var tween = create_tween()
+	tween.tween_property(ui_splash_text, "theme_override_colors/font_color", Color(1,1,1,0), 1)
+	var shadow_tween = create_tween()
+	shadow_tween.tween_property(ui_splash_text, "theme_override_colors/font_shadow_color", Color(0,0,0,0), 1)

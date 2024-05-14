@@ -19,6 +19,8 @@ signal change_laser_color()
 @onready var bottom_muzzle = $BottomMuzzle
 @onready var short_warp_sound = $ShortWarpSound
 @onready var starship_model = $StarshipModel
+@onready var shield_break_sound = $ShieldBreakSound
+@onready var shield_hit_sound = $ShieldHitSound
 
 @export var SPEED = 20
 @export var hull_component: HullComponent
@@ -28,11 +30,11 @@ signal change_laser_color()
 var movement_clamp_vertical = 15
 var movement_clamp_horizontal = movement_clamp_vertical * (16.0/9.0) #Aspect Ratio
 
-var max_energy = 500
+var max_energy = 2500
 var current_energy = 0
 var direction: Vector2
 var warp_available:bool = true
-
+var old_shield: int = 100
 
 
 func _physics_process(delta):
@@ -77,8 +79,14 @@ func _on_hull_component_hull_changed(new_hull):
 	player_hull_changed.emit(new_hull)
 
 func _on_shield_component_shield_changed(new_shield):
+	if new_shield <= 0:
+		shield_break_sound.play()
+	elif new_shield < old_shield:
+		shield_hit_sound.play()
 	player_shield_changed.emit(new_shield)
-
+	old_shield = new_shield
+	
+	
 func adjust_void_energy(adjustment):
 	current_energy = clamp(current_energy + adjustment, 0 , max_energy)
 	player_energy_changed.emit(adjustment)

@@ -12,7 +12,7 @@ size = Vector3(3.02954, 1.6, 4.67383)
 
 [node name="Bomber" instance=ExtResource("1_i5pci")]
 script = ExtResource("2_4uutc")
-void_value = 8
+void_value = 40
 ENGAGE_SPEED = 10
 enemy_type = "Bomber"
 

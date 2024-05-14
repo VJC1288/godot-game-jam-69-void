@@ -12,15 +12,15 @@ emission_energy_multiplier = 0.05
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_sut18"]
 material = SubResource("StandardMaterial3D_vl2yb")
 radius = 0.125
-height = 1.5
+height = 3.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_88itf"]
-radius = 0.121548
-height = 1.49358
+radius = 0.125
+height = 3.0
 
 [node name="BeamLaser" type="Node3D"]
 script = ExtResource("1_athk6")
-damage = -1
+damage = -2
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)

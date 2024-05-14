@@ -13,7 +13,7 @@ size = Vector3(1.892, 1.853, 5.86499)
 [node name="BeamFighter" instance=ExtResource("1_huip8")]
 collision_layer = 0
 script = ExtResource("2_l42ck")
-void_value = 10
+void_value = 50
 enemy_type = "Beam_Fighter"
 
 [node name="beamship" parent="." index="0" instance=ExtResource("3_p34hn")]

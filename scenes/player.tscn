@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cnr2yunalo04n"]
+[gd_scene load_steps=12 format=3 uid="uid://cnr2yunalo04n"]
 
 [ext_resource type="PackedScene" uid="uid://dwwhc0tog5gsq" path="res://assets/models/starship.glb" id="1_ngwxl"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_tboqh"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://ric350m5845j" path="res://scenes/shield_component.tscn" id="3_jtxrp"]
 [ext_resource type="Script" path="res://scripts/player_hitbox.gd" id="4_pxqbv"]
 [ext_resource type="AudioStream" uid="uid://ca87ceeqjghoh" path="res://assets/sounds/shortwarp.mp3" id="7_ee0yj"]
+[ext_resource type="AudioStream" uid="uid://bsy6scur0ivlw" path="res://assets/sounds/459782__metzik__deflector-shield.wav" id="8_v5inn"]
+[ext_resource type="AudioStream" uid="uid://bhqa0h6dsyrvc" path="res://assets/sounds/168984__lavik89__digital-hit.wav" id="9_787se"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i310b"]
 size = Vector3(4.33978, 1, 3.86194)
@@ -60,6 +62,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 2.1)
 [node name="ShortWarpSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_ee0yj")
 volume_db = -20.0
+
+[node name="ShieldBreakSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_v5inn")
+volume_db = -10.0
+
+[node name="ShieldHitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_787se")
+pitch_scale = 1.2
 
 [connection signal="hull_changed" from="HullComponent" to="." method="_on_hull_component_hull_changed"]
 [connection signal="shield_changed" from="ShieldComponent" to="." method="_on_shield_component_shield_changed"]
