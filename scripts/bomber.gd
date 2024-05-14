@@ -10,10 +10,6 @@ signal fireBomberBomb(muzzlePosition)
 
 func _ready():
 	currentDirection = directionArray[randi_range(0,1)]
-	if currentDirection == -1:
-		pass
-	else:
-		wall_detector.position.x *= -1
 
 func _physics_process(delta):
 	
@@ -39,7 +35,6 @@ func _physics_process(delta):
 func randomizeMovement():
 	var randomMovement: int = randi_range(3,4)
 	currentDirection *= -1
-	wall_detector.position.x *= -1
 	movement_timer.start(randomMovement)
 
 func fireDetection():
@@ -49,4 +44,4 @@ func fireDetection():
 		
 func _on_wall_detector_screen_exited():
 	currentDirection *= -1
-	wall_detector.position.x *= -1
+

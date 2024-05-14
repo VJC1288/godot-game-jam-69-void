@@ -5,8 +5,8 @@ class_name Enemy
 signal enemyDefeated(location, value, type)
 
 @onready var movement_timer = $MovementTimer
-@onready var wall_detector = $WallDetector
 @onready var hitbox_component = $HitboxComponent
+@onready var collision_shape = $CollisionShape3D
 
 enum EnemyStates {ENTERING, ENGAGING, DYING}
 
@@ -28,10 +28,7 @@ var on_screen:bool = false
 
 func _ready():
 	currentDirection = directionArray[randi_range(0,1)]
-	if currentDirection == 1:
-		pass
-	else:
-		wall_detector.position.y *= -1
+
 	
 func _physics_process(delta):
 	match currentState:
@@ -69,7 +66,6 @@ func checkPlayerDistance():
 func randomizeMovement():
 	var randomMovement: int = randi_range(2,3)
 	currentDirection *= -1
-	wall_detector.position.y *= -1
 	movement_timer.start(randomMovement)
 
 func _on_movement_timer_timeout():	
@@ -84,9 +80,9 @@ func _on_hull_component_defeated():
 	currentState = EnemyStates.DYING
 
 
-func _on_wall_detector_screen_exited():
-	currentDirection *= -1
-	wall_detector.position.y *= -1
-
 func _on_on_screen_detect_area_entered(_area):
 	on_screen = true
+
+func _on_wall_detector_area_exited(_area):
+	currentDirection *= -1
+	print("bounce bitch")
