@@ -1,19 +1,46 @@
-[gd_scene load_steps=6 format=3 uid="uid://bcc63qx127rpn"]
+[gd_scene load_steps=9 format=3 uid="uid://bcc63qx127rpn"]
 
 [ext_resource type="Script" path="res://scripts/bomber_bomb_explosion.gd" id="1_844ip"]
 [ext_resource type="PackedScene" uid="uid://hc8v5vg8566d" path="res://scenes/hurtbox_component.tscn" id="2_xsr41"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5u7mx"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pp474"]
+[sub_resource type="Gradient" id="Gradient_2chk1"]
+offsets = PackedFloat32Array(0.0576923, 0.352564, 0.532051, 0.692308)
+colors = PackedColorArray(0.560784, 0.313726, 0, 1, 0.952941, 0, 0.392157, 1, 0.913459, 0.320329, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qsupg"]
+noise_type = 2
+frequency = 0.0373
+fractal_type = 3
+fractal_octaves = 10
+fractal_lacunarity = 2.045
+fractal_gain = 0.51
+fractal_weighted_strength = 0.22
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_f2a00"]
+in_3d_space = true
+seamless = true
+seamless_blend_skirt = 0.19
+color_ramp = SubResource("Gradient_2chk1")
+noise = SubResource("FastNoiseLite_qsupg")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ogkqx"]
+resource_local_to_scene = true
 transparency = 1
 albedo_color = Color(1, 0.270588, 0.176471, 1)
+albedo_texture = SubResource("NoiseTexture2D_f2a00")
 emission_enabled = true
-emission = Color(1, 0.309804, 0, 1)
+emission = Color(0.53995, 0.251145, 9.62615e-08, 1)
 emission_energy_multiplier = 0.5
+rim_enabled = true
+rim = 0.45
+rim_tint = 0.0
+refraction_scale = -0.61
 
-[sub_resource type="SphereMesh" id="SphereMesh_ynr78"]
-material = SubResource("StandardMaterial3D_pp474")
+[sub_resource type="SphereMesh" id="SphereMesh_lhjdb"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_ogkqx")
 
 [node name="BomberBombExplosion" type="Area3D"]
 collision_layer = 0
@@ -26,7 +53,7 @@ damage = -45
 shape = SubResource("SphereShape3D_5u7mx")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_ynr78")
+mesh = SubResource("SphereMesh_lhjdb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_5u7mx")
