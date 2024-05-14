@@ -1,8 +1,9 @@
-[gd_scene load_steps=43 format=3 uid="uid://bhljayf8hhj62"]
+[gd_scene load_steps=48 format=3 uid="uid://bhljayf8hhj62"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_4cpek"]
 [ext_resource type="PackedScene" uid="uid://dd3se6k2tyivf" path="res://scenes/damage_zone.tscn" id="1_6hpio"]
 [ext_resource type="Texture2D" uid="uid://bkcmrnvoqn0v8" path="res://assets/textures/outrunimage-lowres.png" id="2_s47m1"]
+[ext_resource type="Script" path="res://scripts/accretiondisk.gd" id="3_kuvnv"]
 [ext_resource type="PackedScene" uid="uid://7s4v6k8xx1vl" path="res://scenes/hud.tscn" id="4_nxr2l"]
 [ext_resource type="Script" path="res://scripts/OrbiterManager.gd" id="4_sy0xx"]
 [ext_resource type="AudioStream" uid="uid://bics4bpt8h3lt" path="res://assets/music/80s-retro-synthwave-186631.mp3" id="5_1ijl5"]
@@ -36,12 +37,13 @@ function = 18
 input_name = "normal"
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_i0gp4"]
-input_name = "projection_matrix"
+input_name = "inv_view_matrix"
 
 [sub_resource type="VisualShaderNodeVectorFunc" id="VisualShaderNodeVectorFunc_3wtkf"]
 function = 2
 
 [sub_resource type="VisualShaderNodeTransformVecMult" id="VisualShaderNodeTransformVecMult_rtnuo"]
+operator = 1
 
 [sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_efdbt"]
 
@@ -51,7 +53,7 @@ function = 2
 operator = 5
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_b1u68"]
-constant = 6.0
+constant = 1.538
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_oiv23"]
 operator = 2
@@ -72,7 +74,7 @@ default_input_values = [0, 1.0, 1, 0.0]
 operator = 1
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_niovr"]
-constant = 4.5
+constant = 1.189
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_xg4ay"]
 source = 5
@@ -117,7 +119,7 @@ void fragment() {
 
 
 // Input:14
-	mat4 n_out14p0 = PROJECTION_MATRIX;
+	mat4 n_out14p0 = INV_VIEW_MATRIX;
 
 
 // Input:13
@@ -129,7 +131,7 @@ void fragment() {
 
 
 // TransformVectorMult:16
-	vec3 n_out16p0 = (n_out14p0 * vec4(n_out15p0, 1.0)).xyz;
+	vec3 n_out16p0 = (vec4(n_out15p0, 1.0) * n_out14p0).xyz;
 
 
 // VectorDecompose:17
@@ -144,11 +146,11 @@ void fragment() {
 
 
 // FloatConstant:29
-	float n_out29p0 = 4.500000;
+	float n_out29p0 = 1.189000;
 
 
 // FloatConstant:20
-	float n_out20p0 = 6.000000;
+	float n_out20p0 = 1.538000;
 
 
 // Input:6
@@ -216,7 +218,7 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-622.382, -246.862)
+graph_offset = Vector2(-570.093, -97.9715)
 nodes/fragment/0/position = Vector2(1660, -120)
 nodes/fragment/5/node = SubResource("VisualShaderNodeInput_rb2gx")
 nodes/fragment/5/position = Vector2(-500, 780)
@@ -279,6 +281,27 @@ material = SubResource("ShaderMaterial_gy5pq")
 radius = 500.0
 height = 975.0
 
+[sub_resource type="Gradient" id="Gradient_8w388"]
+offsets = PackedFloat32Array(0, 0.0592105, 0.1, 0.230263, 0.381579, 0.460526, 0.559211, 0.638158, 0.75, 0.842105, 0.927632)
+colors = PackedColorArray(1, 1, 1, 1, 0.757592, 0.289617, 0.525036, 1, 1, 1, 1, 1, 0.862745, 0.345098, 0.00784314, 1, 0.620512, 7.7683e-05, 0.525259, 1, 1, 1, 1, 1, 1, 0.431373, 0, 1, 0.694072, 0.000100208, 0.588447, 1, 1, 1, 1, 1, 0.999998, 0.295437, 0.860881, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fja4w"]
+frequency = 0.0058
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2yx8t"]
+color_ramp = SubResource("Gradient_8w388")
+noise = SubResource("FastNoiseLite_fja4w")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vhe0o"]
+albedo_color = Color(1, 0.219608, 0.792157, 1)
+albedo_texture = SubResource("NoiseTexture2D_2yx8t")
+roughness = 0.0
+emission_enabled = true
+emission = Color(0.73131, 0.366979, 0.272207, 1)
+emission_energy_multiplier = 0.2
+clearcoat_enabled = true
+clearcoat_roughness = 0.0
+
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_wqr05"]
 height = 200.0
 radius = 487.818
@@ -293,8 +316,19 @@ environment = SubResource("Environment_je1at")
 
 [node name="TheVoid" type="Node3D" parent="World"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="World/TheVoid"]
+[node name="Body" type="MeshInstance3D" parent="World/TheVoid"]
 mesh = SubResource("SphereMesh_vweea")
+
+[node name="AccretionPivot" type="Node3D" parent="World/TheVoid/Body"]
+transform = Transform3D(1, 0, 0, 0, 0.989016, 0.147809, 0, -0.147809, 0.989016, 0, 0, 0)
+
+[node name="AccretionDisk" type="CSGTorus3D" parent="World/TheVoid/Body/AccretionPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_vhe0o")
+inner_radius = 501.0
+outer_radius = 900.0
+sides = 64
+script = ExtResource("3_kuvnv")
 
 [node name="DamageZone" parent="World/TheVoid" instance=ExtResource("1_6hpio")]
 collision_mask = 384

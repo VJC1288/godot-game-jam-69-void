@@ -27,7 +27,8 @@ func _ready():
 	#spawnFighter()
 	#spawnBeamFighter()
 	#spawnBomber()
-	spawnJuggernaut()
+	#spawnJuggernaut()
+	pass
 	
 func spawnFighter():
 	spawn_timer.start(randf_range(3,5))
