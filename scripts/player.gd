@@ -109,13 +109,13 @@ func muzzle_flash():
 	var flash = PLAYERMUZZLEFLASH.instantiate()
 	add_child(flash)
 	flash.global_position = center_muzzle.global_position
-	await get_tree().create_timer(.5).timeout
+	await get_tree().create_timer(.5, false).timeout
 	flash.queue_free()
 
 func check_laser_heat():
 	if current_laser_heat == max_laser_heat:
 		overheated = true
-		await get_tree().create_timer(1.5).timeout
+		await get_tree().create_timer(1.5, false).timeout
 		overheated = false
 
 func update_laser_heat():
@@ -136,7 +136,7 @@ func short_warp():
 		warpout.position.x += 2
 		var shrink_tween = create_tween()
 		shrink_tween.tween_property(starship_model, "scale", Vector3(.1,.1,.1), .15)
-		await get_tree().create_timer(.15).timeout
+		await get_tree().create_timer(.15, false).timeout
 		
 		#Warps forward by default if player is stationary, otherwise warps in current direction
 		if direction.x == 0 and direction.y == 0:
@@ -154,6 +154,6 @@ func short_warp():
 		
 		short_warp_sound.play()
 		
-		await get_tree().create_timer(1).timeout
+		await get_tree().create_timer(1, false).timeout
 		warp_available = true
 	

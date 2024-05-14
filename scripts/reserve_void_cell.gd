@@ -5,7 +5,7 @@ signal has_reserve_cell()
 var energy_value:int = 100
 
 func _ready():
-	await get_tree().create_timer(5).timeout
+	await get_tree().create_timer(5, false).timeout
 	queue_free()
 
 func _physics_process(delta):

@@ -24,7 +24,7 @@ func update_shield(new_value):
 
 func update_energy(adjustment):
 	total_energy = clamp(total_energy + adjustment, 0, max_energy)
-	print(total_energy % 500)
+	print(total_energy)
 	if reserveCell:
 		if total_energy < 500:
 			void_cell_1.value = total_energy
@@ -52,6 +52,7 @@ func update_energy(adjustment):
 			void_cell_2.value = void_cell_2.max_value
 			void_cell_3.value = void_cell_3.max_value
 			void_cell_4.value = total_energy % 500
+			void_cell_5.value = void_cell_5.min_value
 			void_cell_6.value = void_cell_6.min_value
 		elif total_energy < 2500:
 			void_cell_1.value = void_cell_1.max_value
@@ -116,7 +117,7 @@ func update_energy(adjustment):
 func _on_enemy_container_laser_upgraded():
 	ui_splash_text.visible = true
 	ui_splash_text.text = "Laser Upgrade \n Acquired"
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(2, false).timeout
 	spashtexttween()
 
 func has_reserve_cell():
@@ -128,7 +129,7 @@ func has_reserve_cell():
 		reserveCell = true
 		
 		ui_splash_text.text = "Reserve Cell \n Acquired"
-		await get_tree().create_timer(2).timeout
+		await get_tree().create_timer(2, false).timeout
 		spashtexttween()
 
 func spashtexttween():
@@ -136,7 +137,7 @@ func spashtexttween():
 	tween.tween_property(ui_splash_text.label_settings, "font_color", Color(1,1,1,0), 1)
 	var shadow_tween = create_tween()
 	shadow_tween.tween_property(ui_splash_text.label_settings, "shadow_color", Color(0,0,0,0), 1)
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(3, false).timeout
 	ui_splash_text.visible = false
 	ui_splash_text.label_settings.font_color = Color(1,1,1,1)
 	ui_splash_text.label_settings.shadow_color = Color(0,0,0,1)

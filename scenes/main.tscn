@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://bhljayf8hhj62"]
+[gd_scene load_steps=50 format=3 uid="uid://bhljayf8hhj62"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_4cpek"]
 [ext_resource type="PackedScene" uid="uid://dd3se6k2tyivf" path="res://scenes/damage_zone.tscn" id="1_6hpio"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/OrbiterManager.gd" id="4_sy0xx"]
 [ext_resource type="AudioStream" uid="uid://bics4bpt8h3lt" path="res://assets/music/80s-retro-synthwave-186631.mp3" id="5_1ijl5"]
 [ext_resource type="Script" path="res://scripts/enemycontainer.gd" id="5_43tn4"]
+[ext_resource type="Script" path="res://scripts/HorizontalEnemyBombs.gd" id="6_tye8p"]
 [ext_resource type="AudioStream" uid="uid://7ocendl50uf3" path="res://assets/sounds/cinematic-glitch-fast-183843.mp3" id="8_xgdov"]
 [ext_resource type="AudioStream" uid="uid://bg74io8npul72" path="res://assets/sounds/space-laser-38082.mp3" id="9_u7y53"]
 [ext_resource type="AudioStream" uid="uid://c3r3ewlq260vb" path="res://assets/sounds/155790__deleted_user_1941307__shipboard_railgun.mp3" id="9_xtjhc"]
@@ -384,6 +385,7 @@ unique_name_in_owner = true
 
 [node name="HorizontalEnemyBombs" type="Node3D" parent="OrbiterManager/EnemyAttacksContainer/EnemyBombs"]
 unique_name_in_owner = true
+script = ExtResource("6_tye8p")
 
 [node name="EnemyContainer" type="Node3D" parent="OrbiterManager"]
 script = ExtResource("5_43tn4")

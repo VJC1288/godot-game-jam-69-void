@@ -9,5 +9,5 @@ class_name Laser
 var isLaser: bool = true
 
 func _ready():
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(2, false).timeout
 	queue_free()

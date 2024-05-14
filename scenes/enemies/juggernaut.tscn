@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://1nlrcogbuus8" path="res://scenes/enemies/baseEnemy.tscn" id="1_0occh"]
 [ext_resource type="Script" path="res://scripts/juggernaut.gd" id="2_px8et"]
-[ext_resource type="PackedScene" uid="uid://bmd7ux6gohx78" path="res://scenes/enemies/juggernaut_turret.tscn" id="3_1hihb"]
+[ext_resource type="PackedScene" uid="uid://dfi6v0e22lt5e" path="res://scenes/enemies/juggernaut_turret.tscn" id="3_1hihb"]
 [ext_resource type="PackedScene" uid="uid://c62l4dsmtajn2" path="res://scenes/hull_component.tscn" id="3_w0fij"]
 [ext_resource type="Script" path="res://scripts/TopHitBox.gd" id="5_n5ren"]
 [ext_resource type="Script" path="res://scripts/BottomHitBox.gd" id="5_y6f30"]
@@ -52,7 +52,7 @@ void_value = 500
 enemy_type = "Juggernaut"
 
 [node name="JuggernautTurret" parent="." index="0" instance=ExtResource("3_1hihb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.04004, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 
 [node name="CollisionShape3D" parent="." index="1"]
 shape = SubResource("BoxShape3D_qsei6")
@@ -129,9 +129,10 @@ one_shot = true
 
 [node name="BottomBombCooldown" type="Timer" parent="AttackTimers" index="1"]
 unique_name_in_owner = true
+one_shot = true
 
 [node name="CollisionShape3D" parent="OnScreenDetect" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0168, 0, 0)
 
 [connection signal="defeated" from="HullComponentTop" to="." method="_on_hull_component_top_defeated"]
 [connection signal="defeated" from="HullComponentBottom" to="." method="_on_hull_component_bottom_defeated"]

@@ -13,12 +13,14 @@ signal fire_bottom_bomb(firePoint)
 @onready var bottom_bomb_cooldown = %BottomBombCooldown
 @onready var top_bomb_muzzle = %TopBombMuzzle
 @onready var bottom_bomb_muzzle = %BottomBombMuzzle
+@onready var juggernaut_turret = $JuggernautTurret
 
 @export var hull_component_top:HullComponent
 @export var hull_component_bottom:HullComponent
 
 var top_bomb_cd:int = randi_range(3,4)
 var bottom_bomb_cd:int = randi_range(3,4)
+var move_turret: float = .05
 
 func _fire_top_bomb():
 	fire_top_bomb.emit(top_bomb_muzzle.global_position)
@@ -42,7 +44,14 @@ func _physics_process(delta):
 				_fire_top_bomb()
 			if bottom_bomb_cooldown.time_left == 0:
 				_fire_bottom_bomb()
-			
+			juggernaut_turret.fireBeam()
+		
+			if juggernaut_turret.position.y >= 6 or juggernaut_turret.position.y <= -6:
+				move_turret *= -1
+				juggernaut_turret.position.y += move_turret
+			else:
+				juggernaut_turret.position.y += move_turret
+
 		EnemyStates.DYING:
 			direction = global_position.direction_to(Vector3.ZERO)
 			direction = direction.normalized()
@@ -52,11 +61,13 @@ func _on_hull_component_top_defeated():
 	hull_component.adjust_hull(-500)
 	top_weak_point.mesh.material.albedo_color = Color(0,0,0,1)
 	top_hit_box.set_deferred("monitorable", false)
-	print("Top defeated")
 
 func _on_hull_component_bottom_defeated():
 	hull_component.adjust_hull(-500)
 	bottom_weak_point.mesh.material.albedo_color = Color(0,0,0,1)
 	bottom_hit_box.set_deferred("monitorable", false)
-	print("Bottom defeated")
 	
+func checkPlayerDistance():
+	if on_screen:
+		currentState = EnemyStates.ENGAGING
+		#print("Engage Player!!")

@@ -8,4 +8,3 @@ extends Area3D
 func take_damage(amount):
 	if hull_component_bottom != null:
 		hull_component_bottom.adjust_hull(amount)
-		print("Bottom hit")

@@ -11,11 +11,11 @@ func _ready():
 		height_tween.tween_property(mesh, "height", 3, .25)
 		var tween = create_tween()
 		tween.tween_property(mesh.material, "albedo_color", Color(1,1,0, 0), .25)
-		await get_tree().create_timer(.5).timeout
+		await get_tree().create_timer(.5, false).timeout
 		queue_free()
 	else:
 		mesh.material.albedo_color = Color(0.106, 0.345, 1, 1)
 		var tween = create_tween()
 		tween.tween_property(mesh.material, "albedo_color", Color(0.106, 0.345, 1, 0), .25)
-		await get_tree().create_timer(.5).timeout
+		await get_tree().create_timer(.5, false).timeout
 		queue_free()

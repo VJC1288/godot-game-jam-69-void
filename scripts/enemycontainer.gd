@@ -29,10 +29,10 @@ var juggernaut_spawned:bool = false
 
 func _ready():
 	#pass
-	spawnFighter()
+	#spawnFighter()
 	#spawnBeamFighter()
 	#spawnBomber()
-	#spawnJuggernaut()
+	spawnJuggernaut()
 	
 func spawnFighter():
 	spawn_timer.start(randf_range(3,5))
@@ -70,6 +70,7 @@ func spawnJuggernaut():
 	juggernaut.fire_top_bomb.connect(spawn_horizontal_bomb)
 	juggernaut.fire_bottom_bomb.connect(spawn_horizontal_bomb)
 	juggernaut.enemyDefeated.connect(enemyDeathActions)
+	juggernaut.juggernaut_turret.fireBeamLaser.connect(spawn_beam_laser)
 	juggernaut.global_position = right_enemy_spawn_location.global_position
 	juggernaut = null
 	
@@ -82,12 +83,12 @@ func _on_spawn_timer_timeout():
 		
 		var bomber_chance: float = randi_range(1,100)
 		if bomber_chance <= 25:
-			await get_tree().create_timer(randf_range(0,2)).timeout
+			await get_tree().create_timer(randf_range(0,2), false).timeout
 			spawnBomber()
 			
 		var beam_fighter_chance: float = randi_range(1,100)
 		if beam_fighter_chance <= 25:
-			await get_tree().create_timer(randf_range(0,2)).timeout
+			await get_tree().create_timer(randf_range(0,2), false).timeout
 			spawnBeamFighter()
 
 func _input(event):

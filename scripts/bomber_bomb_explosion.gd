@@ -12,5 +12,5 @@ func _ready():
 	
 	var alpha_tween = create_tween()
 	alpha_tween.tween_property(mesh_instance_3d.mesh.material, "albedo_color", Color(1, 0.271, 0.176, .1), .1)
-	await get_tree().create_timer(.1).timeout
+	await get_tree().create_timer(.1, false).timeout
 	queue_free()
