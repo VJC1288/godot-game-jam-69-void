@@ -40,3 +40,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.922463, 0)
 
 [node name="FireCooldown" type="Timer" parent="." index="8"]
 one_shot = true
+
+[node name="WallDetector" parent="." index="9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.62018, 0, 0)

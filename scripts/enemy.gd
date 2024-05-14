@@ -6,6 +6,7 @@ signal enemyDefeated(location, value, type)
 
 @onready var movement_timer = $MovementTimer
 @onready var visible_on_screen_notifier_3d = $VisibleOnScreenNotifier3D
+@onready var wall_detector = $WallDetector
 
 enum EnemyStates {ENTERING, ENGAGING, DYING}
 
@@ -26,6 +27,10 @@ var currentDirection:int
 
 func _ready():
 	currentDirection = directionArray[randi_range(0,1)]
+	if currentDirection == 1:
+		pass
+	else:
+		wall_detector.position.y *= -1
 	
 func _physics_process(delta):
 	match currentState:
@@ -60,8 +65,9 @@ func checkPlayerDistance():
 		randomizeMovement()
 
 func randomizeMovement():
-	var randomMovement: int = randi_range(1,3)
-	currentDirection *= -1 
+	var randomMovement: int = randi_range(2,3)
+	currentDirection *= -1
+	wall_detector.position.y *= -1
 	movement_timer.start(randomMovement)
 
 func _on_movement_timer_timeout():	
@@ -73,3 +79,8 @@ func fireDetection():
 func _on_hull_component_defeated():
 	enemyDefeated.emit(global_position, void_value, enemy_type)
 	currentState = EnemyStates.DYING
+
+
+func _on_wall_detector_screen_exited():
+	currentDirection *= -1
+	wall_detector.position.y *= -1

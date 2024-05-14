@@ -26,5 +26,9 @@ wait_time = 4.0
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
 
+[node name="WallDetector" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.85178, 0)
+
 [connection signal="defeated" from="HullComponent" to="." method="_on_hull_component_defeated"]
 [connection signal="timeout" from="MovementTimer" to="." method="_on_movement_timer_timeout"]
+[connection signal="screen_exited" from="WallDetector" to="." method="_on_wall_detector_screen_exited"]
