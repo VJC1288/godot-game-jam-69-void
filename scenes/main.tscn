@@ -219,7 +219,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-570.093, -97.9715)
 nodes/fragment/0/position = Vector2(1660, -120)
 nodes/fragment/5/node = SubResource("VisualShaderNodeInput_rb2gx")
 nodes/fragment/5/position = Vector2(-500, 780)
@@ -283,22 +282,22 @@ radius = 500.0
 height = 975.0
 
 [sub_resource type="Gradient" id="Gradient_8w388"]
-offsets = PackedFloat32Array(0, 0.0592105, 0.1, 0.230263, 0.381579, 0.460526, 0.559211, 0.638158, 0.75, 0.842105, 0.927632)
-colors = PackedColorArray(1, 1, 1, 1, 0.757592, 0.289617, 0.525036, 1, 1, 1, 1, 1, 0.862745, 0.345098, 0.00784314, 1, 0.620512, 7.7683e-05, 0.525259, 1, 1, 1, 1, 1, 1, 0.431373, 0, 1, 0.694072, 0.000100208, 0.588447, 1, 1, 1, 1, 1, 0.999998, 0.295437, 0.860881, 1, 1, 1, 1, 1)
+offsets = PackedFloat32Array(0, 0.1, 0.302632, 0.460526, 0.638158, 0.796053, 0.927632)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0.317647, 0.454902, 1, 1, 1, 1, 1, 1, 0.694072, 0.000100208, 0.588447, 1, 1, 1, 1, 1, 0.32549, 0.129412, 0.682353, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_fja4w"]
 frequency = 0.0058
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2yx8t"]
+seamless = true
 color_ramp = SubResource("Gradient_8w388")
 noise = SubResource("FastNoiseLite_fja4w")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vhe0o"]
-albedo_color = Color(1, 0.219608, 0.792157, 1)
 albedo_texture = SubResource("NoiseTexture2D_2yx8t")
 roughness = 0.0
 emission_enabled = true
-emission = Color(0.73131, 0.366979, 0.272207, 1)
+emission = Color(0.219608, 0.054902, 0.45098, 1)
 emission_energy_multiplier = 0.2
 clearcoat_enabled = true
 clearcoat_roughness = 0.0
@@ -329,7 +328,7 @@ transform = Transform3D(1, 0, 0, 0, 0.989016, 0.147809, 0, -0.147809, 0.989016, 
 [node name="AccretionDisk" type="CSGTorus3D" parent="World/TheVoid/Body/AccretionPivot"]
 transform = Transform3D(1, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_vhe0o")
-inner_radius = 501.0
+inner_radius = 450.0
 outer_radius = 900.0
 sides = 64
 script = ExtResource("3_kuvnv")
@@ -342,7 +341,7 @@ shape = SubResource("CylinderShape3D_wqr05")
 
 [node name="OrbiterManager" type="Node3D" parent="."]
 script = ExtResource("4_sy0xx")
-num_of_asteroids = 100
+num_of_asteroids = 250
 
 [node name="PlayerContainer" type="Node3D" parent="OrbiterManager"]
 

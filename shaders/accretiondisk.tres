@@ -121,7 +121,6 @@ void fragment() {
 
 // Texture2D:11
 	vec4 n_out11p0 = texture(tex_frg_11, vec2(n_out10p0.xy));
-	float n_out11p4 = n_out11p0.a;
 
 
 // ColorOp:13
@@ -147,7 +146,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-545.27, -36.6993)
 nodes/fragment/0/position = Vector2(1320, 100)
 nodes/fragment/2/node = SubResource("VisualShaderNodeInput_xqac4")
 nodes/fragment/2/position = Vector2(-220, 120)

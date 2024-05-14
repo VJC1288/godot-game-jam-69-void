@@ -35,7 +35,7 @@ func _ready():
 		asteroid_to_spawn.position.z = randi_range(-1500, 1500)
 		asteroid_to_spawn.position.x = randi_range(-1500, 1500)
 		asteroid_to_spawn.position.y = randi_range(-20, 20)
-		asteroid_to_spawn.scale *= randf_range(0.5, 3.0)
+		asteroid_to_spawn.scale *= randf_range(0.5, 6.0)
 		if abs(asteroid_to_spawn.position.x) < 200 and abs(asteroid_to_spawn.position.z) < 200:
 			pass
 		else:

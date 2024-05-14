@@ -1,16 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://bpe7rywf7saqe"]
+[gd_scene load_steps=7 format=3 uid="uid://bpe7rywf7saqe"]
 
 [ext_resource type="Script" path="res://scripts/void_energy.gd" id="1_7q8g8"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_p854k"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7hnti"]
-albedo_color = Color(0.443137, 0, 1, 1)
+albedo_color = Color(0.0307293, 2.99313e-05, 0.125239, 1)
 emission_enabled = true
-emission = Color(0.290196, 0, 1, 1)
+emission = Color(0.151838, 2.99373e-05, 0.577138, 1)
 emission_energy_multiplier = 0.5
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bgv7o"]
+height = 2.22602
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s6uuf"]
+emission_enabled = true
+emission = Color(0.458824, 0, 0.733333, 1)
+emission_energy_multiplier = 2.5
+
+[sub_resource type="TorusMesh" id="TorusMesh_t3qgb"]
+material = SubResource("StandardMaterial3D_s6uuf")
+inner_radius = 0.6
+outer_radius = 0.8
 
 [node name="VoidEnergy" type="Area3D"]
 collision_layer = 64
@@ -23,7 +34,16 @@ surface_material_override/0 = SubResource("StandardMaterial3D_7hnti")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_bgv7o")
 
-[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+[node name="Ring1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.415643, -0.90942, 0, 0.90942, -0.415643, 0, 0, 0)
+mesh = SubResource("TorusMesh_t3qgb")
+
+[node name="Ring2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.90942, 0.415643, 0, -0.415643, -0.90942, 0, 0, 0)
+mesh = SubResource("TorusMesh_t3qgb")
+
+[node name="Ring3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.936959, -0.349154, 0, 0.349154, -0.936959, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("TorusMesh_t3qgb")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
