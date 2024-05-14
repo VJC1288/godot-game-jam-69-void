@@ -149,8 +149,6 @@ func enemyDeathActions(location, value, type):
 		laser_upgraded.emit()
 		spawnVoidEnergy(location, value)
 		
-	
-
 func spawnReserveCell(location):
 	var reserve_cell = RESERVE_VOID_CELL.instantiate()
 	pickup_container.add_child(reserve_cell)

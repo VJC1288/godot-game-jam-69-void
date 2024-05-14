@@ -1,14 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://bvujvu5kh15l6"]
+[gd_scene load_steps=9 format=3 uid="uid://bvujvu5kh15l6"]
 
+[ext_resource type="Script" path="res://scripts/how_to_play.gd" id="1_gtglf"]
 [ext_resource type="StyleBox" uid="uid://cnfujya23l8lb" path="res://themes/pausestyle.tres" id="2_s3i8g"]
 [ext_resource type="FontFile" uid="uid://cxnq0tiy7l8ay" path="res://assets/fonts/Alien-Encounters-Bold-Italic.ttf" id="3_m18od"]
 [ext_resource type="FontFile" uid="uid://bqkfa6mf2ckx8" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="3_njmf8"]
 [ext_resource type="Theme" uid="uid://b6epshmaiw5dd" path="res://themes/buttontheme.tres" id="4_6s3wg"]
 [ext_resource type="Texture2D" uid="uid://das82hda2662x" path="res://assets/voidcontrollerlayout.svg" id="4_xdwh2"]
+[ext_resource type="FontFile" uid="uid://bl5csexcm7nrv" path="res://assets/fonts/Rocket Rinder.otf" id="5_mlu4u"]
 [ext_resource type="StyleBox" uid="uid://ud5jyih5jsr4" path="res://themes/buttonstyle.tres" id="5_t2p88"]
 
 [node name="HowToPlay" type="CanvasLayer"]
 process_mode = 2
+script = ExtResource("1_gtglf")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -56,17 +59,59 @@ theme_override_constants/separation = 25
 
 [node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 3
 theme_override_fonts/font = ExtResource("3_njmf8")
 theme_override_font_sizes/font_size = 20
+text = "Earth is under attack by the Voidling army, beings from the depths of black holes! Reversing engineering their technology, your ship is equipped with an \"Event Horizon Drive\" or EHD. As Earth's last hope, defeat foes and collect their Void Energy to power up the EHD. Arrive at the black hole with enough energy and you will be able to close it, stopping the Voidlings once and for all. However, take heed, regenerating your ships shields will cost you precious Void Energy."
+autowrap_mode = 3
 
-[node name="Button" type="Button" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3"]
+layout_mode = 2
+
+[node name="KeyboardControlsTitle" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 3
+theme_override_fonts/font = ExtResource("5_mlu4u")
+theme_override_font_sizes/font_size = 20
+text = "Keyboard Controls"
+
+[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_njmf8")
+text = "WASD: Move Ship
+Left Click: Fire Weapon
+Shift / RClick: Warp Dodge
+Tab: Pause
+
+"
+
+[node name="BackButton" type="Button" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(110, 65)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 theme = ExtResource("4_6s3wg")
 
-[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Button"]
+[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/BackButton"]
 texture_filter = 2
 layout_mode = 1
 anchors_preset = 15
@@ -77,12 +122,14 @@ grow_vertical = 2
 size_flags_horizontal = 4
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = ExtResource("5_t2p88")
-text = "Next"
+text = "bACK"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Voidcontrollerlayout" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(412, 349)
-scale = Vector2(0.5, 0.5)
+texture_filter = 3
+position = Vector2(331, 452)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("4_xdwh2")
+
+[connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
