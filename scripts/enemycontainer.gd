@@ -117,7 +117,7 @@ func spawn_horizontal_bomb(firePoint):
 	var spawned_bomb = BOMBER_BOMB.instantiate()
 	horizontal_enemy_bombs.add_child(spawned_bomb)
 	spawned_bomb.enemy_bomb_explode.connect(spawn_bomb_explosion)
-	spawned_bomb.global_rotation = Vector3(rotation.x, rotation.y, rotation.z)
+	spawned_bomb.global_rotation = rotation
 	spawned_bomb.global_position = firePoint
 
 func spawn_bomb_explosion(location):

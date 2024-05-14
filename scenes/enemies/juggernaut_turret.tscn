@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://bmd7ux6gohx78"]
+
+[ext_resource type="PackedScene" uid="uid://1nlrcogbuus8" path="res://scenes/enemies/baseEnemy.tscn" id="1_t0n38"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_o81xl"]
+radius = 1.0
+height = 4.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_p7tvp"]
+top_radius = 0.4
+bottom_radius = 0.4
+height = 1.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i0t0r"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_sbhtk"]
+material = SubResource("StandardMaterial3D_i0t0r")
+top_radius = 0.3
+bottom_radius = 0.3
+height = 0.2
+
+[node name="JuggernautTurret" instance=ExtResource("1_t0n38")]
+
+[node name="CollisionShape3D" parent="OnScreenDetect" index="0"]
+disabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="6"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_o81xl")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." index="7"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 1.59542, 0, 0)
+mesh = SubResource("CylinderMesh_p7tvp")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." index="8"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 2.1978, 0, 0)
+mesh = SubResource("CylinderMesh_sbhtk")
+
+[node name="TurretMuzzle" type="Marker3D" parent="." index="9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3178, 0, 0)

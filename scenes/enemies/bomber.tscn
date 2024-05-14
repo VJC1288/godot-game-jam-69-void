@@ -39,7 +39,9 @@ collide_with_areas = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.922463, 0)
 
 [node name="FireCooldown" type="Timer" parent="." index="8"]
+wait_time = 2.0
 one_shot = true
+autostart = true
 
 [node name="CollisionShape3D" parent="OnScreenDetect" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 3, 0)

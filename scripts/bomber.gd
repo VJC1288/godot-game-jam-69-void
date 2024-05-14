@@ -43,9 +43,9 @@ func randomizeMovement():
 	movement_timer.start(randomMovement)
 
 func fireDetection():
-	if fire_detection.is_colliding() and fire_cooldown.time_left == 0:
+	if fire_cooldown.time_left == 0:
 		fireBomberBomb.emit(bottom_muzzle.global_position)
-		fire_cooldown.start(3.5)
+		fire_cooldown.start(randf_range(1.8,2.5))
 		
 func _on_wall_detector_screen_exited():
 	currentDirection *= -1

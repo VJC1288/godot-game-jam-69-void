@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://h740w4oxf64e"]
+[gd_scene load_steps=17 format=3 uid="uid://h740w4oxf64e"]
 
 [ext_resource type="PackedScene" uid="uid://1nlrcogbuus8" path="res://scenes/enemies/baseEnemy.tscn" id="1_0occh"]
 [ext_resource type="Script" path="res://scripts/juggernaut.gd" id="2_px8et"]
+[ext_resource type="PackedScene" uid="uid://bmd7ux6gohx78" path="res://scenes/enemies/juggernaut_turret.tscn" id="3_1hihb"]
 [ext_resource type="PackedScene" uid="uid://c62l4dsmtajn2" path="res://scenes/hull_component.tscn" id="3_w0fij"]
 [ext_resource type="Script" path="res://scripts/TopHitBox.gd" id="5_n5ren"]
 [ext_resource type="Script" path="res://scripts/BottomHitBox.gd" id="5_y6f30"]
@@ -50,19 +51,22 @@ hull_component_bottom = NodePath("HullComponentTop")
 void_value = 500
 enemy_type = "Juggernaut"
 
-[node name="CollisionShape3D" parent="." index="0"]
+[node name="JuggernautTurret" parent="." index="0" instance=ExtResource("3_1hihb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.04004, 0, 0)
+
+[node name="CollisionShape3D" parent="." index="1"]
 shape = SubResource("BoxShape3D_qsei6")
 
-[node name="HullComponent" parent="." index="1"]
+[node name="HullComponent" parent="." index="2"]
 max_hull = 1000
 
-[node name="HullComponentTop" parent="." index="2" instance=ExtResource("3_w0fij")]
+[node name="HullComponentTop" parent="." index="3" instance=ExtResource("3_w0fij")]
 max_hull = 500
 
-[node name="HullComponentBottom" parent="." index="3" instance=ExtResource("3_w0fij")]
+[node name="HullComponentBottom" parent="." index="4" instance=ExtResource("3_w0fij")]
 max_hull = 500
 
-[node name="JuggernautHitboxes" type="Node3D" parent="." index="5"]
+[node name="JuggernautHitboxes" type="Node3D" parent="." index="6"]
 
 [node name="TopHitBox" type="Area3D" parent="JuggernautHitboxes" index="0"]
 collision_layer = 2
@@ -82,7 +86,7 @@ script = ExtResource("5_y6f30")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -12, 0)
 shape = SubResource("SphereShape3D_6m2yk")
 
-[node name="ModelParts" type="Node3D" parent="." index="8"]
+[node name="ModelParts" type="Node3D" parent="." index="9"]
 
 [node name="TopWeakPoint" type="MeshInstance3D" parent="ModelParts" index="0"]
 unique_name_in_owner = true
@@ -117,7 +121,7 @@ skeleton = NodePath("../..")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3, 0)
 
-[node name="AttackTimers" type="Node3D" parent="." index="9"]
+[node name="AttackTimers" type="Node3D" parent="." index="10"]
 
 [node name="TopBombCooldown" type="Timer" parent="AttackTimers" index="0"]
 unique_name_in_owner = true

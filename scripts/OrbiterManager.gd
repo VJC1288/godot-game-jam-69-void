@@ -77,7 +77,7 @@ func _physics_process(delta):
 		var direction = b.global_position.direction_to(Vector3.ZERO)
 		b.global_position += DEFAULT_FALL_SPEED * delta * direction
 		
-	horizontal_enemy_bombs.rotation.y -= DEFAULT_ENEMY_LASER_ORBIT_SPEED * delta
+	horizontal_enemy_bombs.rotation.y -= (DEFAULT_ORBIT_SPEED * .1) * delta
 	
 	#Pickup movement management
 	for p in pickup_container.get_children():
