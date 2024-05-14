@@ -85,4 +85,3 @@ func _on_on_screen_detect_area_entered(_area):
 
 func _on_wall_detector_area_exited(_area):
 	currentDirection *= -1
-	print("bounce bitch")

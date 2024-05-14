@@ -78,6 +78,10 @@ script = ExtResource("10_sopg0")
 max_value = 100.0
 outline_color = Color(0, 0, 0, 0)
 
+[node name="LaserCooldown" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
 [connection signal="hull_changed" from="HullComponent" to="." method="_on_hull_component_hull_changed"]
 [connection signal="shield_changed" from="ShieldComponent" to="." method="_on_shield_component_shield_changed"]
 

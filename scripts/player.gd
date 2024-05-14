@@ -22,6 +22,7 @@ signal change_laser_color()
 @onready var shield_break_sound = $ShieldBreakSound
 @onready var shield_hit_sound = $ShieldHitSound
 @onready var heat_bar = $HeatBar
+@onready var laser_cooldown = $LaserCooldown
 
 @export var SPEED = 20
 @export var hull_component: HullComponent
@@ -40,11 +41,18 @@ var old_shield: int = 100
 var current_laser_heat: int = 0
 var max_laser_heat: int = 100
 var overheated:bool = false
+var shooting:bool = false
+
 
 func _physics_process(delta):
 	
+	
 	check_laser_heat()
 	update_laser_heat()
+	
+	if shooting and laser_cooldown.time_left == 0:
+		shootLaser()
+		laser_cooldown.start(.1)
 	
 	direction = Vector2.ZERO
 	
@@ -68,7 +76,15 @@ func _physics_process(delta):
 	position.y = clamp(position.y + direction.y * SPEED * delta, -movement_clamp_vertical, movement_clamp_vertical)
 	
 func _input(event):
-	if event.is_action_pressed("fire") and !overheated:
+	if event.is_action_pressed("fire"):
+		shooting = true
+	if event.is_action_released("fire"):
+		shooting = false
+	if event.is_action_pressed("shortwarp"):
+		short_warp()
+
+func shootLaser():
+	if !overheated:
 		if has_laser_upgrade == true:
 			fireLaser.emit(center_muzzle.global_position)
 			fireTopLaser.emit(top_muzzle.global_position)
@@ -80,10 +96,7 @@ func _input(event):
 			muzzle_flash()
 		
 		current_laser_heat = clamp(current_laser_heat+15, 0, max_laser_heat)
-		
-	if event.is_action_pressed("shortwarp"):
-		short_warp()
-		
+
 func _on_hull_component_hull_changed(new_hull):
 	player_hull_changed.emit(new_hull)
 
@@ -99,7 +112,6 @@ func _on_shield_component_shield_changed(new_shield):
 func adjust_void_energy(adjustment):
 	current_energy = clamp(current_energy + adjustment, 0 , max_energy)
 	player_energy_changed.emit(adjustment)
-	print(current_energy)
 
 func shield_effect():
 	var shieldeffect = SHIELD_EFFECT.instantiate()
