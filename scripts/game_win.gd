@@ -10,4 +10,5 @@ func _ready():
 	replay.grab_focus()
 	
 func _on_replay_pressed():
+	get_tree().paused = false
 	restart_game.emit()

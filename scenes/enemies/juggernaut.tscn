@@ -35,10 +35,10 @@ shape = SubResource("BoxShape3D_qsei6")
 max_hull = 1000
 
 [node name="HullComponentTop" parent="." index="3" instance=ExtResource("3_w0fij")]
-max_hull = 500
+max_hull = 750
 
 [node name="HullComponentBottom" parent="." index="4" instance=ExtResource("3_w0fij")]
-max_hull = 500
+max_hull = 750
 
 [node name="JuggernautHitboxes" type="Node3D" parent="." index="6"]
 
