@@ -31,9 +31,7 @@ func adjust_shield(adjustment: int):
 
 func shield_regen():
 	if shield_regen_delay.is_stopped():
-		print(shield_regen_delay.is_stopped())
 		if ownerNode is Player and ownerNode.current_energy >= 1 and current_shield != max_shield:
-			print("Start Regen")
 			adjust_shield(1)
 			shield_regen_delay.stop()
 			shield_regen_timer.start(regen_rate)

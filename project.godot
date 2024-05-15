@@ -122,6 +122,7 @@ shortwarp={
 3d_physics/layer_8="playerbody"
 3d_physics/layer_9="enemybody"
 3d_physics/layer_10="screenedges"
+3d_physics/layer_11="explosions"
 
 [physics]
 

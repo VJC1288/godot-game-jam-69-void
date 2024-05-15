@@ -17,5 +17,5 @@ func take_damage(amount):
 			playerNode.hull_component.adjust_hull(spilldamage)
 	elif playerNode.hull_component != null:
 		playerNode.hull_component.adjust_hull(amount)
-	print("Shield: ", playerNode.shield_component.current_shield)
-	print("Hull: ", playerNode.hull_component.current_hull)
+	#print("Shield: ", playerNode.shield_component.current_shield)
+	#print("Hull: ", playerNode.hull_component.current_hull)

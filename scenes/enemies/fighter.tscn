@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cibyt6t30mteu"]
+[gd_scene load_steps=11 format=3 uid="uid://cibyt6t30mteu"]
 
 [ext_resource type="PackedScene" uid="uid://1nlrcogbuus8" path="res://scenes/enemies/baseEnemy.tscn" id="1_mbot2"]
 [ext_resource type="Script" path="res://scripts/fighter.gd" id="2_jyf71"]
@@ -9,6 +9,9 @@ size = Vector3(1.89153, 1.85306, 3.06584)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sp4wa"]
 size = Vector3(1.892, 1.853, 6.14868)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5g2qq"]
+size = Vector3(1.892, 1.853, 3.066)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d3aa3"]
 resource_name = "CockpitWindow"
@@ -117,6 +120,12 @@ max_hull = 100
 [node name="CollisionShape3D2" parent="HitboxComponent" index="1"]
 shape = SubResource("BoxShape3D_sp4wa")
 
+[node name="HurtboxComponent" parent="." index="3"]
+collision_mask = 1
+
+[node name="CollisionShape3D" parent="HurtboxComponent" index="0"]
+shape = SubResource("BoxShape3D_5g2qq")
+
 [node name="FireDetection" type="RayCast3D" parent="." index="4"]
 target_position = Vector3(50, 0, 0)
 collide_with_areas = true
@@ -127,7 +136,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46646, -0.242096, 0)
 [node name="FireCooldown" type="Timer" parent="." index="6"]
 one_shot = true
 
-[node name="OnScreenDetect" parent="." index="7"]
+[node name="OnScreenDetect" parent="." index="8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="CollisionShape3D" parent="OnScreenDetect" index="0"]

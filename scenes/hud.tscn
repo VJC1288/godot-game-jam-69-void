@@ -6,7 +6,7 @@
 [ext_resource type="StyleBox" uid="uid://dxurpi5esihxk" path="res://themes/shieldbartheme.tres" id="3_kud5n"]
 [ext_resource type="StyleBox" uid="uid://caqjbq3pc26en" path="res://themes/hullbartheme.tres" id="4_eguqq"]
 [ext_resource type="Texture2D" uid="uid://d2jft664wb0g8" path="res://assets/textures/void_cell_texture.svg" id="6_o0usi"]
-[ext_resource type="Texture2D" uid="uid://6mqopx4seuvc" path="res://assets/textures/void_cell_fill.svg" id="7_xor1d"]
+[ext_resource type="Texture2D" uid="uid://b8ucvuh170lrw" path="res://assets/textures/void_cell_fill_white.svg" id="7_syrxu"]
 [ext_resource type="FontFile" uid="uid://mh42ommv3vnq" path="res://assets/fonts/vermin_vibes.ttf" id="8_1jsox"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_obyd0"]
@@ -99,6 +99,7 @@ size_flags_horizontal = 0
 
 [node name="VoidCellLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer3"]
 unique_name_in_owner = true
+texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_dgk0i")
 theme_override_font_sizes/font_size = 18
@@ -114,43 +115,46 @@ layout_mode = 2
 
 [node name="VoidCell1" type="TextureProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer4"]
 unique_name_in_owner = true
-texture_filter = 2
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 max_value = 500.0
 fill_mode = 3
 texture_under = ExtResource("6_o0usi")
-texture_progress = ExtResource("7_xor1d")
+texture_progress = ExtResource("7_syrxu")
 texture_progress_offset = Vector2(0, 12)
+tint_progress = Color(0.329412, 0, 0.458824, 1)
 
 [node name="VoidCell2" type="TextureProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer4"]
 unique_name_in_owner = true
-texture_filter = 2
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 max_value = 500.0
 fill_mode = 3
 texture_under = ExtResource("6_o0usi")
-texture_progress = ExtResource("7_xor1d")
+texture_progress = ExtResource("7_syrxu")
 texture_progress_offset = Vector2(0, 12)
+tint_progress = Color(0.329412, 0, 0.458824, 1)
 
 [node name="VoidCell3" type="TextureProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer4"]
 unique_name_in_owner = true
-texture_filter = 2
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 max_value = 500.0
 fill_mode = 3
 texture_under = ExtResource("6_o0usi")
-texture_progress = ExtResource("7_xor1d")
+texture_progress = ExtResource("7_syrxu")
 texture_progress_offset = Vector2(0, 12)
+tint_progress = Color(0.329412, 0, 0.458824, 1)
 
 [node name="VoidCell4" type="TextureProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer4"]
 unique_name_in_owner = true
-texture_filter = 2
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
@@ -158,20 +162,22 @@ max_value = 500.0
 step = 0.25
 fill_mode = 3
 texture_under = ExtResource("6_o0usi")
-texture_progress = ExtResource("7_xor1d")
+texture_progress = ExtResource("7_syrxu")
 texture_progress_offset = Vector2(0, 12)
+tint_progress = Color(0.329412, 0, 0.458824, 1)
 
 [node name="VoidCell5" type="TextureProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer4"]
 unique_name_in_owner = true
-texture_filter = 2
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 max_value = 500.0
 fill_mode = 3
 texture_under = ExtResource("6_o0usi")
-texture_progress = ExtResource("7_xor1d")
+texture_progress = ExtResource("7_syrxu")
 texture_progress_offset = Vector2(0, 12)
+tint_progress = Color(0.329412, 0, 0.458824, 1)
 
 [node name="VoidCell6" type="TextureProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer4"]
 unique_name_in_owner = true
@@ -183,8 +189,9 @@ size_flags_vertical = 8
 max_value = 500.0
 fill_mode = 3
 texture_under = ExtResource("6_o0usi")
-texture_progress = ExtResource("7_xor1d")
+texture_progress = ExtResource("7_syrxu")
 texture_progress_offset = Vector2(0, 12)
+tint_progress = Color(0.329412, 0, 0.458824, 1)
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -226,3 +233,9 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 3
 theme_override_constants/separation = 10
+
+[node name="EffectTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="EffectTimer" to="." method="_on_effect_timer_timeout"]

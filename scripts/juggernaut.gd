@@ -14,14 +14,15 @@ signal fire_bottom_bomb(firePoint)
 @onready var juggernaut_turret = $JuggernautTurret
 @onready var top_weak_spot_broken_nodes = $WeakSpotBrokenNodes/TopWeakSpotBrokenNodes
 @onready var bottom_weak_spot_broken_nodes = $WeakSpotBrokenNodes/BottomWeakSpotBrokenNodes
+@onready var bomb_reset_timer = $AttackTimers/BombResetTimer
 
 
 
 @export var hull_component_top:HullComponent
 @export var hull_component_bottom:HullComponent
 
-var top_bomb_cd:int = randi_range(3,4)
-var bottom_bomb_cd:int = randi_range(3,4)
+var top_bomb_cd:float = randf_range(2,3)
+var bottom_bomb_cd:float = randf_range(2,3)
 var move_turret: float = .05
 
 func _fire_top_bomb():
@@ -42,9 +43,9 @@ func _physics_process(delta):
 			position.x = position.x + direction.x * SPEED * delta
 			
 		EnemyStates.ENGAGING:
-			if top_bomb_cooldown.time_left == 0:
+			if top_bomb_cooldown.time_left == 0 and !bomb_reset_timer.is_stopped():
 				_fire_top_bomb()
-			if bottom_bomb_cooldown.time_left == 0:
+			if bottom_bomb_cooldown.time_left == 0 and !bomb_reset_timer.is_stopped():
 				_fire_bottom_bomb()
 			juggernaut_turret.fireBeam()
 		
@@ -74,4 +75,8 @@ func _on_hull_component_bottom_defeated():
 func checkPlayerDistance():
 	if on_screen:
 		currentState = EnemyStates.ENGAGING
-		#print("Engage Player!!")
+
+
+func _on_bomb_reset_timer_timeout():
+	await get_tree().create_timer(5, false).timeout
+	bomb_reset_timer.start(18)

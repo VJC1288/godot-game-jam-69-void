@@ -43,7 +43,7 @@ resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_ogkqx")
 
 [node name="BomberBombExplosion" type="Area3D"]
-collision_layer = 0
+collision_layer = 1024
 script = ExtResource("1_844ip")
 damage = -45
 

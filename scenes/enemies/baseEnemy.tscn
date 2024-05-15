@@ -1,12 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://1nlrcogbuus8"]
+[gd_scene load_steps=7 format=3 uid="uid://1nlrcogbuus8"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_ysbwp"]
 [ext_resource type="PackedScene" uid="uid://c62l4dsmtajn2" path="res://scenes/hull_component.tscn" id="2_sj8xs"]
 [ext_resource type="PackedScene" uid="uid://c0vpaxv5fjd7q" path="res://scenes/hitbox_component.tscn" id="3_gd66y"]
+[ext_resource type="PackedScene" uid="uid://hc8v5vg8566d" path="res://scenes/hurtbox_component.tscn" id="4_2xcu8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1ah2v"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tqkvq"]
+size = Vector3(1, 1, 5)
 
 [node name="Enemy" type="RigidBody3D" node_paths=PackedStringArray("hull_component")]
 collision_layer = 256
@@ -14,6 +16,7 @@ collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_ysbwp")
 hull_component = NodePath("HullComponent")
+damage = -15
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 
@@ -24,6 +27,10 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="HitboxComponent"]
+
+[node name="HurtboxComponent" parent="." instance=ExtResource("4_2xcu8")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtboxComponent"]
 
 [node name="MovementTimer" type="Timer" parent="."]
 wait_time = 4.0

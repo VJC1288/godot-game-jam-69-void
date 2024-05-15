@@ -10,11 +10,17 @@ extends CanvasLayer
 @onready var void_cell_6 = %VoidCell6
 @onready var ui_splash_text = %UISplashText
 @onready var void_cell_label = %VoidCellLabel
+@onready var effect_timer = $EffectTimer
+
+var void_cells:Array 
 
 var total_energy:int = 0
 var spilloverenergy: int = 0
 var max_energy: int = 2500
 var reserveCell: bool = false
+
+func _ready():
+	void_cells = [void_cell_1, void_cell_2, void_cell_3, void_cell_4, void_cell_5, void_cell_6]
 
 func update_hull(new_value):
 	hull_bar.value = new_value
@@ -24,7 +30,7 @@ func update_shield(new_value):
 
 func update_energy(adjustment):
 	total_energy = clamp(total_energy + adjustment, 0, max_energy)
-	print(total_energy)
+	
 	if reserveCell:
 		if total_energy < 500:
 			void_cell_1.value = total_energy
@@ -39,7 +45,7 @@ func update_energy(adjustment):
 			void_cell_3.value = void_cell_3.min_value
 			void_cell_4.value = void_cell_4.min_value
 			void_cell_5.value = void_cell_5.min_value
-			void_cell_6.value = void_cell_6.min_value
+			void_cell_6.value = void_cell_6.min_value	
 		elif total_energy < 1500:
 			void_cell_1.value = void_cell_1.max_value
 			void_cell_2.value = void_cell_2.max_value
@@ -141,3 +147,13 @@ func spashtexttween():
 	ui_splash_text.visible = false
 	ui_splash_text.label_settings.font_color = Color(1,1,1,1)
 	ui_splash_text.label_settings.shadow_color = Color(0,0,0,1)
+
+func voidCellEffect():
+	for void_cell in void_cells:
+		if void_cell.value == void_cell.max_value:
+			var tween = create_tween()
+			tween.tween_property(void_cell, "tint_progress", Color(0.875, 0, 0.875), 1).set_ease(Tween.EASE_IN_OUT)
+			tween.tween_property(void_cell, "tint_progress", Color(0.329, 0, 0.459), 1).set_ease(Tween.EASE_IN_OUT)
+
+func _on_effect_timer_timeout():
+	voidCellEffect()

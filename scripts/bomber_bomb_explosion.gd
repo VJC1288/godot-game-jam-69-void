@@ -1,5 +1,7 @@
 extends Area3D
 
+class_name BomberBombExplosion
+
 @onready var mesh_instance_3d = $MeshInstance3D
 
 @export var damage: int

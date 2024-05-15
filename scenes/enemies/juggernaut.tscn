@@ -80,6 +80,11 @@ one_shot = true
 unique_name_in_owner = true
 one_shot = true
 
+[node name="BombResetTimer" type="Timer" parent="AttackTimers" index="2"]
+wait_time = 18.0
+one_shot = true
+autostart = true
+
 [node name="juggernaut" parent="." index="11" instance=ExtResource("7_fekrv")]
 transform = Transform3D(-1.04907e-07, 0, 2.4, 0, 2.4, 0, -2.4, 0, -1.04907e-07, 2.93518, 0.522041, 0.092411)
 
@@ -124,3 +129,4 @@ skeleton = NodePath("../../TopWeakSpotBrokenNodes/TopWeakDisableModel1")
 [connection signal="area_entered" from="JuggernautHitboxes/TopHitBox" to="JuggernautHitboxes" method="_on_top_hit_box_area_entered"]
 [connection signal="area_entered" from="JuggernautHitboxes/TopHitBox" to="JuggernautHitboxes/TopHitBox" method="_on_area_entered"]
 [connection signal="area_entered" from="JuggernautHitboxes/BottomHitBox" to="JuggernautHitboxes" method="_on_bottom_hit_box_area_entered"]
+[connection signal="timeout" from="AttackTimers/BombResetTimer" to="." method="_on_bomb_reset_timer_timeout"]

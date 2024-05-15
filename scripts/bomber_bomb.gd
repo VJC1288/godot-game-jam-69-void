@@ -31,6 +31,6 @@ func _physics_process(delta):
 		mesh_instance_3d_2.scale = Vector3(1,1,1)
 
 func _on_area_entered(area):
-	if area is PlayerHitboxComponent:
+	if area is PlayerHitboxComponent or BomberBombExplosion:
 		enemy_bomb_explode.emit(global_position)
 		queue_free()

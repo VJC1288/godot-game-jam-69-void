@@ -17,11 +17,13 @@ enum EnemyStates {ENTERING, ENGAGING, DYING}
 @export var void_value:int
 @export var ENGAGE_SPEED:int = 8
 @export var DEATH_SPEED:int = 100
+@export var damage: int = 15 #THIS IS IMPACT DAMAGE, NOT WEAPON DAMAGE
 @export_enum("Fighter", "Beam_Fighter", "Bomber", "Juggernaut") var enemy_type:String
 
 var movement_clamp_vertical = 15
 var movement_clamp_horizontal = movement_clamp_vertical * (16.0/9.0)
 
+var isLaser:bool = false
 
 var flash_time:float = .025
 
@@ -67,7 +69,6 @@ func _physics_process(delta):
 func checkPlayerDistance():
 	if global_transform.origin.distance_to(Globals.current_player.global_position) < 30 and on_screen:
 		currentState = EnemyStates.ENGAGING
-		#print("Engage Player!!")
 		randomizeMovement()
 
 func randomizeMovement():
@@ -92,7 +93,6 @@ func _on_on_screen_detect_area_entered(_area):
 
 func _on_wall_detector_area_exited(_area):
 	currentDirection *= -1
-	print("bounce bitch")
 
 func _on_hull_component_hull_changed(new_hull):
 	if new_hull < hull_component.max_hull:

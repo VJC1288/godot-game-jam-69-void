@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dkhv4cboubdlv"]
+[gd_scene load_steps=8 format=3 uid="uid://dkhv4cboubdlv"]
 
 [ext_resource type="PackedScene" uid="uid://1nlrcogbuus8" path="res://scenes/enemies/baseEnemy.tscn" id="1_i5pci"]
 [ext_resource type="Script" path="res://scripts/bomber.gd" id="2_4uutc"]
@@ -9,6 +9,12 @@ size = Vector3(3.1, 1.6, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ckdsm"]
 size = Vector3(3.02954, 1.6, 4.67383)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8v4g4"]
+size = Vector3(3.1, 1.6, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ir455"]
+size = Vector3(1, 1, 5)
 
 [node name="Bomber" instance=ExtResource("1_i5pci")]
 script = ExtResource("2_4uutc")
@@ -25,8 +31,8 @@ max_hull = 150
 [node name="CollisionShape3D2" parent="HitboxComponent" index="1"]
 shape = SubResource("BoxShape3D_ckdsm")
 
-[node name="CollisionShape3D" parent="OnScreenDetect" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 3, 0)
+[node name="CollisionShape3D" parent="HurtboxComponent" index="0"]
+shape = SubResource("BoxShape3D_8v4g4")
 
 [node name="FireDetection" type="RayCast3D" parent="." index="5"]
 target_position = Vector3(0, -30, 0)
@@ -40,8 +46,11 @@ wait_time = 2.0
 one_shot = true
 autostart = true
 
-[node name="WallDetector" parent="." index="8"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.62018, 0, 0)
+[node name="CollisionShape3D" parent="OnScreenDetect" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 3, 0)
+
+[node name="CollisionShape3D" parent="WallDetector" index="0"]
+shape = SubResource("BoxShape3D_ir455")
 
 [node name="littlebomber" parent="ShipModel" index="0" instance=ExtResource("2_hlu66")]
 transform = Transform3D(-0.55, -1.64452e-08, -4.51828e-08, 0, 0.516831, -0.188111, 4.80825e-08, -0.188111, -0.516831, 0, -0.21, 0)

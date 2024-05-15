@@ -8,7 +8,7 @@
 [ext_resource type="StyleBox" uid="uid://ud5jyih5jsr4" path="res://themes/buttonstyle.tres" id="5_eu2qm"]
 
 [node name="GameWin" type="CanvasLayer"]
-process_mode = 2
+process_mode = 3
 script = ExtResource("1_70qks")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -78,6 +78,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = ExtResource("5_eu2qm")
 text = "Play again?"
