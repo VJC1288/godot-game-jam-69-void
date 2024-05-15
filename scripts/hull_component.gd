@@ -19,6 +19,7 @@ func _ready():
 func adjust_hull(adjustment: int):
 	if ownerNode is Enemy:
 		current_hull += adjustment
+		hull_changed.emit(current_hull)
 		if current_hull <= 0:
 			defeated.emit()
 	elif ownerNode is Player:

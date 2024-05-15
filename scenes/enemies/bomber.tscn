@@ -16,32 +16,32 @@ void_value = 50
 ENGAGE_SPEED = 10
 enemy_type = "Bomber"
 
-[node name="littlebomber" parent="." index="0" instance=ExtResource("2_hlu66")]
-transform = Transform3D(-0.55, -1.64452e-08, -4.51828e-08, 0, 0.516831, -0.188111, 4.80825e-08, -0.188111, -0.516831, 0, -0.21, 0)
-
-[node name="CollisionShape3D" parent="." index="1"]
+[node name="CollisionShape3D" parent="." index="0"]
 shape = SubResource("BoxShape3D_o57ai")
 
-[node name="HullComponent" parent="." index="2"]
+[node name="HullComponent" parent="." index="1"]
 max_hull = 150
 
 [node name="CollisionShape3D2" parent="HitboxComponent" index="1"]
 shape = SubResource("BoxShape3D_ckdsm")
 
-[node name="WallDetector" parent="." index="5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.62018, 0, 0)
+[node name="CollisionShape3D" parent="OnScreenDetect" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 3, 0)
 
-[node name="FireDetection" type="RayCast3D" parent="." index="6"]
+[node name="FireDetection" type="RayCast3D" parent="." index="5"]
 target_position = Vector3(0, -30, 0)
 collide_with_areas = true
 
-[node name="BottomMuzzle" type="Marker3D" parent="." index="7"]
+[node name="BottomMuzzle" type="Marker3D" parent="." index="6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.922463, 0)
 
-[node name="FireCooldown" type="Timer" parent="." index="8"]
+[node name="FireCooldown" type="Timer" parent="." index="7"]
 wait_time = 2.0
 one_shot = true
 autostart = true
 
-[node name="CollisionShape3D" parent="OnScreenDetect" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 3, 0)
+[node name="WallDetector" parent="." index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.62018, 0, 0)
+
+[node name="littlebomber" parent="ShipModel" index="0" instance=ExtResource("2_hlu66")]
+transform = Transform3D(-0.55, -1.64452e-08, -4.51828e-08, 0, 0.516831, -0.188111, 4.80825e-08, -0.188111, -0.516831, 0, -0.21, 0)

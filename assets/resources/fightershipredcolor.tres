@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dhbdtfuh8n4mr"]
+
+[resource]
+resource_name = "ShipMetalGrey"
+cull_mode = 2
+metallic = 0.766839
+roughness = 0.282383

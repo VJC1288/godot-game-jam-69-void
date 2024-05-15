@@ -8,6 +8,9 @@ signal enemyDefeated(location, value, type)
 @onready var hitbox_component = $HitboxComponent
 @onready var collision_shape = $CollisionShape3D
 
+@onready var ship_model = $ShipModel
+
+
 enum EnemyStates {ENTERING, ENGAGING, DYING}
 
 @export var hull_component: HullComponent
@@ -18,6 +21,10 @@ enum EnemyStates {ENTERING, ENGAGING, DYING}
 
 var movement_clamp_vertical = 15
 var movement_clamp_horizontal = movement_clamp_vertical * (16.0/9.0)
+
+
+var flash_time:float = .025
+
 
 var SPEED:int = 20
 var currentState = EnemyStates.ENTERING
@@ -86,3 +93,23 @@ func _on_on_screen_detect_area_entered(_area):
 func _on_wall_detector_area_exited(_area):
 	currentDirection *= -1
 	print("bounce bitch")
+
+func _on_hull_component_hull_changed(new_hull):
+	if new_hull < hull_component.max_hull:
+		ship_damage_indication()
+
+func ship_damage_indication():
+
+	var tween = create_tween()
+	tween.tween_property(ship_model, "visible", false, flash_time)
+	tween.tween_property(ship_model, "visible", true, flash_time)
+	tween.tween_property(ship_model, "visible", false, flash_time)
+	tween.tween_property(ship_model, "visible", true, flash_time)
+	tween.tween_property(ship_model, "visible", false, flash_time)
+	tween.tween_property(ship_model, "visible", true, flash_time)
+	tween.tween_property(ship_model, "visible", false, flash_time)
+	tween.tween_property(ship_model, "visible", true, flash_time)
+	tween.tween_property(ship_model, "visible", false, flash_time)
+	tween.tween_property(ship_model, "visible", true, flash_time)
+	tween.tween_property(ship_model, "visible", false, flash_time)
+	tween.tween_property(ship_model, "visible", true, flash_time)

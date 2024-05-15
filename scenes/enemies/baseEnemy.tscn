@@ -43,7 +43,10 @@ collision_mask = 512
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WallDetector"]
 shape = SubResource("BoxShape3D_tqkvq")
 
+[node name="ShipModel" type="Node3D" parent="."]
+
 [connection signal="defeated" from="HullComponent" to="." method="_on_hull_component_defeated"]
+[connection signal="hull_changed" from="HullComponent" to="." method="_on_hull_component_hull_changed"]
 [connection signal="timeout" from="MovementTimer" to="." method="_on_movement_timer_timeout"]
 [connection signal="area_entered" from="OnScreenDetect" to="." method="_on_on_screen_detect_area_entered"]
 [connection signal="area_exited" from="WallDetector" to="." method="_on_wall_detector_area_exited"]

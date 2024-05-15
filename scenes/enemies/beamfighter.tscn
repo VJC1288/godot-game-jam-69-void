@@ -16,33 +16,33 @@ script = ExtResource("2_l42ck")
 void_value = 60
 enemy_type = "Beam_Fighter"
 
-[node name="beamship" parent="." index="0" instance=ExtResource("3_p34hn")]
-transform = Transform3D(-1.5299e-08, 0, 0.35, 0, 0.35, 0, -0.35, 0, -1.5299e-08, 0.00659132, -0.257065, 0)
-
-[node name="CollisionShape3D" parent="." index="1"]
+[node name="CollisionShape3D" parent="." index="0"]
 shape = SubResource("BoxShape3D_ivppm")
 
-[node name="HullComponent" parent="." index="2"]
+[node name="HullComponent" parent="." index="1"]
 max_hull = 100
 
 [node name="CollisionShape3D2" parent="HitboxComponent" index="1"]
 shape = SubResource("BoxShape3D_sp4wa")
 
-[node name="FireDetection" type="RayCast3D" parent="." index="5"]
+[node name="FireDetection" type="RayCast3D" parent="." index="4"]
 target_position = Vector3(50, 0, 0)
 collide_with_areas = true
 
-[node name="CenterMuzzle" type="Marker3D" parent="." index="6"]
+[node name="CenterMuzzle" type="Marker3D" parent="." index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46646, -0.242096, 0)
 
-[node name="FireCooldown" type="Timer" parent="." index="7"]
+[node name="FireCooldown" type="Timer" parent="." index="6"]
 wait_time = 4.0
 one_shot = true
 autostart = true
 
-[node name="ShotCooldown" type="Timer" parent="." index="8"]
+[node name="ShotCooldown" type="Timer" parent="." index="7"]
 wait_time = 0.05
 one_shot = true
 
-[node name="OnScreenDetect" parent="." index="10"]
+[node name="OnScreenDetect" parent="." index="8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="beamship" parent="ShipModel" index="0" instance=ExtResource("3_p34hn")]
+transform = Transform3D(-1.5299e-08, 0, 0.35, 0, 0.35, 0, -0.35, 0, -1.5299e-08, 0.00659132, -0.257065, 0)
