@@ -106,7 +106,7 @@ func spawn_player_laser(firePoint):
 	player_laser_sound.play()
 	if Globals.current_player.has_laser_upgrade:
 		spawned_laser.mesh_instance_3d.mesh.material.albedo_color = Color(1,1,0,1)
-		spawned_laser.mesh_instance_3d.mesh.material.emission = Color(1,1,0,1)
+		spawned_laser.mesh_instance_3d.mesh.material.emission = Color(81.9579,94.7632,39.9581,1)
 
 func spawn_top_laser(firePoint):
 	var spawned_laser = PLAYERLASER.instantiate()

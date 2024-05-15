@@ -12,6 +12,10 @@ signal fire_bottom_bomb(firePoint)
 @onready var top_bomb_muzzle = %TopBombMuzzle
 @onready var bottom_bomb_muzzle = %BottomBombMuzzle
 @onready var juggernaut_turret = $JuggernautTurret
+@onready var top_weak_spot_broken_nodes = $WeakSpotBrokenNodes/TopWeakSpotBrokenNodes
+@onready var bottom_weak_spot_broken_nodes = $WeakSpotBrokenNodes/BottomWeakSpotBrokenNodes
+
+
 
 @export var hull_component_top:HullComponent
 @export var hull_component_bottom:HullComponent
@@ -59,11 +63,13 @@ func _on_hull_component_top_defeated():
 	hull_component.adjust_hull(-500)
 	#top_weak_point.mesh.material.albedo_color = Color(0,0,0,1)
 	top_hit_box.set_deferred("monitorable", false)
+	top_weak_spot_broken_nodes.visible = true
 
 func _on_hull_component_bottom_defeated():
 	hull_component.adjust_hull(-500)
 	#bottom_weak_point.mesh.material.albedo_color = Color(0,0,0,1)
 	bottom_hit_box.set_deferred("monitorable", false)
+	bottom_weak_spot_broken_nodes.visible = true
 	
 func checkPlayerDistance():
 	if on_screen:

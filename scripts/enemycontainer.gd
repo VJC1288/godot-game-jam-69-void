@@ -29,9 +29,9 @@ var juggernaut_spawned:bool = false
 
 func _ready():
 	#pass
-	#spawnFighter()
+	spawnFighter()
 	#spawnBeamFighter()
-	spawnBomber()
+	#spawnBomber()
 	#spawnJuggernaut()
 	
 func spawnFighter():
@@ -40,7 +40,7 @@ func spawnFighter():
 	add_child(fighter)
 	fighter.fireFighterLaser.connect(spawn_fighter_laser)
 	fighter.enemyDefeated.connect(enemyDeathActions)
-	fighter.global_position = Vector3(right_enemy_spawn_location.global_position.x, randi_range(-14,14), right_enemy_spawn_location.global_position.z)
+	fighter.global_position = Vector3(right_enemy_spawn_location.global_position.x, randi_range(-12,14), right_enemy_spawn_location.global_position.z)
 	fighter = null
 
 func spawnBeamFighter():
@@ -49,7 +49,7 @@ func spawnBeamFighter():
 	add_child(beam_fighter)
 	beam_fighter.fireBeamLaser.connect(spawn_beam_laser)
 	beam_fighter.enemyDefeated.connect(enemyDeathActions)
-	beam_fighter.global_position = Vector3(right_enemy_spawn_location.global_position.x, randi_range(-14,14), right_enemy_spawn_location.global_position.z)
+	beam_fighter.global_position = Vector3(right_enemy_spawn_location.global_position.x, randi_range(-12,14), right_enemy_spawn_location.global_position.z)
 	beam_fighter = null
 
 func spawnBomber():

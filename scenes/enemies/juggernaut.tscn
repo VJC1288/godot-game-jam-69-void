@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://h740w4oxf64e"]
+[gd_scene load_steps=13 format=3 uid="uid://h740w4oxf64e"]
 
 [ext_resource type="PackedScene" uid="uid://1nlrcogbuus8" path="res://scenes/enemies/baseEnemy.tscn" id="1_0occh"]
 [ext_resource type="Script" path="res://scripts/juggernaut.gd" id="2_px8et"]
@@ -17,6 +17,13 @@ size = Vector3(1, 1.38574, 3.70703)
 [sub_resource type="BoxShape3D" id="BoxShape3D_3q8t0"]
 size = Vector3(1, 1.43774, 3.75)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_daho2"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_a4vkq"]
+material = SubResource("StandardMaterial3D_daho2")
+size = Vector2(1.42, 1)
+
 [node name="Juggernaut" node_paths=PackedStringArray("hull_component_top", "hull_component_bottom") instance=ExtResource("1_0occh")]
 collision_mask = 32
 script = ExtResource("2_px8et")
@@ -26,7 +33,7 @@ void_value = 500
 enemy_type = "Juggernaut"
 
 [node name="JuggernautTurret" parent="." index="0" instance=ExtResource("3_1hihb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.42925, 0, 0)
 
 [node name="CollisionShape3D" parent="." index="1"]
 shape = SubResource("BoxShape3D_qsei6")
@@ -83,6 +90,34 @@ transform = Transform3D(-1.50729e-08, 0, -0.344828, 0, 0.344828, 0, 0.344828, 0,
 [node name="BottomBombMuzzle" type="Marker3D" parent="juggernaut" index="2"]
 unique_name_in_owner = true
 transform = Transform3D(-1.50729e-08, 0, -0.344828, 0, 0.344828, 0, 0.344828, 0, -1.50729e-08, 0, -3.321, 0.931723)
+
+[node name="WeakSpotBrokenNodes" type="Node3D" parent="." index="13"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.48026, 10.467, 1.05523)
+
+[node name="TopWeakSpotBrokenNodes" type="Node3D" parent="WeakSpotBrokenNodes" index="0"]
+visible = false
+
+[node name="TopWeakDisableModel1" type="MeshInstance3D" parent="WeakSpotBrokenNodes/TopWeakSpotBrokenNodes" index="0"]
+mesh = SubResource("QuadMesh_a4vkq")
+skeleton = NodePath("../../..")
+
+[node name="TopWeakDisableModel2" type="MeshInstance3D" parent="WeakSpotBrokenNodes/TopWeakSpotBrokenNodes" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.93645, 0.00800991, -0.000260353)
+mesh = SubResource("QuadMesh_a4vkq")
+skeleton = NodePath("../TopWeakDisableModel1")
+
+[node name="BottomWeakSpotBrokenNodes" type="Node3D" parent="WeakSpotBrokenNodes" index="1"]
+visible = false
+
+[node name="BottomWeakDisableModel1" type="MeshInstance3D" parent="WeakSpotBrokenNodes/BottomWeakSpotBrokenNodes" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00362742, -19.9178, 0)
+mesh = SubResource("QuadMesh_a4vkq")
+skeleton = NodePath("../../..")
+
+[node name="BottomWeakDisableModel2" type="MeshInstance3D" parent="WeakSpotBrokenNodes/BottomWeakSpotBrokenNodes" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.92869, -19.9098, -0.000260353)
+mesh = SubResource("QuadMesh_a4vkq")
+skeleton = NodePath("../../TopWeakSpotBrokenNodes/TopWeakDisableModel1")
 
 [connection signal="defeated" from="HullComponentTop" to="." method="_on_hull_component_top_defeated"]
 [connection signal="defeated" from="HullComponentBottom" to="." method="_on_hull_component_bottom_defeated"]
