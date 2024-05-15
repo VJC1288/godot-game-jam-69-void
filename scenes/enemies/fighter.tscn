@@ -40,7 +40,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46646, -0.242096, 0)
 [node name="FireCooldown" type="Timer" parent="." index="7"]
 one_shot = true
 
-[node name="OnScreenDetect" parent="." index="9"]
+[node name="OnScreenDetect" parent="." index="8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="CollisionShape3D" parent="OnScreenDetect" index="0"]

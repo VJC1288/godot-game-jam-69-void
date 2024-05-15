@@ -111,7 +111,10 @@ func _on_shield_component_shield_changed(new_shield):
 	
 func adjust_void_energy(adjustment):
 	current_energy = clamp(current_energy + adjustment, 0 , max_energy)
+	if adjustment > 0 and shield_component.shield_regen_delay.is_stopped():
+		shield_component.shield_regen()
 	player_energy_changed.emit(adjustment)
+	
 
 func shield_effect():
 	var shieldeffect = SHIELD_EFFECT.instantiate()
