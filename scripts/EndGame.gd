@@ -52,7 +52,7 @@ func play_victory_animation():
 	player_model.global_position = Vector3(500,0,500)
 	player_model.rotate_y(deg_to_rad(270))
 	var tween = create_tween()
-	tween.tween_property(player_model, "global_position", end_game_ship_position.global_position,4.0).set_ease(Tween.EASE_OUT)
+	tween.tween_property(player_model, "global_position", end_game_ship_position.global_position,3.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
 	tween.finished.connect(add_win_message)
 
 func add_win_message():

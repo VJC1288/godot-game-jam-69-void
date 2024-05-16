@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://bhljayf8hhj62"]
+[gd_scene load_steps=79 format=3 uid="uid://bhljayf8hhj62"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_4cpek"]
 [ext_resource type="PackedScene" uid="uid://dd3se6k2tyivf" path="res://scenes/damage_zone.tscn" id="1_6hpio"]
@@ -15,6 +15,23 @@
 [ext_resource type="AudioStream" uid="uid://c3r3ewlq260vb" path="res://assets/sounds/155790__deleted_user_1941307__shipboard_railgun.mp3" id="9_xtjhc"]
 [ext_resource type="AudioStream" uid="uid://ctlo417ltrda" path="res://assets/sounds/beamerdeath-reverse.mp3" id="13_rfv15"]
 [ext_resource type="AudioStream" uid="uid://7qjn4ibwh1wr" path="res://assets/sounds/446625__idkmrgarcia__explosion.wav" id="14_3bx4x"]
+[ext_resource type="PackedScene" uid="uid://br75bokkf3b0h" path="res://scenes/short_warp_effect.tscn" id="16_3qhgq"]
+[ext_resource type="Script" path="res://scripts/ShaderPreloader.gd" id="16_muler"]
+[ext_resource type="PackedScene" uid="uid://bpe7rywf7saqe" path="res://scenes/void_energy.tscn" id="17_ddo67"]
+[ext_resource type="PackedScene" uid="uid://n0ihv481obi6" path="res://scenes/playerlaser.tscn" id="18_1fajc"]
+[ext_resource type="PackedScene" uid="uid://bcc63qx127rpn" path="res://scenes/enemies/bomber_bomb_explosion.tscn" id="19_v7jbt"]
+[ext_resource type="PackedScene" uid="uid://du0csvkol31p1" path="res://assets/models/asteroid.glb" id="21_8f6o2"]
+[ext_resource type="PackedScene" uid="uid://ds554i8vvh2y1" path="res://assets/models/beamship.glb" id="22_xxdf6"]
+[ext_resource type="PackedScene" uid="uid://bggo8itknjmlx" path="res://assets/models/enemyfigher.glb" id="23_7iw2d"]
+[ext_resource type="PackedScene" uid="uid://cqp4hml0uiu8r" path="res://assets/models/juggernaut.glb" id="24_q1287"]
+[ext_resource type="PackedScene" uid="uid://bjomf235fuolr" path="res://assets/models/littlebomber.glb" id="25_nym48"]
+[ext_resource type="PackedScene" uid="uid://dwwhc0tog5gsq" path="res://assets/models/starship.glb" id="26_sgyyi"]
+[ext_resource type="PackedScene" uid="uid://b4ox3emokt56b" path="res://scenes/enemies/bomber_bomb.tscn" id="27_y6uoq"]
+[ext_resource type="PackedScene" uid="uid://cy6v7ych8i6ku" path="res://scenes/enemies/fighterlaser.tscn" id="28_o8qyp"]
+[ext_resource type="PackedScene" uid="uid://c45o2x0kqdu5o" path="res://scenes/enemies/beamlaser.tscn" id="29_b581n"]
+[ext_resource type="PackedScene" uid="uid://byh8ne12whthh" path="res://scenes/reserve_void_cell.tscn" id="30_35plo"]
+[ext_resource type="PackedScene" uid="uid://ds36yylqcb1d6" path="res://scenes/playermuzzleflash.tscn" id="31_kw75m"]
+[ext_resource type="PackedScene" uid="uid://cna2up0x6o73" path="res://scenes/shield_effect.tscn" id="32_2wifj"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_jevuy"]
 panorama = ExtResource("2_s47m1")
@@ -380,6 +397,43 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_mwojy"]
 size = Vector3(39.8423, 26.5082, 83)
 
+[sub_resource type="Gradient" id="Gradient_2chk1"]
+offsets = PackedFloat32Array(0.0576923, 0.352564, 0.532051, 0.692308)
+colors = PackedColorArray(0.560784, 0.313726, 0, 1, 0.952941, 0, 0.392157, 1, 0.913459, 0.320329, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qsupg"]
+noise_type = 2
+frequency = 0.0373
+fractal_type = 3
+fractal_octaves = 10
+fractal_lacunarity = 2.045
+fractal_gain = 0.51
+fractal_weighted_strength = 0.22
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_f2a00"]
+in_3d_space = true
+seamless = true
+seamless_blend_skirt = 0.19
+color_ramp = SubResource("Gradient_2chk1")
+noise = SubResource("FastNoiseLite_qsupg")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_abwkc"]
+resource_local_to_scene = true
+transparency = 1
+albedo_color = Color(1, 0.270588, 0.176471, 1)
+albedo_texture = SubResource("NoiseTexture2D_f2a00")
+emission_enabled = true
+emission = Color(0.53995, 0.251145, 9.62615e-08, 1)
+emission_energy_multiplier = 0.5
+rim_enabled = true
+rim = 0.45
+rim_tint = 0.0
+refraction_scale = -0.61
+
+[sub_resource type="SphereMesh" id="SphereMesh_qgnyp"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_abwkc")
+
 [node name="Main" type="Node3D"]
 script = ExtResource("1_4cpek")
 
@@ -417,6 +471,7 @@ script = ExtResource("5_df1fn")
 [node name="EndGameCamera" type="Camera3D" parent="World/EndGame"]
 transform = Transform3D(-0.832921, 0.131064, -0.537647, 0, 0.971549, 0.236838, 0.553392, 0.197268, -0.809224, -1361.87, 564.413, -1935.83)
 rotation_edit_mode = 2
+cull_mask = 1048063
 fov = 37.8493
 
 [node name="EndGameShipPosition" type="Marker3D" parent="World/EndGame/EndGameCamera"]
@@ -533,7 +588,70 @@ stream = ExtResource("14_3bx4x")
 volume_db = -15.0
 pitch_scale = 0.9
 
+[node name="ShaderPreloader" type="Node3D" parent="."]
+script = ExtResource("16_muler")
+
+[node name="ShortWarpEffect" parent="ShaderPreloader" instance=ExtResource("16_3qhgq")]
+layers = 512
+
+[node name="VoidEnergy" parent="ShaderPreloader" instance=ExtResource("17_ddo67")]
+monitoring = false
+monitorable = false
+
+[node name="MeshInstance3D" parent="ShaderPreloader/VoidEnergy" index="0"]
+layers = 512
+
+[node name="Ring1" parent="ShaderPreloader/VoidEnergy" index="2"]
+layers = 512
+
+[node name="Ring2" parent="ShaderPreloader/VoidEnergy" index="3"]
+layers = 512
+
+[node name="Ring3" parent="ShaderPreloader/VoidEnergy" index="4"]
+layers = 512
+
+[node name="Laser" parent="ShaderPreloader" instance=ExtResource("18_1fajc")]
+
+[node name="MeshInstance3D" parent="ShaderPreloader/Laser" index="0"]
+layers = 512
+
+[node name="BomberBombExplosion" parent="ShaderPreloader" instance=ExtResource("19_v7jbt")]
+
+[node name="MeshInstance3D" parent="ShaderPreloader/BomberBombExplosion" index="1"]
+layers = 512
+mesh = SubResource("SphereMesh_qgnyp")
+
+[node name="asteroid" parent="ShaderPreloader" instance=ExtResource("21_8f6o2")]
+
+[node name="beamship" parent="ShaderPreloader" instance=ExtResource("22_xxdf6")]
+
+[node name="enemyfigher" parent="ShaderPreloader" instance=ExtResource("23_7iw2d")]
+
+[node name="juggernaut" parent="ShaderPreloader" instance=ExtResource("24_q1287")]
+
+[node name="littlebomber" parent="ShaderPreloader" instance=ExtResource("25_nym48")]
+
+[node name="starship" parent="ShaderPreloader" instance=ExtResource("26_sgyyi")]
+
+[node name="BomberBomb" parent="ShaderPreloader" instance=ExtResource("27_y6uoq")]
+
+[node name="Laser2" parent="ShaderPreloader" instance=ExtResource("28_o8qyp")]
+
+[node name="Laser3" parent="ShaderPreloader" instance=ExtResource("18_1fajc")]
+
+[node name="BeamLaser" parent="ShaderPreloader" instance=ExtResource("29_b581n")]
+
+[node name="ReserveVoidCell" parent="ShaderPreloader" instance=ExtResource("30_35plo")]
+
+[node name="PlayerDefaultMuzzleFlash" parent="ShaderPreloader" instance=ExtResource("31_kw75m")]
+
+[node name="ShieldEffect" parent="ShaderPreloader" instance=ExtResource("32_2wifj")]
+
 [connection signal="game_over" from="World/TheVoid/DamageZone" to="." method="end_game_sequence"]
 [connection signal="laser_upgraded" from="OrbiterManager/EnemyContainer" to="UIElements/HUD" method="_on_enemy_container_laser_upgraded"]
 [connection signal="timeout" from="OrbiterManager/SpeedIncreaseTimer" to="OrbiterManager" method="_on_speed_increase_timer_timeout"]
 [connection signal="timeout" from="SpawnTimer" to="OrbiterManager/EnemyContainer" method="_on_spawn_timer_timeout"]
+
+[editable path="ShaderPreloader/VoidEnergy"]
+[editable path="ShaderPreloader/Laser"]
+[editable path="ShaderPreloader/BomberBombExplosion"]
