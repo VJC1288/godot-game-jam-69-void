@@ -23,6 +23,7 @@ signal change_laser_color()
 @onready var shield_hit_sound = $ShieldHitSound
 @onready var heat_bar = $HeatBar
 @onready var laser_cooldown = $LaserCooldown
+@onready var void_energy_pickup_sound = $VoidEnergyPickupSound
 
 @export var SPEED = 20
 @export var hull_component: HullComponent
@@ -111,8 +112,10 @@ func _on_shield_component_shield_changed(new_shield):
 	
 func adjust_void_energy(adjustment):
 	current_energy = clamp(current_energy + adjustment, 0 , max_energy)
-	if adjustment > 0 and shield_component.shield_regen_delay.is_stopped():
-		shield_component.shield_regen()
+	if adjustment > 0:
+		void_energy_pickup_sound.play()
+		if shield_component.shield_regen_delay.is_stopped():
+			shield_component.shield_regen()
 	player_energy_changed.emit(adjustment)
 	
 

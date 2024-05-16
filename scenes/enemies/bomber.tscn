@@ -31,6 +31,9 @@ max_hull = 150
 [node name="CollisionShape3D2" parent="HitboxComponent" index="1"]
 shape = SubResource("BoxShape3D_ckdsm")
 
+[node name="HurtboxComponent" parent="." index="3"]
+collision_mask = 1
+
 [node name="CollisionShape3D" parent="HurtboxComponent" index="0"]
 shape = SubResource("BoxShape3D_8v4g4")
 

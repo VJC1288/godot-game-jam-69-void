@@ -13,6 +13,8 @@
 [ext_resource type="AudioStream" uid="uid://7ocendl50uf3" path="res://assets/sounds/cinematic-glitch-fast-183843.mp3" id="8_xgdov"]
 [ext_resource type="AudioStream" uid="uid://bg74io8npul72" path="res://assets/sounds/space-laser-38082.mp3" id="9_u7y53"]
 [ext_resource type="AudioStream" uid="uid://c3r3ewlq260vb" path="res://assets/sounds/155790__deleted_user_1941307__shipboard_railgun.mp3" id="9_xtjhc"]
+[ext_resource type="AudioStream" uid="uid://ctlo417ltrda" path="res://assets/sounds/beamerdeath-reverse.mp3" id="13_rfv15"]
+[ext_resource type="AudioStream" uid="uid://7qjn4ibwh1wr" path="res://assets/sounds/446625__idkmrgarcia__explosion.wav" id="14_3bx4x"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_jevuy"]
 panorama = ExtResource("2_s47m1")
@@ -523,6 +525,15 @@ stream = ExtResource("9_u7y53")
 volume_db = -15.0
 
 [connection signal="game_over" from="World/TheVoid/DamageZone" to="." method="end_game_sequence"]
+[node name="BeamerDeathSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("13_rfv15")
+volume_db = -15.0
+
+[node name="JuggernautDeathSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("14_3bx4x")
+volume_db = -15.0
+pitch_scale = 0.9
+
 [connection signal="laser_upgraded" from="OrbiterManager/EnemyContainer" to="UIElements/HUD" method="_on_enemy_container_laser_upgraded"]
 [connection signal="timeout" from="OrbiterManager/SpeedIncreaseTimer" to="OrbiterManager" method="_on_speed_increase_timer_timeout"]
 [connection signal="timeout" from="SpawnTimer" to="OrbiterManager/EnemyContainer" method="_on_spawn_timer_timeout"]

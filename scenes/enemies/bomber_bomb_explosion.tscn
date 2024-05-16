@@ -48,6 +48,7 @@ script = ExtResource("1_844ip")
 damage = -45
 
 [node name="HurtboxComponent" parent="." instance=ExtResource("2_xsr41")]
+collision_mask = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtboxComponent"]
 shape = SubResource("SphereShape3D_5u7mx")
