@@ -29,6 +29,7 @@ signal player_energy_changed(new_energy)
 @export var shield_component: ShieldComponent
 @export var has_laser_upgrade:bool
 @export var has_reserve_cell:bool
+@export var has_laser_efficiency: bool
 
 var movement_clamp_vertical = 15
 var movement_clamp_horizontal = movement_clamp_vertical * (16.0/9.0) #Aspect Ratio
@@ -42,7 +43,7 @@ var current_laser_heat: int = 0
 var max_laser_heat: int = 100
 var overheated:bool = false
 var shooting:bool = false
-
+var laser_heat_buildup = 15
 
 func _physics_process(delta):
 	
@@ -93,8 +94,7 @@ func shootLaser():
 		else:
 			fireLaser.emit(center_muzzle.global_position)
 			muzzle_flash()
-		
-		current_laser_heat = clamp(current_laser_heat+15, 0, max_laser_heat)
+			current_laser_heat = clamp(current_laser_heat+laser_heat_buildup, 0, max_laser_heat)
 
 func _on_hull_component_hull_changed(new_hull):
 	player_hull_changed.emit(new_hull)

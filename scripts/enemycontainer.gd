@@ -26,6 +26,7 @@ const BEAMFIGHTER = preload("res://scenes/enemies/beamfighter.tscn")
 const BEAMLASER = preload("res://scenes/enemies/beamlaser.tscn")
 const JUGGERNAUT = preload("res://scenes/enemies/juggernaut.tscn")
 const RESERVE_VOID_CELL = preload("res://scenes/reserve_void_cell.tscn")
+const LASER_EFFICIENCY_MODULE = preload("res://scenes/laser_efficiency_module.tscn")
 
 var juggernaut_spawned:bool = false
 
@@ -145,14 +146,18 @@ func clear_enemies():
 func enemyDeathActions(location, value, type):
 	if type == "Fighter":
 		fighter_death_sound.play()
-		spawnVoidEnergy(location, value)
+		var drop_chance = randi_range(1,100)
+		if drop_chance < 6:
+			spawnLaserEfficiency(location)
+		else:
+			spawnVoidEnergy(location, value)
 	elif type == "Bomber":
 		bomber_death_sound.play()
 		spawnVoidEnergy(location, value)
 	elif type == "Beam_Fighter":
 		beamer_death_sound.play()
-		var reserve_cell_chance = randf_range(1,100)
-		if reserve_cell_chance < 15:
+		var drop_chance = randi_range(1,100)
+		if drop_chance < 15:
 			spawnReserveCell(location)
 		else:
 			spawnVoidEnergy(location, value)
@@ -168,7 +173,13 @@ func spawnReserveCell(location):
 	pickup_container.add_child(reserve_cell)
 	reserve_cell.has_reserve_cell.connect(hud.has_reserve_cell)
 	reserve_cell.global_position = location
-	
+
+func spawnLaserEfficiency(location):
+	var laser_eff_mod = LASER_EFFICIENCY_MODULE.instantiate()
+	pickup_container.add_child(laser_eff_mod)
+	laser_eff_mod.has_laser_efficiency.connect(hud.has_laser_eff)
+	laser_eff_mod.global_position = location
+
 func spawnVoidEnergy(location, value):
 	var energy_drop = VOID_ENERGY.instantiate()
 	pickup_container.add_child(energy_drop)

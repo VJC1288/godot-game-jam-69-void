@@ -1,0 +1,74 @@
+[gd_scene load_steps=7 format=3 uid="uid://d6oicidqm43j"]
+
+[ext_resource type="Script" path="res://scripts/laser_efficiency_module.gd" id="1_payd2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oc53o"]
+albedo_color = Color(0.27451, 0.27451, 0.27451, 1)
+emission_enabled = true
+emission = Color(0.278431, 0.278431, 0.278431, 1)
+emission_energy_multiplier = 0.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_y324t"]
+material = SubResource("StandardMaterial3D_oc53o")
+radius = 0.12
+height = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4yalc"]
+albedo_color = Color(0.254902, 0.521569, 1, 1)
+emission_enabled = true
+emission = Color(0, 0.211765, 0.65098, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tg75o"]
+material = SubResource("StandardMaterial3D_4yalc")
+top_radius = 0.03
+bottom_radius = 0.03
+height = 0.5
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4tlxr"]
+size = Vector3(0.831787, 0.806885, 0.891602)
+
+[node name="LaserEfficiencyModule" type="Area3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+collision_layer = 0
+script = ExtResource("1_payd2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, -0.3, 0)
+mesh = SubResource("SphereMesh_y324t")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -0.3, 0)
+mesh = SubResource("SphereMesh_y324t")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.3, 0)
+mesh = SubResource("SphereMesh_y324t")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.3, 0)
+mesh = SubResource("SphereMesh_y324t")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0, 0)
+mesh = SubResource("CylinderMesh_tg75o")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0, 0)
+mesh = SubResource("CylinderMesh_tg75o")
+skeleton = NodePath("../MeshInstance3D5")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0, 0.3, 0)
+mesh = SubResource("CylinderMesh_tg75o")
+skeleton = NodePath("../MeshInstance3D5")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0, -0.3, 0)
+mesh = SubResource("CylinderMesh_tg75o")
+skeleton = NodePath("../MeshInstance3D5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_4tlxr")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

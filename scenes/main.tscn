@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://bhljayf8hhj62"]
+[gd_scene load_steps=79 format=3 uid="uid://bhljayf8hhj62"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_4cpek"]
 [ext_resource type="PackedScene" uid="uid://dd3se6k2tyivf" path="res://scenes/damage_zone.tscn" id="1_6hpio"]
@@ -31,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://byh8ne12whthh" path="res://scenes/reserve_void_cell.tscn" id="30_35plo"]
 [ext_resource type="PackedScene" uid="uid://ds36yylqcb1d6" path="res://scenes/playermuzzleflash.tscn" id="31_kw75m"]
 [ext_resource type="PackedScene" uid="uid://cna2up0x6o73" path="res://scenes/shield_effect.tscn" id="32_2wifj"]
+[ext_resource type="PackedScene" uid="uid://hjn7h1kdp5fv" path="res://scenes/heat_bar.tscn" id="32_5hsa6"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_jevuy"]
 panorama = ExtResource("2_s47m1")
@@ -646,6 +647,8 @@ mesh = SubResource("SphereMesh_qgnyp")
 [node name="PlayerDefaultMuzzleFlash" parent="ShaderPreloader" instance=ExtResource("31_kw75m")]
 
 [node name="ShieldEffect" parent="ShaderPreloader" instance=ExtResource("32_2wifj")]
+
+[node name="HeatBar" parent="ShaderPreloader" instance=ExtResource("32_5hsa6")]
 
 [connection signal="game_over" from="World/TheVoid/DamageZone" to="." method="end_game_sequence"]
 [connection signal="laser_upgraded" from="OrbiterManager/EnemyContainer" to="UIElements/HUD" method="_on_enemy_container_laser_upgraded"]

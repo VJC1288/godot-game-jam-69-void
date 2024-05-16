@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://hjn7h1kdp5fv"]
+
+[ext_resource type="Script" path="res://scripts/3dheatbar.gd" id="1_tfu7l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mm4ra"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 0)
+billboard_mode = 1
+
+[sub_resource type="BoxMesh" id="BoxMesh_b3a2i"]
+size = Vector3(0.12, 0.275, -0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cxch1"]
+shading_mode = 0
+albedo_color = Color(1, 0.640588, 0, 1)
+billboard_mode = 1
+
+[sub_resource type="BoxMesh" id="BoxMesh_2guwc"]
+size = Vector3(0.02, 0.175, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n6q4x"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 0)
+billboard_mode = 1
+
+[sub_resource type="BoxMesh" id="BoxMesh_wkskb"]
+size = Vector3(0.12, 0.275, -0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_av6du"]
+shading_mode = 0
+albedo_color = Color(1, 0.640588, 0, 1)
+billboard_mode = 1
+
+[sub_resource type="BoxMesh" id="BoxMesh_5lu1j"]
+size = Vector3(0.02, 0.175, 0.05)
+
+[node name="HeatBar" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.850234, 0)
+script = ExtResource("1_tfu7l")
+max_value = 100.0
+outline_color = Color(0, 0, 0, 0)
+
+[node name="_Node3D_17891" type="Node3D" parent="."]
+
+[node name="_MeshInstance3D_17892" type="MeshInstance3D" parent="_Node3D_17891"]
+material_override = SubResource("StandardMaterial3D_mm4ra")
+mesh = SubResource("BoxMesh_b3a2i")
+
+[node name="_MeshInstance3D_17893" type="MeshInstance3D" parent="_Node3D_17891"]
+material_override = SubResource("StandardMaterial3D_cxch1")
+mesh = SubResource("BoxMesh_2guwc")
+
+[node name="@Node3D@23063" type="Node3D" parent="."]
+
+[node name="@MeshInstance3D@23064" type="MeshInstance3D" parent="@Node3D@23063"]
+material_override = SubResource("StandardMaterial3D_n6q4x")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_wkskb")
+
+[node name="@MeshInstance3D@23065" type="MeshInstance3D" parent="@Node3D@23063"]
+material_override = SubResource("StandardMaterial3D_av6du")
+mesh = SubResource("BoxMesh_5lu1j")

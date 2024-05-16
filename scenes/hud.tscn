@@ -1,13 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://7s4v6k8xx1vl"]
+[gd_scene load_steps=13 format=3 uid="uid://7s4v6k8xx1vl"]
 
 [ext_resource type="FontFile" uid="uid://bl5csexcm7nrv" path="res://assets/fonts/Rocket Rinder.otf" id="1_dgk0i"]
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_nvsju"]
 [ext_resource type="StyleBox" uid="uid://dmbwwmi81vlqd" path="res://themes/barbackground.tres" id="2_od5bb"]
 [ext_resource type="StyleBox" uid="uid://dxurpi5esihxk" path="res://themes/shieldbartheme.tres" id="3_kud5n"]
 [ext_resource type="StyleBox" uid="uid://caqjbq3pc26en" path="res://themes/hullbartheme.tres" id="4_eguqq"]
+[ext_resource type="Texture2D" uid="uid://b8vm682460lxf" path="res://assets/textures/laserupgradeicon.svg" id="6_aapoe"]
 [ext_resource type="Texture2D" uid="uid://d2jft664wb0g8" path="res://assets/textures/void_cell_texture.svg" id="6_o0usi"]
 [ext_resource type="Texture2D" uid="uid://b8ucvuh170lrw" path="res://assets/textures/void_cell_fill_white.svg" id="7_syrxu"]
+[ext_resource type="Texture2D" uid="uid://dp53ix8l6iof0" path="res://assets/textures/heatupgradeicon.svg" id="7_xyrfh"]
 [ext_resource type="FontFile" uid="uid://mh42ommv3vnq" path="res://assets/fonts/vermin_vibes.ttf" id="8_1jsox"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r6edx"]
+bg_color = Color(0.0392157, 0.0392157, 0.0392157, 0.498039)
 
 [sub_resource type="LabelSettings" id="LabelSettings_obyd0"]
 font = ExtResource("8_1jsox")
@@ -47,6 +52,7 @@ size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 texture_filter = 1
@@ -88,6 +94,29 @@ theme_override_styles/background = ExtResource("2_od5bb")
 theme_override_styles/fill = ExtResource("4_eguqq")
 value = 100.0
 show_percentage = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="LaserUpgradeIcon" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_r6edx")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/LaserUpgradeIcon"]
+layout_mode = 2
+texture = ExtResource("6_aapoe")
+
+[node name="HeatUpgradeIcon" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_r6edx")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/HeatUpgradeIcon"]
+layout_mode = 2
+texture = ExtResource("7_xyrfh")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2

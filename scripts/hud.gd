@@ -11,6 +11,8 @@ extends CanvasLayer
 @onready var ui_splash_text = %UISplashText
 @onready var void_cell_label = %VoidCellLabel
 @onready var effect_timer = $EffectTimer
+@onready var laser_upgrade_icon = %LaserUpgradeIcon
+@onready var heat_upgrade_icon = %HeatUpgradeIcon
 
 var void_cells:Array 
 
@@ -18,6 +20,7 @@ var total_energy:int = 0
 var spilloverenergy: int = 0
 var max_energy: int = 2500
 var reserveCell: bool = false
+var laserEff: bool = false
 
 func _ready():
 	void_cells = [void_cell_1, void_cell_2, void_cell_3, void_cell_4, void_cell_5, void_cell_6]
@@ -121,6 +124,7 @@ func update_energy(adjustment):
 			void_cell_5.value = void_cell_5.max_value
 
 func _on_enemy_container_laser_upgraded():
+	laser_upgrade_icon.visible = true
 	ui_splash_text.visible = true
 	ui_splash_text.text = "Laser Upgrade \n Acquired"
 	await get_tree().create_timer(2, false).timeout
@@ -135,6 +139,15 @@ func has_reserve_cell():
 		reserveCell = true
 		
 		ui_splash_text.text = "Reserve Cell \n Acquired"
+		await get_tree().create_timer(2, false).timeout
+		spashtexttween()
+
+func has_laser_eff():
+	if !laserEff:
+		heat_upgrade_icon.visible = true
+		ui_splash_text.visible = true
+		reserveCell = laserEff
+		ui_splash_text.text = "Laser Efficiency \n Module Acquired"
 		await get_tree().create_timer(2, false).timeout
 		spashtexttween()
 

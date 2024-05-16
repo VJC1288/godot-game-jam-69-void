@@ -9,8 +9,8 @@
 [ext_resource type="AudioStream" uid="uid://ca87ceeqjghoh" path="res://assets/sounds/shortwarp.mp3" id="7_ee0yj"]
 [ext_resource type="AudioStream" uid="uid://bsy6scur0ivlw" path="res://assets/sounds/459782__metzik__deflector-shield.wav" id="8_v5inn"]
 [ext_resource type="AudioStream" uid="uid://bhqa0h6dsyrvc" path="res://assets/sounds/168984__lavik89__digital-hit.wav" id="9_787se"]
-[ext_resource type="Script" path="res://scripts/3dheatbar.gd" id="10_sopg0"]
 [ext_resource type="AudioStream" uid="uid://w1rpvpjelw3f" path="res://assets/sounds/voidenergy.mp3" id="10_tyse1"]
+[ext_resource type="PackedScene" uid="uid://hjn7h1kdp5fv" path="res://scenes/heat_bar.tscn" id="11_5jg6h"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i310b"]
 size = Vector3(4.33978, 1, 3.86194)
@@ -78,11 +78,7 @@ stream = ExtResource("10_tyse1")
 volume_db = -13.0
 pitch_scale = 0.8
 
-[node name="HeatBar" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.850234, 0)
-script = ExtResource("10_sopg0")
-max_value = 100.0
-outline_color = Color(0, 0, 0, 0)
+[node name="HeatBar" parent="." instance=ExtResource("11_5jg6h")]
 
 [node name="LaserCooldown" type="Timer" parent="."]
 wait_time = 0.1
