@@ -1,5 +1,3 @@
-@tool
-
 class_name ProgressBar3D extends Node3D
 
 var percent_full: float
