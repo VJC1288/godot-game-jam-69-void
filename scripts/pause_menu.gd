@@ -3,9 +3,11 @@ extends CanvasLayer
 signal unpause()
 
 const HOW_TO_PLAY = preload("res://scenes/how_to_play.tscn")
+const STATS = preload("res://scenes/stats.tscn")
 
 @onready var resume = $MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Resume
 @onready var how_to_play = $MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HowToPlay
+@onready var statistics = $MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Statistics
 
 func _ready():
 	get_tree().paused = true
@@ -30,6 +32,11 @@ func _on_how_to_play_pressed():
 	how_to_play_scene.close_how_to_play.connect(takeFocus)
 	add_child(how_to_play_scene)
 
+func _on_statistics_pressed():
+	var stats_scene = STATS.instantiate()
+	stats_scene.close_stats.connect(takeFocus)
+	add_child(stats_scene)
+
 func takeFocus():
 	resume.grab_focus()
 
@@ -39,4 +46,8 @@ func _on_resume_mouse_entered():
 	
 func _on_how_to_play_mouse_entered():
 	how_to_play.grab_focus()
+	GlobalAudioManager.menu_move_sound.play()
+
+func _on_statistics_mouse_entered():
+	statistics.grab_focus()
 	GlobalAudioManager.menu_move_sound.play()

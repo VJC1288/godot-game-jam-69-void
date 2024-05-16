@@ -145,6 +145,7 @@ func clear_enemies():
 
 func enemyDeathActions(location, value, type):
 	if type == "Fighter":
+		Globals.fighters_defeated += 1
 		fighter_death_sound.play()
 		var drop_chance = randi_range(1,100)
 		if drop_chance < 6:
@@ -152,9 +153,11 @@ func enemyDeathActions(location, value, type):
 		else:
 			spawnVoidEnergy(location, value)
 	elif type == "Bomber":
+		Globals.bombers_defeated += 1
 		bomber_death_sound.play()
 		spawnVoidEnergy(location, value)
 	elif type == "Beam_Fighter":
+		Globals.beamers_defeated += 1
 		beamer_death_sound.play()
 		var drop_chance = randi_range(1,100)
 		if drop_chance < 15:
@@ -162,6 +165,7 @@ func enemyDeathActions(location, value, type):
 		else:
 			spawnVoidEnergy(location, value)
 	elif type == "Juggernaut":
+		Globals.juggernaut_defeated += 1
 		juggernaut_death_sound.play()
 		spawn_timer.start(randf_range(3,5))
 		Globals.current_player.has_laser_upgrade = true

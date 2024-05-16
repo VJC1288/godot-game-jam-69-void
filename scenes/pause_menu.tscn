@@ -104,7 +104,34 @@ Play"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Statistics" type="Button" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(110, 65)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_left = NodePath("../Resume")
+focus_neighbor_right = NodePath("../Resume")
+theme = ExtResource("3_sjrya")
+text = "
+"
+
+[node name="ResumeText" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Statistics"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Statistics"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="mouse_entered" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Resume" to="." method="_on_resume_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="mouse_entered" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HowToPlay" to="." method="_on_how_to_play_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HowToPlay" to="." method="_on_how_to_play_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Statistics" to="." method="_on_statistics_mouse_entered"]
+[connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Statistics" to="." method="_on_statistics_pressed"]

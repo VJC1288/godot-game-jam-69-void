@@ -91,10 +91,12 @@ func shootLaser():
 			fireTopLaser.emit(top_muzzle.global_position)
 			fireBottomLaser.emit(bottom_muzzle.global_position)
 			muzzle_flash()
+			Globals.total_shots_fired += 1
 		else:
 			fireLaser.emit(center_muzzle.global_position)
 			muzzle_flash()
 			current_laser_heat = clamp(current_laser_heat+laser_heat_buildup, 0, max_laser_heat)
+			Globals.total_shots_fired += 1
 
 func _on_hull_component_hull_changed(new_hull):
 	player_hull_changed.emit(new_hull)
@@ -109,6 +111,7 @@ func _on_shield_component_shield_changed(new_shield):
 	
 	
 func adjust_void_energy(adjustment):
+	Globals.total_energy_collected += adjustment
 	current_energy = clamp(current_energy + adjustment, 0 , max_energy)
 	if adjustment > 0:
 		void_energy_pickup_sound.play()
@@ -130,6 +133,7 @@ func muzzle_flash():
 
 func check_laser_heat():
 	if current_laser_heat == max_laser_heat:
+		Globals.times_overheated += 1
 		overheated = true
 		await get_tree().create_timer(1.5, false).timeout
 		overheated = false

@@ -1,0 +1,263 @@
+[gd_scene load_steps=6 format=3 uid="uid://kbo03wcmc7vw"]
+
+[ext_resource type="Script" path="res://scripts/stats.gd" id="1_v5ctm"]
+[ext_resource type="StyleBox" uid="uid://cnfujya23l8lb" path="res://themes/pausestyle.tres" id="2_ip1di"]
+[ext_resource type="FontFile" uid="uid://cxnq0tiy7l8ay" path="res://assets/fonts/Alien-Encounters-Bold-Italic.ttf" id="3_w1u3f"]
+[ext_resource type="FontFile" uid="uid://bqkfa6mf2ckx8" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="4_leke1"]
+[ext_resource type="Theme" uid="uid://b6epshmaiw5dd" path="res://themes/buttontheme.tres" id="6_vjgat"]
+
+[node name="Statistics" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_v5ctm")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 50
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_ip1di")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+texture_filter = 2
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_w1u3f")
+theme_override_font_sizes/font_size = 50
+text = "Current Statistics"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 25
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3"]
+layout_mode = 2
+
+[node name="Fighters" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_leke1")
+text = "Fighters Defeated:"
+horizontal_alignment = 2
+
+[node name="Bombers" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_leke1")
+text = "Bombers Defeated:"
+horizontal_alignment = 2
+
+[node name="Beamers" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_leke1")
+text = "Beamers Defeated:"
+horizontal_alignment = 2
+
+[node name="Juggernaut" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_leke1")
+text = "Juggernaut Defeated:"
+horizontal_alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 12
+
+[node name="EnergyCollected" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_leke1")
+text = "Total Energy Collected:"
+horizontal_alignment = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 12
+
+[node name="ShotsFired" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_leke1")
+text = "Total Shots Fired:"
+horizontal_alignment = 2
+
+[node name="Accuracy" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_leke1")
+text = "Accuracy:"
+horizontal_alignment = 2
+
+[node name="TimesOverheated" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_leke1")
+text = "Times Overheated:"
+horizontal_alignment = 2
+
+[node name="DamageTaken" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_leke1")
+text = "Total Damage Taken:"
+horizontal_alignment = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3"]
+layout_mode = 2
+
+[node name="Fighters" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_leke1")
+text = "0
+"
+horizontal_alignment = 2
+
+[node name="Bombers" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_leke1")
+text = "0
+"
+horizontal_alignment = 2
+
+[node name="Beamers" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_leke1")
+text = "0
+"
+horizontal_alignment = 2
+
+[node name="Juggernaut" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_leke1")
+text = "0
+"
+horizontal_alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_top = 12
+
+[node name="TotalEnergy" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_leke1")
+text = "0
+"
+horizontal_alignment = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_top = 12
+
+[node name="ShotsFired" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_leke1")
+text = "0
+"
+horizontal_alignment = 2
+
+[node name="Accuracy" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_leke1")
+text = "100%"
+horizontal_alignment = 2
+
+[node name="TimesOverheated" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_leke1")
+text = "0
+"
+horizontal_alignment = 2
+
+[node name="DamageTaken" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_leke1")
+text = "0
+"
+horizontal_alignment = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+
+[node name="BackButton" type="Button" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(110, 65)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme = ExtResource("6_vjgat")
+
+[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/BackButton"]
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "bACK"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="MarginContainer/Panel/MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_mouse_entered"]
+[connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

@@ -58,4 +58,5 @@ func end_game_sequence(result: String):
 		end_game_node.on_game_defeat()
 
 func restart_game():
+	Globals.resetGlobals()
 	get_tree().call_deferred("reload_current_scene")

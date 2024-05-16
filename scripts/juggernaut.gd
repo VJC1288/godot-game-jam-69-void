@@ -92,11 +92,13 @@ func _on_hull_component_top_hull_changed(new_hull):
 	if new_hull != 0 and new_hull < hull_component_top.max_hull:
 		ship_damage_indication(top_weak_disable_model_1)
 		ship_damage_indication(top_weak_disable_model_2)
+		Globals.shots_hit += 1
 		
 func _on_hull_component_bottom_hull_changed(new_hull):
 	if new_hull != 0 and new_hull < hull_component_bottom.max_hull:	
 		ship_damage_indication(bottom_weak_disable_model_1)
 		ship_damage_indication(bottom_weak_disable_model_2)
+		Globals.shots_hit += 1
 		
 func ship_damage_indication(model):
 	

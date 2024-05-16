@@ -74,4 +74,6 @@ func add_loss_message():
 
 
 func restart_game_call():
+	Globals.resetGlobals()
 	get_tree().call_deferred("reload_current_scene")
+	
