@@ -67,9 +67,10 @@ func _physics_process(delta):
 			global_position = global_position + direction * DEATH_SPEED * delta
 			
 func checkPlayerDistance():
-	if global_transform.origin.distance_to(Globals.current_player.global_position) < 30 and on_screen:
-		currentState = EnemyStates.ENGAGING
-		randomizeMovement()
+	if Globals.current_player != null:
+		if global_transform.origin.distance_to(Globals.current_player.global_position) < 30 and on_screen:
+			currentState = EnemyStates.ENGAGING
+			randomizeMovement()
 
 func randomizeMovement():
 	var randomMovement: int = randi_range(2,3)

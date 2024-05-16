@@ -307,22 +307,6 @@ clearcoat_roughness = 0.0
 height = 200.0
 radius = 487.818
 
-[sub_resource type="Animation" id="Animation_i2t7f"]
-resource_name = "victory"
-length = 1.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%TheVoid:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(12.996, 2.63902),
-"update": 0,
-"values": [Vector3(1, 1, 1), Vector3(0.01, 0.01, 0.01)]
-}
-
 [sub_resource type="Animation" id="Animation_n2fml"]
 length = 0.001
 tracks/0/type = "value"
@@ -366,6 +350,22 @@ tracks/1/keys = {
 "args": [],
 "method": &"add_loss_message"
 }]
+}
+
+[sub_resource type="Animation" id="Animation_i2t7f"]
+resource_name = "victory"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%TheVoid:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(12.996, 2.63902),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(0.01, 0.01, 0.01)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wk4ae"]

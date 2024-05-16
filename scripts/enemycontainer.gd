@@ -75,21 +75,23 @@ func spawnJuggernaut():
 	juggernaut = null
 	
 func _on_spawn_timer_timeout():
+	
 	var juggernaut_chance: float = randi_range(1,100)
-	if Globals.current_player.current_energy >= 1250 and juggernaut_chance <= 10 and juggernaut_spawned == false:
-		spawnJuggernaut()
-	else:
-		spawnFighter()
-		
-		var bomber_chance: float = randi_range(1,100)
-		if bomber_chance <= 25:
-			await get_tree().create_timer(randf_range(0,2), false).timeout
-			spawnBomber()
+	if Globals.current_player != null:
+		if Globals.current_player.current_energy >= 1250 and juggernaut_chance <= 10 and juggernaut_spawned == false:
+			spawnJuggernaut()
+		else:
+			spawnFighter()
 			
-		var beam_fighter_chance: float = randi_range(1,100)
-		if beam_fighter_chance <= 25:
-			await get_tree().create_timer(randf_range(0,2), false).timeout
-			spawnBeamFighter()
+			var bomber_chance: float = randi_range(1,100)
+			if bomber_chance <= 25:
+				await get_tree().create_timer(randf_range(0,2), false).timeout
+				spawnBomber()
+				
+			var beam_fighter_chance: float = randi_range(1,100)
+			if beam_fighter_chance <= 25:
+				await get_tree().create_timer(randf_range(0,2), false).timeout
+				spawnBeamFighter()
 
 func _input(event):
 	if event.is_action_pressed("debugspawnenemy"):

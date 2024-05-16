@@ -67,9 +67,6 @@ script = ExtResource("5_y6f30")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.42841, -9.30561, 0)
 shape = SubResource("BoxShape3D_3q8t0")
 
-[node name="CollisionShape3D" parent="OnScreenDetect" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0168, 0, 0)
-
 [node name="AttackTimers" type="Node3D" parent="." index="9"]
 
 [node name="TopBombCooldown" type="Timer" parent="AttackTimers" index="0"]
@@ -84,6 +81,9 @@ one_shot = true
 wait_time = 18.0
 one_shot = true
 autostart = true
+
+[node name="CollisionShape3D" parent="OnScreenDetect" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0168, 0, 0)
 
 [node name="juggernaut" parent="." index="11" instance=ExtResource("7_fekrv")]
 transform = Transform3D(-1.04907e-07, 0, 2.4, 0, 2.4, 0, -2.4, 0, -1.04907e-07, 2.93518, 0.522041, 0.092411)
