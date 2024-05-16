@@ -96,20 +96,20 @@ func _on_wall_detector_area_exited(_area):
 
 func _on_hull_component_hull_changed(new_hull):
 	if new_hull < hull_component.max_hull:
-		ship_damage_indication()
+		ship_damage_indication(ship_model)
 
-func ship_damage_indication():
+func ship_damage_indication(model):
 
 	var tween = create_tween()
-	tween.tween_property(ship_model, "visible", false, flash_time)
-	tween.tween_property(ship_model, "visible", true, flash_time)
-	tween.tween_property(ship_model, "visible", false, flash_time)
-	tween.tween_property(ship_model, "visible", true, flash_time)
-	tween.tween_property(ship_model, "visible", false, flash_time)
-	tween.tween_property(ship_model, "visible", true, flash_time)
-	tween.tween_property(ship_model, "visible", false, flash_time)
-	tween.tween_property(ship_model, "visible", true, flash_time)
-	tween.tween_property(ship_model, "visible", false, flash_time)
-	tween.tween_property(ship_model, "visible", true, flash_time)
-	tween.tween_property(ship_model, "visible", false, flash_time)
-	tween.tween_property(ship_model, "visible", true, flash_time)
+	tween.tween_property(model, "visible", false, flash_time)
+	tween.tween_property(model, "visible", true, flash_time)
+	tween.tween_property(model, "visible", false, flash_time)
+	tween.tween_property(model, "visible", true, flash_time)
+	tween.tween_property(model, "visible", false, flash_time)
+	tween.tween_property(model, "visible", true, flash_time)
+	tween.tween_property(model, "visible", false, flash_time)
+	tween.tween_property(model, "visible", true, flash_time)
+	tween.tween_property(model, "visible", false, flash_time)
+	tween.tween_property(model, "visible", true, flash_time)
+	tween.tween_property(model, "visible", false, flash_time)
+	tween.tween_property(model, "visible", true, flash_time)

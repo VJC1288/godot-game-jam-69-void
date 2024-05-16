@@ -12,10 +12,10 @@
 size = Vector3(12, 45, 30)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5an23"]
-size = Vector3(1, 1.38574, 3.70703)
+size = Vector3(1, 1.89258, 3.70703)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3q8t0"]
-size = Vector3(1, 1.43774, 3.75)
+size = Vector3(1, 1.893, 3.707)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_daho2"]
 albedo_color = Color(0, 0, 0, 1)
@@ -28,7 +28,7 @@ size = Vector2(1.42, 1)
 collision_mask = 32
 script = ExtResource("2_px8et")
 hull_component_top = NodePath("HullComponentTop")
-hull_component_bottom = NodePath("HullComponentTop")
+hull_component_bottom = NodePath("HullComponentBottom")
 void_value = 500
 enemy_type = "Juggernaut"
 
@@ -55,7 +55,7 @@ collision_mask = 8
 script = ExtResource("5_n5ren")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="JuggernautHitboxes/TopHitBox" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.47572, 10.5449, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.77993, 10.4909, 0)
 shape = SubResource("BoxShape3D_5an23")
 
 [node name="BottomHitBox" type="Area3D" parent="JuggernautHitboxes" index="1"]
@@ -64,13 +64,13 @@ collision_mask = 0
 script = ExtResource("5_y6f30")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="JuggernautHitboxes/BottomHitBox" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.42841, -9.30561, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.78, -9.369, 0)
 shape = SubResource("BoxShape3D_3q8t0")
 
-[node name="CollisionShape3D" parent="OnScreenDetect" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0168, 0, 0)
+[node name="DefeatIndicatorTimer" type="Timer" parent="." index="9"]
+one_shot = true
 
-[node name="AttackTimers" type="Node3D" parent="." index="9"]
+[node name="AttackTimers" type="Node3D" parent="." index="10"]
 
 [node name="TopBombCooldown" type="Timer" parent="AttackTimers" index="0"]
 unique_name_in_owner = true
@@ -85,7 +85,10 @@ wait_time = 18.0
 one_shot = true
 autostart = true
 
-[node name="juggernaut" parent="." index="11" instance=ExtResource("7_fekrv")]
+[node name="CollisionShape3D" parent="OnScreenDetect" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0168, 0, 0)
+
+[node name="juggernaut" parent="." index="12" instance=ExtResource("7_fekrv")]
 transform = Transform3D(-1.04907e-07, 0, 2.4, 0, 2.4, 0, -2.4, 0, -1.04907e-07, 2.93518, 0.522041, 0.092411)
 
 [node name="TopBombMuzzle" type="Marker3D" parent="juggernaut" index="0"]
@@ -96,37 +99,46 @@ transform = Transform3D(-1.50729e-08, 0, -0.344828, 0, 0.344828, 0, 0.344828, 0,
 unique_name_in_owner = true
 transform = Transform3D(-1.50729e-08, 0, -0.344828, 0, 0.344828, 0, 0.344828, 0, -1.50729e-08, 0, -3.321, 0.931723)
 
-[node name="WeakSpotBrokenNodes" type="Node3D" parent="." index="13"]
+[node name="WeakSpotBrokenNodes" type="Node3D" parent="." index="14"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.48026, 10.467, 1.05523)
 
 [node name="TopWeakSpotBrokenNodes" type="Node3D" parent="WeakSpotBrokenNodes" index="0"]
-visible = false
 
 [node name="TopWeakDisableModel1" type="MeshInstance3D" parent="WeakSpotBrokenNodes/TopWeakSpotBrokenNodes" index="0"]
+unique_name_in_owner = true
+visible = false
 mesh = SubResource("QuadMesh_a4vkq")
 skeleton = NodePath("../../..")
 
 [node name="TopWeakDisableModel2" type="MeshInstance3D" parent="WeakSpotBrokenNodes/TopWeakSpotBrokenNodes" index="1"]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.93645, 0.00800991, -0.000260353)
+visible = false
 mesh = SubResource("QuadMesh_a4vkq")
 skeleton = NodePath("../TopWeakDisableModel1")
 
 [node name="BottomWeakSpotBrokenNodes" type="Node3D" parent="WeakSpotBrokenNodes" index="1"]
-visible = false
 
 [node name="BottomWeakDisableModel1" type="MeshInstance3D" parent="WeakSpotBrokenNodes/BottomWeakSpotBrokenNodes" index="0"]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00362742, -19.9178, 0)
+visible = false
 mesh = SubResource("QuadMesh_a4vkq")
 skeleton = NodePath("../../..")
 
 [node name="BottomWeakDisableModel2" type="MeshInstance3D" parent="WeakSpotBrokenNodes/BottomWeakSpotBrokenNodes" index="1"]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.92869, -19.9098, -0.000260353)
+visible = false
 mesh = SubResource("QuadMesh_a4vkq")
 skeleton = NodePath("../../TopWeakSpotBrokenNodes/TopWeakDisableModel1")
 
 [connection signal="defeated" from="HullComponentTop" to="." method="_on_hull_component_top_defeated"]
+[connection signal="hull_changed" from="HullComponentTop" to="." method="_on_hull_component_top_hull_changed"]
 [connection signal="defeated" from="HullComponentBottom" to="." method="_on_hull_component_bottom_defeated"]
+[connection signal="hull_changed" from="HullComponentBottom" to="." method="_on_hull_component_bottom_hull_changed"]
 [connection signal="area_entered" from="JuggernautHitboxes/TopHitBox" to="JuggernautHitboxes" method="_on_top_hit_box_area_entered"]
 [connection signal="area_entered" from="JuggernautHitboxes/TopHitBox" to="JuggernautHitboxes/TopHitBox" method="_on_area_entered"]
 [connection signal="area_entered" from="JuggernautHitboxes/BottomHitBox" to="JuggernautHitboxes" method="_on_bottom_hit_box_area_entered"]
+[connection signal="timeout" from="DefeatIndicatorTimer" to="." method="_on_defeat_indicator_timer_timeout"]
 [connection signal="timeout" from="AttackTimers/BombResetTimer" to="." method="_on_bomb_reset_timer_timeout"]

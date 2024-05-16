@@ -12,6 +12,8 @@ signal laser_upgraded()
 @onready var pickup_container = $"../PickupContainer"
 @onready var fighter_death_sound = $"../../Sounds/FighterDeathSound"
 @onready var bomber_death_sound = $"../../Sounds/BomberDeathSound"
+@onready var beamer_death_sound = $"../../Sounds/BeamerDeathSound"
+@onready var juggernaut_death_sound = $"../../Sounds/JuggernautDeathSound"
 @onready var hud = $"../../UIElements/HUD"
 
 const FIGHTER = preload("res://scenes/enemies/fighter.tscn")
@@ -138,12 +140,14 @@ func enemyDeathActions(location, value, type):
 		bomber_death_sound.play()
 		spawnVoidEnergy(location, value)
 	elif type == "Beam_Fighter":
+		beamer_death_sound.play()
 		var reserve_cell_chance = randf_range(1,100)
 		if reserve_cell_chance < 15:
 			spawnReserveCell(location)
 		else:
 			spawnVoidEnergy(location, value)
 	elif type == "Juggernaut":
+		juggernaut_death_sound.play()
 		spawn_timer.start(randf_range(3,5))
 		Globals.current_player.has_laser_upgrade = true
 		laser_upgraded.emit()
