@@ -20,8 +20,8 @@ emission = Color(0, 0.211765, 0.65098, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_tg75o"]
 material = SubResource("StandardMaterial3D_4yalc")
-top_radius = 0.03
-bottom_radius = 0.03
+top_radius = 0.065
+bottom_radius = 0.065
 height = 0.5
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4tlxr"]

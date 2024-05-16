@@ -83,4 +83,5 @@ text = "Play again?"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[connection signal="mouse_entered" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Replay" to="." method="_on_replay_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Replay" to="." method="_on_replay_pressed"]

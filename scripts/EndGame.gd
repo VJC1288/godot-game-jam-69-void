@@ -68,6 +68,8 @@ func play_loss_animation():
 func add_loss_message():
 	var message = GAME_OVER.instantiate()
 	ui.add_child(message)
+	if Globals.current_player != null:
+			message.energy_loss.visible = true
 	message.restart_game.connect(restart_game_call)
 
 

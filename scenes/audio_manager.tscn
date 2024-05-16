@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://nqq0w86eyayx"]
+
+[ext_resource type="Script" path="res://scripts/AudioManager.gd" id="1_ij8rg"]
+[ext_resource type="AudioStream" uid="uid://dbmkcd5wjd67q" path="res://assets/sounds/397604__nightflame__menu-fx-01.wav" id="2_cvyue"]
+
+[node name="GlobalAudioManager" type="Node"]
+process_mode = 3
+script = ExtResource("1_ij8rg")
+
+[node name="MenuMoveSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_cvyue")
+volume_db = -10.0
+pitch_scale = 1.5

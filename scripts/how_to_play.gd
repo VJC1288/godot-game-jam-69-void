@@ -10,3 +10,6 @@ func _ready():
 func _on_back_button_pressed():
 	close_how_to_play.emit()
 	queue_free()
+	
+func _on_back_button_mouse_entered():
+	GlobalAudioManager.menu_move_sound.play()

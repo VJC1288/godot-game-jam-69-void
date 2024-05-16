@@ -146,7 +146,7 @@ func has_laser_eff():
 	if !laserEff:
 		heat_upgrade_icon.visible = true
 		ui_splash_text.visible = true
-		reserveCell = laserEff
+		laserEff = true
 		ui_splash_text.text = "Laser Efficiency \n Module Acquired"
 		await get_tree().create_timer(2, false).timeout
 		spashtexttween()

@@ -28,6 +28,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Globals="*res://scripts/Globals.gd"
+GlobalAudioManager="*res://scenes/audio_manager.tscn"
 
 [display]
 

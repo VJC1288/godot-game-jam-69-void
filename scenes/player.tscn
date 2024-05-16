@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ric350m5845j" path="res://scenes/shield_component.tscn" id="3_jtxrp"]
 [ext_resource type="Script" path="res://scripts/player_hitbox.gd" id="4_pxqbv"]
 [ext_resource type="AudioStream" uid="uid://ca87ceeqjghoh" path="res://assets/sounds/shortwarp.mp3" id="7_ee0yj"]
-[ext_resource type="AudioStream" uid="uid://bsy6scur0ivlw" path="res://assets/sounds/459782__metzik__deflector-shield.wav" id="8_v5inn"]
+[ext_resource type="AudioStream" uid="uid://bsy6scur0ivlw" path="res://assets/sounds/menu_move_sound.wav" id="8_mi3sm"]
 [ext_resource type="AudioStream" uid="uid://bhqa0h6dsyrvc" path="res://assets/sounds/168984__lavik89__digital-hit.wav" id="9_787se"]
 [ext_resource type="AudioStream" uid="uid://w1rpvpjelw3f" path="res://assets/sounds/voidenergy.mp3" id="10_tyse1"]
 [ext_resource type="PackedScene" uid="uid://hjn7h1kdp5fv" path="res://scenes/heat_bar.tscn" id="11_5jg6h"]
@@ -66,7 +66,7 @@ stream = ExtResource("7_ee0yj")
 volume_db = -20.0
 
 [node name="ShieldBreakSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("8_v5inn")
+stream = ExtResource("8_mi3sm")
 volume_db = -10.0
 
 [node name="ShieldHitSound" type="AudioStreamPlayer" parent="."]

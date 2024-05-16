@@ -12,3 +12,6 @@ func _ready():
 func _on_replay_pressed():
 	get_tree().paused = false
 	restart_game.emit()
+
+func _on_replay_mouse_entered():
+	GlobalAudioManager.menu_move_sound.play()

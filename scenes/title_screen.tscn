@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://7bg52o0so1kn"]
+[gd_scene load_steps=8 format=3 uid="uid://7bg52o0so1kn"]
 
 [ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_fl6sr"]
 [ext_resource type="StyleBox" uid="uid://cnfujya23l8lb" path="res://themes/pausestyle.tres" id="2_xodeb"]
 [ext_resource type="FontFile" uid="uid://cxnq0tiy7l8ay" path="res://assets/fonts/Alien-Encounters-Bold-Italic.ttf" id="3_1drfm"]
+[ext_resource type="AudioStream" uid="uid://dnwnalvrab6jg" path="res://assets/sounds/goodluck.mp3" id="5_mmyw6"]
 [ext_resource type="Theme" uid="uid://b6epshmaiw5dd" path="res://themes/buttontheme.tres" id="6_6plbb"]
 
 [sub_resource type="Gradient" id="Gradient_04047"]
@@ -15,6 +16,7 @@ fill_to = Vector2(0.491453, 0)
 
 [node name="TitleScreen" type="CanvasLayer"]
 process_mode = 3
+layer = 0
 script = ExtResource("1_fl6sr")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -182,6 +184,10 @@ texture = SubResource("GradientTexture2D_qyali")
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
+
+[node name="GoodLuck" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_mmyw6")
+volume_db = 10.0
 
 [connection signal="mouse_entered" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
