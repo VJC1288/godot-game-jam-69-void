@@ -1,18 +1,27 @@
-[gd_scene load_steps=8 format=3 uid="uid://7bg52o0so1kn"]
+[gd_scene load_steps=11 format=3 uid="uid://7bg52o0so1kn"]
 
 [ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_fl6sr"]
 [ext_resource type="StyleBox" uid="uid://cnfujya23l8lb" path="res://themes/pausestyle.tres" id="2_xodeb"]
 [ext_resource type="FontFile" uid="uid://cxnq0tiy7l8ay" path="res://assets/fonts/Alien-Encounters-Bold-Italic.ttf" id="3_1drfm"]
+[ext_resource type="PackedScene" uid="uid://dwwhc0tog5gsq" path="res://assets/models/starship.glb" id="5_06aum"]
 [ext_resource type="AudioStream" uid="uid://dnwnalvrab6jg" path="res://assets/sounds/goodluck.mp3" id="5_mmyw6"]
 [ext_resource type="Theme" uid="uid://b6epshmaiw5dd" path="res://themes/buttontheme.tres" id="6_6plbb"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_gtfah"]
+viewport_path = NodePath("SubViewport")
 
 [sub_resource type="Gradient" id="Gradient_04047"]
 colors = PackedColorArray(1, 0.290196, 0, 1, 1, 0.945098, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_qyali"]
 gradient = SubResource("Gradient_04047")
-fill_from = Vector2(0.487179, 1)
-fill_to = Vector2(0.491453, 0)
+fill_from = Vector2(0.67094, 0.0769231)
+fill_to = Vector2(0.474359, 0.782051)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fsacj"]
+albedo_color = Color(1, 0.592157, 0, 1)
+emission_enabled = true
+emission = Color(0.941176, 0.537255, 0.160784, 1)
 
 [node name="TitleScreen" type="CanvasLayer"]
 process_mode = 3
@@ -34,11 +43,25 @@ theme_override_constants/margin_bottom = 1
 layout_mode = 2
 theme_override_styles/panel = ExtResource("2_xodeb")
 
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Panel"]
+clip_contents = true
+layout_mode = 2
+offset_right = 1150.0
+offset_bottom = 646.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("ViewportTexture_gtfah")
+expand_mode = 4
+
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -24.5
+offset_bottom = 24.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 20
@@ -129,19 +152,28 @@ vertical_alignment = 1
 layout_mode = 2
 theme_override_constants/margin_top = 30
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="VBoxCOntainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxCOntainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+theme_override_constants/margin_top = 81
+theme_override_constants/margin_right = 10
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxCOntainer/MarginContainer"]
 layout_mode = 2
-theme_override_constants/margin_top = 105
+size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxCOntainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxCOntainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxCOntainer/MarginContainer/VBoxContainer/MarginContainer2"]
 texture_filter = 2
 layout_mode = 2
 size_flags_horizontal = 4
@@ -154,7 +186,10 @@ text = "Event Horizon
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GradientFont" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxCOntainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="GradientFont" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxCOntainer/MarginContainer/VBoxContainer/MarginContainer"]
 clip_children = 2
 texture_filter = 2
 layout_mode = 2
@@ -168,26 +203,85 @@ theme_override_font_sizes/font_size = 110
 text = "DRIVE"
 horizontal_alignment = 1
 
-[node name="GradientColor" type="TextureRect" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2/VBoxContainer/GradientFont"]
-visible = false
+[node name="GradientFont2" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxCOntainer/MarginContainer/VBoxContainer/MarginContainer"]
+clip_children = 2
+texture_filter = 2
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0.580392, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_outline_size = 12
+theme_override_fonts/font = ExtResource("3_1drfm")
+theme_override_font_sizes/font_size = 110
+text = "DRIVE"
+horizontal_alignment = 1
+
+[node name="GradientColor" type="TextureRect" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxCOntainer/MarginContainer/VBoxContainer/MarginContainer/GradientFont2"]
+clip_children = 2
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -1.0
-offset_right = 34.0
-offset_bottom = -1.0
+offset_right = 33.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_qyali")
 
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2/VBoxContainer"]
-layout_mode = 2
-
 [node name="GoodLuck" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_mmyw6")
 volume_db = 10.0
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+
+[node name="starship" parent="SubViewport" instance=ExtResource("5_06aum")]
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(0.539552, 0.729394, -0.420556, -0.120743, 0.56137, 0.818709, 0.833249, -0.390957, 0.390957, -3.50802, 7.16853, 1.79257)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport/Camera3D"]
+light_energy = 0.7
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.0628841, 0, -8.36188)
+material_override = SubResource("StandardMaterial3D_fsacj")
+radius = 0.161103
+height = 6.35356
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1.08781, 0, -10.7234)
+material_override = SubResource("StandardMaterial3D_fsacj")
+radius = 0.136892
+height = 6.35356
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 2.21031, 0, -12.799)
+material_override = SubResource("StandardMaterial3D_fsacj")
+radius = 0.136892
+height = 6.35356
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.952394, 0, -11.0169)
+material_override = SubResource("StandardMaterial3D_fsacj")
+radius = 0.119094
+height = 6.35356
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -2.2655, 0, -12.8595)
+material_override = SubResource("StandardMaterial3D_fsacj")
+radius = 0.119094
+height = 6.35356
+
+[node name="EasterEggSounds" type="Node" parent="."]
+
+[node name="Button" type="Button" parent="EasterEggSounds"]
+visible = false
+custom_minimum_size = Vector2(300, 90)
+offset_left = 704.0
+offset_top = 190.5
+offset_right = 1004.0
+offset_bottom = 280.5
 
 [connection signal="mouse_entered" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
