@@ -12,7 +12,6 @@ signal fireBottomLaser(muzzlePosition)
 signal player_hull_changed(new_hull)
 signal player_shield_changed(new_shield)
 signal player_energy_changed(new_energy)
-signal change_laser_color()
 
 @onready var center_muzzle = $CenterMuzzle
 @onready var top_muzzle = $TopMuzzle
@@ -90,7 +89,6 @@ func shootLaser():
 			fireLaser.emit(center_muzzle.global_position)
 			fireTopLaser.emit(top_muzzle.global_position)
 			fireBottomLaser.emit(bottom_muzzle.global_position)
-			change_laser_color.emit()
 			muzzle_flash()
 		else:
 			fireLaser.emit(center_muzzle.global_position)

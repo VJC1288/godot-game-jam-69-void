@@ -75,7 +75,7 @@ pitch_scale = 1.2
 
 [node name="VoidEnergyPickupSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_tyse1")
-volume_db = -15.0
+volume_db = -13.0
 pitch_scale = 0.8
 
 [node name="HeatBar" type="Node3D" parent="."]

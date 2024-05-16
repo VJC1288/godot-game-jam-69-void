@@ -15,6 +15,7 @@ func _ready():
 		queue_free()
 	else:
 		mesh.material.albedo_color = Color(0.106, 0.345, 1, 1)
+		mesh.material.emission = Color(0.106, 0.345, 1)
 		var tween = create_tween()
 		tween.tween_property(mesh.material, "albedo_color", Color(0.106, 0.345, 1, 0), .25)
 		await get_tree().create_timer(.5, false).timeout
