@@ -31,11 +31,11 @@ var bottom_bomb_cd:float = randf_range(2,3)
 var move_turret: float = .05
 
 func _fire_top_bomb():
-	fire_top_bomb.emit(top_bomb_muzzle.global_position)
+	fire_top_bomb.emit(top_bomb_muzzle.global_position, 1.8)
 	top_bomb_cooldown.start(top_bomb_cd)
 	
 func _fire_bottom_bomb():
-	fire_bottom_bomb.emit(bottom_bomb_muzzle.global_position)
+	fire_bottom_bomb.emit(bottom_bomb_muzzle.global_position, 1.8)
 	bottom_bomb_cooldown.start(bottom_bomb_cd)
 	
 func _physics_process(delta):

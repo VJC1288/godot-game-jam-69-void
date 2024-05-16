@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://vbg75cyqro1p"]
+[gd_scene load_steps=6 format=3 uid="uid://vbg75cyqro1p"]
 
 [ext_resource type="Script" path="res://scripts/game_win.gd" id="1_70qks"]
 [ext_resource type="StyleBox" uid="uid://cnfujya23l8lb" path="res://themes/pausestyle.tres" id="2_edp6v"]
 [ext_resource type="FontFile" uid="uid://bl5csexcm7nrv" path="res://assets/fonts/Rocket Rinder.otf" id="3_bm3x0"]
 [ext_resource type="FontFile" uid="uid://cxnq0tiy7l8ay" path="res://assets/fonts/Alien-Encounters-Bold-Italic.ttf" id="3_u1jht"]
 [ext_resource type="Theme" uid="uid://b6epshmaiw5dd" path="res://themes/buttontheme.tres" id="4_sdw7g"]
-[ext_resource type="StyleBox" uid="uid://ud5jyih5jsr4" path="res://themes/buttonstyle.tres" id="5_eu2qm"]
 
 [node name="GameWin" type="CanvasLayer"]
 process_mode = 3
@@ -65,7 +64,7 @@ theme_override_constants/separation = 25
 
 [node name="Replay" type="Button" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
 texture_filter = 2
-custom_minimum_size = Vector2(110, 65)
+custom_minimum_size = Vector2(125, 65)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -80,7 +79,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_styles/normal = ExtResource("5_eu2qm")
 text = "Play again?"
 horizontal_alignment = 1
 vertical_alignment = 1

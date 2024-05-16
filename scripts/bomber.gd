@@ -2,7 +2,7 @@ extends Enemy
 
 class_name EnemyBomber
 
-signal fireBomberBomb(muzzlePosition)
+signal fireBomberBomb(muzzlePosition, delay)
 
 @onready var fire_detection = $FireDetection
 @onready var bottom_muzzle = $BottomMuzzle
@@ -39,9 +39,15 @@ func randomizeMovement():
 
 func fireDetection():
 	if fire_cooldown.time_left == 0:
-		fireBomberBomb.emit(bottom_muzzle.global_position)
+		var explosion_delay: float = randf_range(.5, 1.8)
+		fireBomberBomb.emit(bottom_muzzle.global_position, explosion_delay)
 		fire_cooldown.start(randf_range(1.8,2.5))
 		
 func _on_wall_detector_screen_exited():
 	currentDirection *= -1
 
+func _on_hull_component_defeated():
+	enemyDefeated.emit(global_position, void_value, enemy_type)
+	hitbox_component.set_deferred("monitorable", false)
+	currentState = EnemyStates.DYING
+	fireBomberBomb.emit(global_position, 0)

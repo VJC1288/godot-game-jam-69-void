@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bvujvu5kh15l6"]
+[gd_scene load_steps=8 format=3 uid="uid://bvujvu5kh15l6"]
 
 [ext_resource type="Script" path="res://scripts/how_to_play.gd" id="1_gtglf"]
 [ext_resource type="StyleBox" uid="uid://cnfujya23l8lb" path="res://themes/pausestyle.tres" id="2_s3i8g"]
@@ -7,10 +7,9 @@
 [ext_resource type="Theme" uid="uid://b6epshmaiw5dd" path="res://themes/buttontheme.tres" id="4_6s3wg"]
 [ext_resource type="Texture2D" uid="uid://das82hda2662x" path="res://assets/voidcontrollerlayout.svg" id="4_xdwh2"]
 [ext_resource type="FontFile" uid="uid://bl5csexcm7nrv" path="res://assets/fonts/Rocket Rinder.otf" id="5_mlu4u"]
-[ext_resource type="StyleBox" uid="uid://ud5jyih5jsr4" path="res://themes/buttonstyle.tres" id="5_t2p88"]
 
 [node name="HowToPlay" type="CanvasLayer"]
-process_mode = 2
+process_mode = 3
 script = ExtResource("1_gtglf")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -63,7 +62,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = 3
 theme_override_fonts/font = ExtResource("3_njmf8")
 theme_override_font_sizes/font_size = 20
-text = "Earth is under attack by the Voidling army, beings from the depths of black holes! Reversing engineering their technology, your ship is equipped with an \"Event Horizon Drive\" or EHD. As Earth's last hope, defeat foes and collect their Void Energy to power up the EHD. Arrive at the black hole with enough energy and you will be able to close it, stopping the Voidlings once and for all. However, take heed, regenerating your ships shields will cost you precious Void Energy."
+text = "Earth is under attack by the Voidling army, beings from the depths of black holes! Reverse engineering their technology, your ship is equipped with an \"Event Horizon Drive\" or EHD. As Earth's last hope, defeat foes and collect their Void Energy to power up the EHD. Arrive at the black hole with enough energy and you will be able to close it, stopping the Voidlings once and for all. However, take heed, regenerating your ships shields will cost you precious Void Energy."
 autowrap_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer"]
@@ -121,7 +120,6 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_styles/normal = ExtResource("5_t2p88")
 text = "bACK"
 horizontal_alignment = 1
 vertical_alignment = 1

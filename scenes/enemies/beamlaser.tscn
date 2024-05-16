@@ -20,7 +20,7 @@ height = 3.0
 
 [node name="BeamLaser" type="Node3D"]
 script = ExtResource("1_athk6")
-damage = -2
+damage = -4
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)

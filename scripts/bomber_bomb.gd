@@ -9,9 +9,10 @@ signal enemy_bomb_explode(impact_point)
 
 @onready var scale_timer = $ScaleTimer
 
+var explosion_delay: float
 
 func _ready():
-	await get_tree().create_timer(1.8, false).timeout
+	await get_tree().create_timer(explosion_delay, false).timeout
 	enemy_bomb_explode.emit(global_position)
 	queue_free()
 

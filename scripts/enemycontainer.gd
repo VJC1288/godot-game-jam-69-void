@@ -30,14 +30,15 @@ const RESERVE_VOID_CELL = preload("res://scenes/reserve_void_cell.tscn")
 var juggernaut_spawned:bool = false
 
 func _ready():
+	await get_tree().create_timer(4).timeout
 	#pass
 	spawnFighter()
 	#spawnBeamFighter()
 	#spawnBomber()
 	#spawnJuggernaut()
+	spawn_timer.start(randf_range(3,5))
 	
 func spawnFighter():
-	spawn_timer.start(randf_range(3,5))
 	var fighter = FIGHTER.instantiate()
 	add_child(fighter)
 	fighter.fireFighterLaser.connect(spawn_fighter_laser)
@@ -86,7 +87,7 @@ func _on_spawn_timer_timeout():
 			spawnFighter()
 			
 			var bomber_chance: float = randi_range(1,100)
-			if bomber_chance <= 25:
+			if bomber_chance <= 35:
 				await get_tree().create_timer(randf_range(0,2), false).timeout
 				spawnBomber()
 				
@@ -94,6 +95,11 @@ func _on_spawn_timer_timeout():
 			if beam_fighter_chance <= 25:
 				await get_tree().create_timer(randf_range(0,2), false).timeout
 				spawnBeamFighter()
+				
+			var second_fighter_chance: float = randi_range(1,100)
+			if second_fighter_chance <= 30 and juggernaut_spawned:
+				await get_tree().create_timer(randf_range(0,1), false).timeout
+				spawnFighter()
 
 func _input(event):
 	if event.is_action_pressed("debugspawnenemy"):
@@ -111,15 +117,17 @@ func spawn_beam_laser(firePoint):
 	spawned_laser.global_rotation = rotation
 	spawned_laser.global_position = firePoint
 
-func spawn_bomber_bomb(firePoint):
+func spawn_bomber_bomb(firePoint, delay):
 	var spawned_bomb = BOMBER_BOMB.instantiate()
+	spawned_bomb.explosion_delay = delay
 	vertical_enemy_bombs.add_child(spawned_bomb)
 	spawned_bomb.enemy_bomb_explode.connect(spawn_bomb_explosion)
 	spawned_bomb.global_rotation = rotation
 	spawned_bomb.global_position = firePoint
 	
-func spawn_horizontal_bomb(firePoint):
+func spawn_horizontal_bomb(firePoint, _delay):
 	var spawned_bomb = BOMBER_BOMB.instantiate()
+	spawned_bomb.explosion_delay = 1.8
 	horizontal_enemy_bombs.add_child(spawned_bomb)
 	spawned_bomb.enemy_bomb_explode.connect(spawn_bomb_explosion)
 	spawned_bomb.global_rotation = rotation

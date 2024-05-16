@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://be1fxoeageef8"]
+[gd_scene load_steps=8 format=3 uid="uid://be1fxoeageef8"]
 
 [ext_resource type="PackedScene" uid="uid://1nlrcogbuus8" path="res://scenes/enemies/baseEnemy.tscn" id="1_huip8"]
 [ext_resource type="Script" path="res://scripts/beamfighter.gd" id="2_l42ck"]
@@ -8,7 +8,10 @@
 size = Vector3(1.89153, 1.85306, 3.06584)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sp4wa"]
-size = Vector3(1.892, 1.853, 5.86499)
+size = Vector3(1.892, 1.853, 8.18262)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_213mj"]
+size = Vector3(1.48633, 3.68262, 2.64844)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oomda"]
 size = Vector3(1.892, 1.853, 3.066)
@@ -27,6 +30,14 @@ max_hull = 100
 
 [node name="CollisionShape3D2" parent="HitboxComponent" index="1"]
 shape = SubResource("BoxShape3D_sp4wa")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="HitboxComponent" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.0385)
+shape = SubResource("BoxShape3D_213mj")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="HitboxComponent" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.12161)
+shape = SubResource("BoxShape3D_213mj")
 
 [node name="HurtboxComponent" parent="." index="3"]
 collision_mask = 1

@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://q1fi7jb5xxu5"]
+[gd_scene load_steps=5 format=3 uid="uid://q1fi7jb5xxu5"]
 
 [ext_resource type="Script" path="res://scripts/game_over.gd" id="1_02a7h"]
 [ext_resource type="StyleBox" uid="uid://cnfujya23l8lb" path="res://themes/pausestyle.tres" id="2_54ont"]
 [ext_resource type="FontFile" uid="uid://cxnq0tiy7l8ay" path="res://assets/fonts/Alien-Encounters-Bold-Italic.ttf" id="3_ka2lt"]
 [ext_resource type="Theme" uid="uid://b6epshmaiw5dd" path="res://themes/buttontheme.tres" id="4_3xfqt"]
-[ext_resource type="StyleBox" uid="uid://ud5jyih5jsr4" path="res://themes/buttonstyle.tres" id="5_slvp3"]
 
 [node name="GameOver" type="CanvasLayer"]
 process_mode = 2
@@ -72,7 +71,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_styles/normal = ExtResource("5_slvp3")
 text = "Retry?"
 horizontal_alignment = 1
 vertical_alignment = 1

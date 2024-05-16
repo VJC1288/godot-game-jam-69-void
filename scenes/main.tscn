@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://bhljayf8hhj62"]
+[gd_scene load_steps=78 format=3 uid="uid://bhljayf8hhj62"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_4cpek"]
 [ext_resource type="PackedScene" uid="uid://dd3se6k2tyivf" path="res://scenes/damage_zone.tscn" id="1_6hpio"]
@@ -13,7 +13,6 @@
 [ext_resource type="AudioStream" uid="uid://7ocendl50uf3" path="res://assets/sounds/cinematic-glitch-fast-183843.mp3" id="8_xgdov"]
 [ext_resource type="AudioStream" uid="uid://bg74io8npul72" path="res://assets/sounds/space-laser-38082.mp3" id="9_u7y53"]
 [ext_resource type="AudioStream" uid="uid://c3r3ewlq260vb" path="res://assets/sounds/155790__deleted_user_1941307__shipboard_railgun.mp3" id="9_xtjhc"]
-[ext_resource type="AudioStream" uid="uid://ctlo417ltrda" path="res://assets/sounds/beamerdeath-reverse.mp3" id="13_rfv15"]
 [ext_resource type="AudioStream" uid="uid://7qjn4ibwh1wr" path="res://assets/sounds/446625__idkmrgarcia__explosion.wav" id="14_3bx4x"]
 [ext_resource type="PackedScene" uid="uid://br75bokkf3b0h" path="res://scenes/short_warp_effect.tscn" id="16_3qhgq"]
 [ext_resource type="Script" path="res://scripts/ShaderPreloader.gd" id="16_muler"]
@@ -556,7 +555,7 @@ autostart = true
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_1ijl5")
-volume_db = -22.0
+volume_db = -25.0
 autoplay = true
 
 [node name="SpawnTimer" type="Timer" parent="."]
@@ -580,8 +579,9 @@ stream = ExtResource("9_u7y53")
 volume_db = -15.0
 
 [node name="BeamerDeathSound" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("13_rfv15")
+stream = ExtResource("8_xgdov")
 volume_db = -15.0
+pitch_scale = 0.85
 
 [node name="JuggernautDeathSound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("14_3bx4x")

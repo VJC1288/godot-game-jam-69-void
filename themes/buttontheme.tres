@@ -1,9 +1,69 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://b6epshmaiw5dd"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://b6epshmaiw5dd"]
 
-[ext_resource type="StyleBox" uid="uid://ud5jyih5jsr4" path="res://themes/buttonstyle.tres" id="1_187bf"]
 [ext_resource type="FontFile" uid="uid://mh42ommv3vnq" path="res://assets/fonts/vermin_vibes.ttf" id="2_iknf0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uemdl"]
+bg_color = Color(0.831373, 0, 0.831373, 1)
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.831373, 0, 0.831373, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 1
+shadow_offset = Vector2(0.5, 0.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_61yjf"]
+bg_color = Color(0.831373, 0, 0.831373, 1)
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.831373, 0, 0.831373, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 1
+shadow_offset = Vector2(0.5, 0.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xbni5"]
+bg_color = Color(0.447059, 0, 0.447059, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.14902, 0, 0.447059, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 1
+shadow_offset = Vector2(0.5, 0.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_03qkg"]
+bg_color = Color(0.298039, 0, 0.298039, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.14902, 0, 0.447059, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 1
+shadow_offset = Vector2(0.5, 0.5)
 
 [resource]
 default_font = ExtResource("2_iknf0")
 default_font_size = 20
-Button/styles/normal = ExtResource("1_187bf")
+Button/styles/focus = SubResource("StyleBoxFlat_uemdl")
+Button/styles/hover = SubResource("StyleBoxFlat_61yjf")
+Button/styles/normal = SubResource("StyleBoxFlat_xbni5")
+Button/styles/pressed = SubResource("StyleBoxFlat_03qkg")
