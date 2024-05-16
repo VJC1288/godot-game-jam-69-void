@@ -1,11 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://7bg52o0so1kn"]
+[gd_scene load_steps=15 format=3 uid="uid://7bg52o0so1kn"]
 
 [ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_fl6sr"]
 [ext_resource type="StyleBox" uid="uid://cnfujya23l8lb" path="res://themes/pausestyle.tres" id="2_xodeb"]
 [ext_resource type="FontFile" uid="uid://cxnq0tiy7l8ay" path="res://assets/fonts/Alien-Encounters-Bold-Italic.ttf" id="3_1drfm"]
+[ext_resource type="StyleBox" uid="uid://d7y8xljb54mt" path="res://assets/resources/blank_button.tres" id="5_2e8qv"]
 [ext_resource type="PackedScene" uid="uid://dwwhc0tog5gsq" path="res://assets/models/starship.glb" id="5_06aum"]
 [ext_resource type="AudioStream" uid="uid://dnwnalvrab6jg" path="res://assets/sounds/goodluck.mp3" id="5_mmyw6"]
 [ext_resource type="Theme" uid="uid://b6epshmaiw5dd" path="res://themes/buttontheme.tres" id="6_6plbb"]
+[ext_resource type="AudioStream" uid="uid://dkcfirqe0hp8i" path="res://assets/sounds/Stay_Alert.wav" id="8_lrg0w"]
+[ext_resource type="AudioStream" uid="uid://cfdcgji2luy58" path="res://assets/sounds/Do_a_barrel_roll.wav" id="9_03uyb"]
+[ext_resource type="AudioStream" uid="uid://c0168g4cqllil" path="res://assets/sounds/Watch_out.wav" id="10_hqjsl"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_gtfah"]
 viewport_path = NodePath("SubViewport")
@@ -15,8 +19,8 @@ colors = PackedColorArray(1, 0.290196, 0, 1, 1, 0.945098, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_qyali"]
 gradient = SubResource("Gradient_04047")
-fill_from = Vector2(0.67094, 0.0769231)
-fill_to = Vector2(0.474359, 0.782051)
+fill_from = Vector2(0.65812, 0.324786)
+fill_to = Vector2(0.508547, 0.611111)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fsacj"]
 albedo_color = Color(1, 0.592157, 0, 1)
@@ -228,6 +232,15 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_qyali")
 
+[node name="EasterButton" type="Button" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxCOntainer/MarginContainer/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(300, 90)
+layout_mode = 2
+theme_override_styles/normal = ExtResource("5_2e8qv")
+theme_override_styles/hover = ExtResource("5_2e8qv")
+theme_override_styles/pressed = ExtResource("5_2e8qv")
+theme_override_styles/disabled = ExtResource("5_2e8qv")
+theme_override_styles/focus = ExtResource("5_2e8qv")
+
 [node name="GoodLuck" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_mmyw6")
 volume_db = 10.0
@@ -275,15 +288,20 @@ height = 6.35356
 
 [node name="EasterEggSounds" type="Node" parent="."]
 
-[node name="Button" type="Button" parent="EasterEggSounds"]
-visible = false
-custom_minimum_size = Vector2(300, 90)
-offset_left = 704.0
-offset_top = 190.5
-offset_right = 1004.0
-offset_bottom = 280.5
+[node name="StayAlert" type="AudioStreamPlayer" parent="EasterEggSounds"]
+stream = ExtResource("8_lrg0w")
+volume_db = -5.0
+
+[node name="DoABarrelRoll" type="AudioStreamPlayer" parent="EasterEggSounds"]
+stream = ExtResource("9_03uyb")
+volume_db = -5.0
+
+[node name="WatchOut" type="AudioStreamPlayer" parent="EasterEggSounds"]
+stream = ExtResource("10_hqjsl")
+volume_db = -5.0
 
 [connection signal="mouse_entered" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="mouse_entered" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/HowToPlay" to="." method="_on_how_to_play_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/HowToPlay" to="." method="_on_how_to_play_pressed"]
+[connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxCOntainer/MarginContainer/VBoxContainer/MarginContainer/EasterButton" to="." method="_on_easter_button_pressed"]
