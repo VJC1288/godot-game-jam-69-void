@@ -97,7 +97,7 @@ layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_njmf8")
 text = "WASD: Move Ship
-Left Click: Fire Weapon
+LClick / Space / Ctrl: Fire Weapon
 Shift / RClick: Warp Dodge
 Tab: Pause
 
