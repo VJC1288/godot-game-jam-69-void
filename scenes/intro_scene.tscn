@@ -1,8 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://ijukytrksirg"]
+[gd_scene load_steps=6 format=3 uid="uid://ijukytrksirg"]
 
 [ext_resource type="StyleBox" uid="uid://cnfujya23l8lb" path="res://themes/pausestyle.tres" id="1_ogqrg"]
+[ext_resource type="Script" path="res://scripts/intro_scene.gd" id="1_uolt0"]
+[ext_resource type="FontFile" uid="uid://mh42ommv3vnq" path="res://assets/fonts/vermin_vibes.ttf" id="3_1v7uv"]
+[ext_resource type="FontFile" uid="uid://bqkfa6mf2ckx8" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="3_cjx3t"]
+[ext_resource type="AudioStream" uid="uid://d0srv3kl54s2e" path="res://assets/music/706527__universfield__grim-tense-action-for-sci-fi-adventures.mp3" id="4_jjg7m"]
 
 [node name="IntroScene" type="CanvasLayer"]
+script = ExtResource("1_uolt0")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -18,3 +23,56 @@ theme_override_constants/margin_bottom = 1
 [node name="Panel" type="Panel" parent="MarginContainer"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("1_ogqrg")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="MessageBox" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_cjx3t")
+theme_override_font_sizes/font_size = 40
+autowrap_mode = 3
+
+[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_1v7uv")
+theme_override_font_sizes/font_size = 30
+text = "Tab / Start: Skip"
+horizontal_alignment = 2
+
+[node name="NextCharacter" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[node name="NextMessage" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[node name="KeyboardClicksPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -10.0
+pitch_scale = 0.9
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_jjg7m")
+volume_db = -30.0
+pitch_scale = 0.9
+autoplay = true
+
+[connection signal="timeout" from="NextCharacter" to="." method="_on_next_character_timeout"]
+[connection signal="timeout" from="NextMessage" to="." method="_on_next_message_timeout"]

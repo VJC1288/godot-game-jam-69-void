@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-const MAIN = preload("res://scenes/main.tscn")
+const INTRO_SCENE = preload("res://scenes/intro_scene.tscn")
 const HOW_TO_PLAY = preload("res://scenes/how_to_play.tscn")
 
 @onready var play_button = %PlayButton
@@ -21,7 +21,7 @@ func _on_play_button_pressed():
 	play_button.release_focus()
 	good_luck.play()
 	await good_luck.finished
-	get_tree().change_scene_to_packed(MAIN)
+	get_tree().change_scene_to_packed(INTRO_SCENE)
 
 func _on_how_to_play_pressed():
 	var how_to_play_scene = HOW_TO_PLAY.instantiate()

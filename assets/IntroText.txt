@@ -1,0 +1,6 @@
+"We first battled the Voidlings in the Kuiper belt. It was there that we learned they came from and could traverse the universe's black holes.",
+	"We next fought the Voidlings near Neptune, as they crept closer to our home. We were completely eradicated, save for a few brave souls who would commandeer the technology of their ships.",
+	"I personally delivered it to the Earth so scientists could study its energy producing qualities...",
+	"The scientists' findings were astounding! They discovered that the powers of the Voidlings might be harnessed for the good of civilization!",
+	"Not a moment after the first official Event Horizon Drive was installed we picked up a Voidling fleet heading towards Earth.",
+	"There was no time left! I took the fight to them!!"
