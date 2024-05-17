@@ -80,6 +80,7 @@ func randomizeMovement():
 func _on_movement_timer_timeout():	
 	randomizeMovement()
 
+
 func fireDetection():
 	pass
 

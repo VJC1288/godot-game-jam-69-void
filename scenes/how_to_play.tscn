@@ -116,6 +116,7 @@ text = "Additional notes:"
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_njmf8")
+text = "Warp Dodge has a short cooldown and no cost. Use it!"
 autowrap_mode = 3
 
 [node name="BackButton" type="Button" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]

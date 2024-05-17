@@ -14,6 +14,9 @@ func _ready():
 	play_button.grab_focus()
 	
 func _on_play_button_pressed():
+	play_button.disabled = true
+	how_to_play.disabled = true
+	play_button.release_focus()
 	good_luck.play()
 	await good_luck.finished
 	get_tree().change_scene_to_packed(MAIN)
@@ -25,7 +28,6 @@ func _on_how_to_play_pressed():
 
 func _on_play_button_mouse_entered():
 	play_button.grab_focus()
-	
 	
 func _on_how_to_play_mouse_entered():
 	how_to_play.grab_focus()
