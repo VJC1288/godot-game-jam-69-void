@@ -59,7 +59,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.68589e-10, -0.15, 2.11987)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.68589e-10, 1, 2.11987)
 
 [node name="BottomMuzzle" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.68589e-10, -1, 2.11987)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.15, 2.12)
 
 [node name="ShortWarpSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_ee0yj")

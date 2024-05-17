@@ -74,7 +74,7 @@ layout_mode = 2
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3"]
 layout_mode = 2
@@ -83,6 +83,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_leke1")
+theme_override_font_sizes/font_size = 25
 text = "Fighters Defeated:"
 horizontal_alignment = 2
 
@@ -90,6 +91,7 @@ horizontal_alignment = 2
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_leke1")
+theme_override_font_sizes/font_size = 25
 text = "Bombers Defeated:"
 horizontal_alignment = 2
 
@@ -97,6 +99,7 @@ horizontal_alignment = 2
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_leke1")
+theme_override_font_sizes/font_size = 25
 text = "Beamers Defeated:"
 horizontal_alignment = 2
 
@@ -104,6 +107,7 @@ horizontal_alignment = 2
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_leke1")
+theme_override_font_sizes/font_size = 25
 text = "Juggernaut Defeated:"
 horizontal_alignment = 2
 
@@ -115,6 +119,7 @@ theme_override_constants/margin_top = 12
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_leke1")
+theme_override_font_sizes/font_size = 25
 text = "Total Energy Collected:"
 horizontal_alignment = 2
 
@@ -126,6 +131,7 @@ theme_override_constants/margin_top = 12
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_leke1")
+theme_override_font_sizes/font_size = 25
 text = "Total Shots Fired:"
 horizontal_alignment = 2
 
@@ -133,6 +139,7 @@ horizontal_alignment = 2
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_leke1")
+theme_override_font_sizes/font_size = 25
 text = "Accuracy:"
 horizontal_alignment = 2
 
@@ -140,6 +147,7 @@ horizontal_alignment = 2
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_leke1")
+theme_override_font_sizes/font_size = 25
 text = "Times Overheated:"
 horizontal_alignment = 2
 
@@ -147,7 +155,32 @@ horizontal_alignment = 2
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_leke1")
+theme_override_font_sizes/font_size = 25
 text = "Total Damage Taken:"
+horizontal_alignment = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 12
+
+[node name="WarpDodges" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_leke1")
+theme_override_font_sizes/font_size = 25
+text = "Times Warp Dodged:"
+horizontal_alignment = 2
+
+[node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 12
+
+[node name="EasterEggs" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_leke1")
+theme_override_font_sizes/font_size = 25
+text = "Easter Egg Listens:"
 horizontal_alignment = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3"]
@@ -158,6 +191,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_leke1")
+theme_override_font_sizes/font_size = 25
 text = "0
 "
 horizontal_alignment = 2
@@ -167,6 +201,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_leke1")
+theme_override_font_sizes/font_size = 25
 text = "0
 "
 horizontal_alignment = 2
@@ -176,6 +211,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_leke1")
+theme_override_font_sizes/font_size = 25
 text = "0
 "
 horizontal_alignment = 2
@@ -185,6 +221,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_leke1")
+theme_override_font_sizes/font_size = 25
 text = "0
 "
 horizontal_alignment = 2
@@ -198,6 +235,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_leke1")
+theme_override_font_sizes/font_size = 25
 text = "0
 "
 horizontal_alignment = 2
@@ -211,6 +249,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_leke1")
+theme_override_font_sizes/font_size = 25
 text = "0
 "
 horizontal_alignment = 2
@@ -220,6 +259,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_leke1")
+theme_override_font_sizes/font_size = 25
 text = "100%"
 horizontal_alignment = 2
 
@@ -228,6 +268,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_leke1")
+theme_override_font_sizes/font_size = 25
 text = "0
 "
 horizontal_alignment = 2
@@ -237,13 +278,38 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_leke1")
+theme_override_font_sizes/font_size = 25
 text = "0
 "
 horizontal_alignment = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer2"]
 layout_mode = 2
-size_flags_horizontal = 3
+theme_override_constants/margin_top = 12
+
+[node name="WarpDodges" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_leke1")
+theme_override_font_sizes/font_size = 25
+text = "0
+"
+horizontal_alignment = 2
+
+[node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_top = 12
+
+[node name="EasterEggs" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_leke1")
+theme_override_font_sizes/font_size = 25
+text = "0
+"
+horizontal_alignment = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2

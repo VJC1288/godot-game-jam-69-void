@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://q1fi7jb5xxu5"]
+[gd_scene load_steps=6 format=3 uid="uid://v1blgc8dbkfd"]
 
 [ext_resource type="Script" path="res://scripts/game_over.gd" id="1_02a7h"]
 [ext_resource type="StyleBox" uid="uid://cnfujya23l8lb" path="res://themes/pausestyle.tres" id="2_54ont"]
@@ -93,6 +93,30 @@ text = "Retry?"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ReturnToTitle" type="Button" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+texture_filter = 2
+custom_minimum_size = Vector2(125, 65)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_left = NodePath("../Retry")
+focus_neighbor_right = NodePath("../Statistics")
+theme = ExtResource("4_3xfqt")
+
+[node name="ReturnToTitleText" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/ReturnToTitle"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Return to
+Title"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Statistics" type="Button" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
 texture_filter = 2
 custom_minimum_size = Vector2(110, 65)
@@ -118,6 +142,9 @@ vertical_alignment = 1
 [connection signal="focus_entered" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Retry" to="." method="_on_retry_focus_entered"]
 [connection signal="mouse_entered" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Retry" to="." method="_on_retry_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Retry" to="." method="_on_retry_pressed"]
+[connection signal="focus_entered" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/ReturnToTitle" to="." method="_on_return_to_title_focus_entered"]
+[connection signal="mouse_entered" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/ReturnToTitle" to="." method="_on_return_to_title_mouse_entered"]
+[connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/ReturnToTitle" to="." method="_on_return_to_title_pressed"]
 [connection signal="focus_entered" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Statistics" to="." method="_on_statistics_focus_entered"]
 [connection signal="mouse_entered" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Statistics" to="." method="_on_statistics_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Statistics" to="." method="_on_statistics_pressed"]

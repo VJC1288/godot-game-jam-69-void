@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://n0ihv481obi6"]
+[gd_scene load_steps=7 format=3 uid="uid://n0ihv481obi6"]
 
 [ext_resource type="PackedScene" uid="uid://hc8v5vg8566d" path="res://scenes/hurtbox_component.tscn" id="1_7ui6e"]
 [ext_resource type="Script" path="res://scripts/laser.gd" id="1_b8t8e"]
@@ -18,17 +18,31 @@ height = 1.5
 radius = 0.206095
 height = 1.49358
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fdrra"]
+radius = 0.206095
+height = 1.49358
+
 [node name="Laser" type="Node3D"]
 script = ExtResource("1_b8t8e")
 damage = -50
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Model" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_sut18")
 
 [node name="HurtboxComponent" parent="." instance=ExtResource("1_7ui6e")]
-transform = Transform3D(-4.37114e-08, -1, 0, -4.37114e-08, 1.91069e-15, -1, 1, -4.37114e-08, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, 0, 0, 0)
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtboxComponent"]
 shape = SubResource("CapsuleShape3D_88itf")
+
+[node name="AccuracyBoxes" type="Area3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CenterAccBox" type="CollisionShape3D" parent="AccuracyBoxes"]
+shape = SubResource("CapsuleShape3D_fdrra")
+
+[connection signal="area_entered" from="AccuracyBoxes" to="." method="_on_accuracy_boxes_area_entered"]

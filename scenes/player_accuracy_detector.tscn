@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://ld8p23i8qeao"]
+
+[ext_resource type="Script" path="res://scripts/player_accuracy_detector.gd" id="1_djox1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_w2hhg"]
+radius = 0.318495
+height = 1.49358
+
+[node name="PlayerAccuracyDetector" type="Node3D"]
+script = ExtResource("1_djox1")
+
+[node name="AccuracyBox" type="Area3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0, 0, 0)
+collision_layer = 0
+collision_mask = 2
+
+[node name="Top" type="CollisionShape3D" parent="AccuracyBox"]
+transform = Transform3D(1, 0, 0, 0, 1, -8.35187e-23, 0, -8.35187e-23, 1, 0, 0, -1)
+shape = SubResource("CapsuleShape3D_w2hhg")
+disabled = true
+
+[node name="Center" type="CollisionShape3D" parent="AccuracyBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15)
+shape = SubResource("CapsuleShape3D_w2hhg")
+
+[node name="Bottom" type="CollisionShape3D" parent="AccuracyBox"]
+transform = Transform3D(1, 0, 0, 0, 1, -8.35187e-23, 0, -8.35187e-23, 1, 0, 0, 1.15)
+shape = SubResource("CapsuleShape3D_w2hhg")
+disabled = true
+
+[connection signal="area_entered" from="AccuracyBox" to="." method="_on_accuracy_box_area_entered"]

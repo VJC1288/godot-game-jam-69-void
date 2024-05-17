@@ -9,9 +9,11 @@ var total_energy_collected: int
 var total_damage_taken: int
 var total_shots_fired: float
 var times_overheated: int
+var times_warped: int
 var shots_hit: float
+var easter_egg_listens: int
 
-func resetGlobals():
+func resetGlobals(): #Does not reset easter egg listens!
 	current_player = null
 	fighters_defeated = 0
 	bombers_defeated = 0
@@ -21,4 +23,5 @@ func resetGlobals():
 	total_damage_taken = 0
 	total_shots_fired = 0
 	times_overheated = 0
+	times_warped = 0
 	shots_hit = 0

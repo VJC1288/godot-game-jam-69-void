@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://ct8q8aqo8oijl"]
+
+[ext_resource type="Script" path="res://scripts/playertriplelaser.gd" id="1_pi5qn"]
+[ext_resource type="PackedScene" uid="uid://bcrxv4xyubk36" path="res://scenes/playertriplelaserindividual.tscn" id="2_p2s61"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vcaty"]
+radius = 0.206095
+height = 1.49358
+
+[node name="TripleLaser" type="Node3D"]
+script = ExtResource("1_pi5qn")
+
+[node name="TopLaser" parent="." instance=ExtResource("2_p2s61")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="CenterLaser" parent="." instance=ExtResource("2_p2s61")]
+
+[node name="BottomLaser" parent="." instance=ExtResource("2_p2s61")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="AccuracyBoxes" type="Area3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+collision_layer = 0
+collision_mask = 2
+
+[node name="TopAccBox" type="CollisionShape3D" parent="AccuracyBoxes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+shape = SubResource("CapsuleShape3D_vcaty")
+
+[node name="CenterAccBox" type="CollisionShape3D" parent="AccuracyBoxes"]
+shape = SubResource("CapsuleShape3D_vcaty")
+
+[node name="BottomAccBox" type="CollisionShape3D" parent="AccuracyBoxes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+shape = SubResource("CapsuleShape3D_vcaty")
+
+[connection signal="area_entered" from="AccuracyBoxes" to="." method="_on_accuracy_boxes_area_entered"]

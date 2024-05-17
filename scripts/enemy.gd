@@ -99,7 +99,6 @@ func _on_wall_detector_area_exited(_area):
 func _on_hull_component_hull_changed(new_hull):
 	if new_hull < hull_component.max_hull:
 		ship_damage_indication(ship_model)
-		Globals.shots_hit += 1
 		
 func ship_damage_indication(model):
 

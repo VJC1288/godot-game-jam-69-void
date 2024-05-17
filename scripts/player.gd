@@ -6,9 +6,7 @@ const SHIELD_EFFECT = preload("res://scenes/shield_effect.tscn")
 const SHORT_WARP_EFFECT = preload("res://scenes/short_warp_effect.tscn")
 const PLAYERMUZZLEFLASH = preload("res://scenes/playermuzzleflash.tscn")
 
-signal fireLaser(muzzlePosition)
-signal fireTopLaser(muzzlePosition)
-signal fireBottomLaser(muzzlePosition)
+signal fireLaser(muzzlePosition, muzzleRotation)
 signal player_hull_changed(new_hull)
 signal player_shield_changed(new_shield)
 signal player_energy_changed(new_energy)
@@ -87,13 +85,12 @@ func _input(event):
 func shootLaser():
 	if !overheated:
 		if has_laser_upgrade == true:
-			fireLaser.emit(center_muzzle.global_position)
-			fireTopLaser.emit(top_muzzle.global_position)
-			fireBottomLaser.emit(bottom_muzzle.global_position)
+			fireLaser.emit(center_muzzle.global_position, center_muzzle.global_rotation)
+			current_laser_heat = clamp(current_laser_heat+laser_heat_buildup, 0, max_laser_heat)
 			muzzle_flash()
 			Globals.total_shots_fired += 1
 		else:
-			fireLaser.emit(center_muzzle.global_position)
+			fireLaser.emit(center_muzzle.global_position, center_muzzle.global_rotation)
 			muzzle_flash()
 			current_laser_heat = clamp(current_laser_heat+laser_heat_buildup, 0, max_laser_heat)
 			Globals.total_shots_fired += 1
@@ -111,9 +108,9 @@ func _on_shield_component_shield_changed(new_shield):
 	
 	
 func adjust_void_energy(adjustment):
-	Globals.total_energy_collected += adjustment
 	current_energy = clamp(current_energy + adjustment, 0 , max_energy)
 	if adjustment > 0:
+		Globals.total_energy_collected += adjustment
 		void_energy_pickup_sound.play()
 		if shield_component.shield_regen_delay.is_stopped():
 			shield_component.shield_regen()
@@ -171,7 +168,7 @@ func short_warp():
 		warpin.position.x += 2
 		var enlarge_tween = create_tween()
 		enlarge_tween.tween_property(starship_model, "scale", Vector3(.5,.5,.5), .15)
-		
+		Globals.times_warped += 1
 		short_warp_sound.play()
 		
 		await get_tree().create_timer(1, false).timeout

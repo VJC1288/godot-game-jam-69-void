@@ -14,6 +14,8 @@ func _ready():
 	play_button.grab_focus()
 	
 func _on_play_button_pressed():
+	get_tree().paused = false
+	Globals.resetGlobals()
 	play_button.disabled = true
 	how_to_play.disabled = true
 	play_button.release_focus()
@@ -44,3 +46,4 @@ func _on_easter_button_pressed():
 	if easter_times_clicked % 5 == 0:
 		if easter_egg_sounds.get_child_count() != 0:
 			easter_egg_sounds.get_children().pick_random().play()
+			Globals.easter_egg_listens += 1

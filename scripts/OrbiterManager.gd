@@ -4,6 +4,7 @@ class_name OrbiterManager
 
 const PLAYERLASER = preload("res://scenes/playerlaser.tscn")
 const ASTEROID = preload("res://scenes/asteroid.tscn")
+const PLAYERTRIPLELASER = preload("res://scenes/playertriplelaser.tscn")
 
 @export var num_of_asteroids:= 2500
 
@@ -96,32 +97,22 @@ func _physics_process(delta):
 		e.position.z += default_fall_speed * delta
 		
 	screen_edge_container.rotation.y += default_orbit_speed * delta
-	
-func spawn_player_laser(firePoint):
-	var spawned_laser = PLAYERLASER.instantiate()
-	player_laser_container.add_child(spawned_laser)
-	spawned_laser.global_rotation.y = player_container.rotation.y
-	spawned_laser.global_position = firePoint
-	player_laser_sound.play()
+
+func spawn_player_laser(firePoint, pointRotation):
 	if Globals.current_player.has_laser_upgrade:
-		spawned_laser.mesh_instance_3d.mesh.material.albedo_color = Color(1,1,0,1)
-		spawned_laser.mesh_instance_3d.mesh.material.emission = Color(81.9579,94.7632,39.9581,1)
+		var spawned_laser = PLAYERTRIPLELASER.instantiate()
+		player_laser_container.add_child(spawned_laser)
+		spawned_laser.global_rotation.y = player_container.rotation.y
+		spawned_laser.global_rotation.z = pointRotation.x
+		spawned_laser.global_rotation.x = pointRotation.z
+		spawned_laser.global_position = firePoint
+		player_laser_sound.play()
 	else:
-		spawned_laser.mesh_instance_3d.mesh.material.albedo_color = Color(0.106, 0.345, 1, 1)
-		spawned_laser.mesh_instance_3d.mesh.material.emission = Color(0.247, 0.365, 1, 1)
-		
-func spawn_top_laser(firePoint):
-	var spawned_laser = PLAYERLASER.instantiate()
-	player_laser_container.add_child(spawned_laser)
-	spawned_laser.global_rotation.y = player_container.rotation.y
-	spawned_laser.global_position = firePoint
-
-func spawn_bottom_laser(firePoint):
-	var spawned_laser = PLAYERLASER.instantiate()
-	player_laser_container.add_child(spawned_laser)
-	spawned_laser.global_rotation.y = player_container.rotation.y
-	spawned_laser.global_position = firePoint
-
+		var spawned_laser = PLAYERLASER.instantiate()
+		player_laser_container.add_child(spawned_laser)
+		spawned_laser.global_rotation.y = player_container.rotation.y
+		spawned_laser.global_position = firePoint
+		player_laser_sound.play()
 
 func _on_speed_increase_timer_timeout():
 	print("GameSpeedUp")

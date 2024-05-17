@@ -14,12 +14,10 @@ signal close_stats()
 @onready var times_overheated = %TimesOverheated
 @onready var accuracy = %Accuracy
 @onready var back_button = $MarginContainer/Panel/MarginContainer/VBoxContainer/BackButton
-
-
+@onready var warp_dodges = %WarpDodges
+@onready var easter_eggs = %EasterEggs
 
 func _ready():
-	
-	back_button.grab_focus()
 	
 	fighters.text = str(Globals.fighters_defeated)
 	bombers.text = str(Globals.bombers_defeated)
@@ -33,8 +31,13 @@ func _ready():
 		accuracy.text = str(accNum * 100, "%")
 	times_overheated.text = str(Globals.times_overheated)
 	damage_taken.text = str(Globals.total_damage_taken)
+	warp_dodges.text = str(Globals.times_warped)
+	easter_eggs.text = str(Globals.easter_egg_listens)
 	
 
+func _input(event):
+	if event is InputEventJoypadButton:
+			back_button.grab_focus()
 
 func _on_back_button_pressed():
 	close_stats.emit()

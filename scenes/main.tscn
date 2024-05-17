@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=3 uid="uid://bhljayf8hhj62"]
+[gd_scene load_steps=81 format=3 uid="uid://bhljayf8hhj62"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_4cpek"]
 [ext_resource type="PackedScene" uid="uid://dd3se6k2tyivf" path="res://scenes/damage_zone.tscn" id="1_6hpio"]
@@ -26,13 +26,14 @@
 [ext_resource type="PackedScene" uid="uid://bjomf235fuolr" path="res://assets/models/littlebomber.glb" id="25_nym48"]
 [ext_resource type="PackedScene" uid="uid://dwwhc0tog5gsq" path="res://assets/models/starship.glb" id="26_sgyyi"]
 [ext_resource type="PackedScene" uid="uid://b4ox3emokt56b" path="res://scenes/enemies/bomber_bomb.tscn" id="27_y6uoq"]
-[ext_resource type="PackedScene" uid="uid://cy6v7ych8i6ku" path="res://scenes/enemies/fighterlaser.tscn" id="28_o8qyp"]
 [ext_resource type="PackedScene" uid="uid://c45o2x0kqdu5o" path="res://scenes/enemies/beamlaser.tscn" id="29_b581n"]
 [ext_resource type="PackedScene" uid="uid://byh8ne12whthh" path="res://scenes/reserve_void_cell.tscn" id="30_35plo"]
 [ext_resource type="PackedScene" uid="uid://ds36yylqcb1d6" path="res://scenes/playermuzzleflash.tscn" id="31_kw75m"]
 [ext_resource type="PackedScene" uid="uid://cna2up0x6o73" path="res://scenes/shield_effect.tscn" id="32_2wifj"]
 [ext_resource type="PackedScene" uid="uid://hjn7h1kdp5fv" path="res://scenes/heat_bar.tscn" id="32_5hsa6"]
 [ext_resource type="PackedScene" uid="uid://d6oicidqm43j" path="res://scenes/laser_efficiency_module.tscn" id="33_0pjc2"]
+[ext_resource type="PackedScene" uid="uid://ct8q8aqo8oijl" path="res://scenes/playertriplelaser.tscn" id="33_5kmf6"]
+[ext_resource type="PackedScene" uid="uid://bcrxv4xyubk36" path="res://scenes/playertriplelaserindividual.tscn" id="34_wmlwo"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_jevuy"]
 panorama = ExtResource("2_s47m1")
@@ -615,9 +616,6 @@ layers = 512
 
 [node name="Laser" parent="ShaderPreloader" instance=ExtResource("18_1fajc")]
 
-[node name="MeshInstance3D" parent="ShaderPreloader/Laser" index="0"]
-layers = 512
-
 [node name="BomberBombExplosion" parent="ShaderPreloader" instance=ExtResource("19_v7jbt")]
 
 [node name="MeshInstance3D" parent="ShaderPreloader/BomberBombExplosion" index="1"]
@@ -638,10 +636,6 @@ mesh = SubResource("SphereMesh_qgnyp")
 
 [node name="BomberBomb" parent="ShaderPreloader" instance=ExtResource("27_y6uoq")]
 
-[node name="Laser2" parent="ShaderPreloader" instance=ExtResource("28_o8qyp")]
-
-[node name="Laser3" parent="ShaderPreloader" instance=ExtResource("18_1fajc")]
-
 [node name="BeamLaser" parent="ShaderPreloader" instance=ExtResource("29_b581n")]
 
 [node name="ReserveVoidCell" parent="ShaderPreloader" instance=ExtResource("30_35plo")]
@@ -653,6 +647,10 @@ mesh = SubResource("SphereMesh_qgnyp")
 [node name="HeatBar" parent="ShaderPreloader" instance=ExtResource("32_5hsa6")]
 
 [node name="LaserEfficiencyModule" parent="ShaderPreloader" instance=ExtResource("33_0pjc2")]
+
+[node name="TripleLaser" parent="ShaderPreloader" instance=ExtResource("33_5kmf6")]
+
+[node name="Laser2" parent="ShaderPreloader" instance=ExtResource("34_wmlwo")]
 
 [connection signal="game_over" from="World/TheVoid/DamageZone" to="." method="end_game_sequence"]
 [connection signal="laser_upgraded" from="OrbiterManager/EnemyContainer" to="UIElements/HUD" method="_on_enemy_container_laser_upgraded"]
