@@ -3,7 +3,7 @@
 [ext_resource type="FontFile" uid="uid://mh42ommv3vnq" path="res://assets/fonts/vermin_vibes.ttf" id="2_iknf0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uemdl"]
-bg_color = Color(0.831373, 0, 0.831373, 1)
+bg_color = Color(0.447059, 0, 0.447059, 1)
 draw_center = false
 border_width_left = 4
 border_width_top = 4
@@ -18,8 +18,7 @@ shadow_size = 1
 shadow_offset = Vector2(0.5, 0.5)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_61yjf"]
-bg_color = Color(0.831373, 0, 0.831373, 1)
-draw_center = false
+bg_color = Color(0.447059, 0, 0.447059, 1)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
@@ -47,7 +46,7 @@ shadow_size = 1
 shadow_offset = Vector2(0.5, 0.5)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_03qkg"]
-bg_color = Color(0.298039, 0, 0.298039, 1)
+bg_color = Color(0.145098, 0, 0.145098, 1)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4

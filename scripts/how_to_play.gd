@@ -12,4 +12,7 @@ func _on_back_button_pressed():
 	queue_free()
 	
 func _on_back_button_mouse_entered():
+	back_button.grab_focus()
+	
+func _on_back_button_focus_entered():
 	GlobalAudioManager.menu_move_sound.play()

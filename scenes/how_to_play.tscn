@@ -85,7 +85,7 @@ layout_mode = 2
 
 [node name="KeyboardControlsTitle" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = 3
 theme_override_fonts/font = ExtResource("5_mlu4u")
@@ -102,6 +102,21 @@ Shift / RClick: Warp Dodge
 Tab: Pause
 
 "
+
+[node name="KeyboardControlsTitle2" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 3
+theme_override_fonts/font = ExtResource("5_mlu4u")
+theme_override_font_sizes/font_size = 20
+text = "Additional notes:"
+
+[node name="Label2" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_njmf8")
+autowrap_mode = 3
 
 [node name="BackButton" type="Button" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(110, 65)
@@ -130,5 +145,6 @@ position = Vector2(331, 452)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("4_xdwh2")
 
+[connection signal="focus_entered" from="MarginContainer/Panel/MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_focus_entered"]
 [connection signal="mouse_entered" from="MarginContainer/Panel/MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

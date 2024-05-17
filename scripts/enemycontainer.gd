@@ -29,6 +29,9 @@ const RESERVE_VOID_CELL = preload("res://scenes/reserve_void_cell.tscn")
 const LASER_EFFICIENCY_MODULE = preload("res://scenes/laser_efficiency_module.tscn")
 
 var juggernaut_spawned:bool = false
+var reserve_cell_collected:bool = false
+var heat_eff_upgrade_collected:bool = false
+
 
 func _ready():
 	await get_tree().create_timer(4).timeout
@@ -148,7 +151,7 @@ func enemyDeathActions(location, value, type):
 		Globals.fighters_defeated += 1
 		fighter_death_sound.play()
 		var drop_chance = randi_range(1,100)
-		if drop_chance < 6:
+		if !heat_eff_upgrade_collected and drop_chance < 6:
 			spawnLaserEfficiency(location)
 		else:
 			spawnVoidEnergy(location, value)
@@ -160,7 +163,7 @@ func enemyDeathActions(location, value, type):
 		Globals.beamers_defeated += 1
 		beamer_death_sound.play()
 		var drop_chance = randi_range(1,100)
-		if drop_chance < 15:
+		if !reserve_cell_collected and drop_chance < 15:
 			spawnReserveCell(location)
 		else:
 			spawnVoidEnergy(location, value)
@@ -176,12 +179,14 @@ func spawnReserveCell(location):
 	var reserve_cell = RESERVE_VOID_CELL.instantiate()
 	pickup_container.add_child(reserve_cell)
 	reserve_cell.has_reserve_cell.connect(hud.has_reserve_cell)
+	reserve_cell.has_reserve_cell.connect(reserveCellCollected)
 	reserve_cell.global_position = location
 
 func spawnLaserEfficiency(location):
 	var laser_eff_mod = LASER_EFFICIENCY_MODULE.instantiate()
 	pickup_container.add_child(laser_eff_mod)
 	laser_eff_mod.has_laser_efficiency.connect(hud.has_laser_eff)
+	laser_eff_mod.has_laser_efficiency.connect(heatEffCollected)
 	laser_eff_mod.global_position = location
 
 func spawnVoidEnergy(location, value):
@@ -191,3 +196,9 @@ func spawnVoidEnergy(location, value):
 	energy_drop.global_position = location
 	if value >= 500:
 		energy_drop.scale = Vector3(5,5,5)
+
+func heatEffCollected():
+	heat_eff_upgrade_collected = true
+
+func reserveCellCollected():
+	reserve_cell_collected = true

@@ -42,12 +42,19 @@ func takeFocus():
 
 func _on_resume_mouse_entered():
 	resume.grab_focus()
-	GlobalAudioManager.menu_move_sound.play()
-	
+
 func _on_how_to_play_mouse_entered():
 	how_to_play.grab_focus()
-	GlobalAudioManager.menu_move_sound.play()
-
+	
 func _on_statistics_mouse_entered():
 	statistics.grab_focus()
+	GlobalAudioManager.menu_move_sound.play()
+
+func _on_resume_focus_entered():
+	GlobalAudioManager.menu_move_sound.play()
+	
+func _on_how_to_play_focus_entered():
+	GlobalAudioManager.menu_move_sound.play()
+	
+func _on_statistics_focus_entered():
 	GlobalAudioManager.menu_move_sound.play()

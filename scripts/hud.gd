@@ -13,6 +13,7 @@ extends CanvasLayer
 @onready var effect_timer = $EffectTimer
 @onready var laser_upgrade_icon = %LaserUpgradeIcon
 @onready var heat_upgrade_icon = %HeatUpgradeIcon
+@onready var reserve_upgrade_icon = %ReserveUpgradeIcon
 
 var void_cells:Array 
 
@@ -132,6 +133,7 @@ func _on_enemy_container_laser_upgraded():
 
 func has_reserve_cell():
 	if !reserveCell:
+		reserve_upgrade_icon.visible = true
 		ui_splash_text.visible = true
 		void_cell_6.visible = true
 		void_cell_label.text = "           Void Cells"
