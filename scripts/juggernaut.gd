@@ -79,7 +79,11 @@ func _on_hull_component_bottom_defeated():
 	#bottom_weak_point.mesh.material.albedo_color = Color(0,0,0,1)
 	bottom_hit_box.set_deferred("monitorable", false)
 	defeat_indicator_timer.start(.26)
-	
+
+func _on_hull_component_hull_changed(new_hull):
+	if new_hull < hull_component.max_hull:
+		ship_damage_indication(ship_model)
+
 func checkPlayerDistance():
 	if on_screen:
 		currentState = EnemyStates.ENGAGING
