@@ -556,6 +556,7 @@ autostart = true
 [node name="HUD" parent="UIElements" instance=ExtResource("4_nxr2l")]
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("5_1ijl5")
 volume_db = -25.0
 autoplay = true

@@ -25,10 +25,15 @@ func _on_how_to_play_pressed():
 
 func _on_play_button_mouse_entered():
 	play_button.grab_focus()
-	GlobalAudioManager.menu_move_sound.play()
+	
 	
 func _on_how_to_play_mouse_entered():
 	how_to_play.grab_focus()
+	
+func _on_play_button_focus_entered():
+	GlobalAudioManager.menu_move_sound.play()
+
+func _on_how_to_play_focus_entered():
 	GlobalAudioManager.menu_move_sound.play()
 
 

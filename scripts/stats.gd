@@ -2,6 +2,8 @@ extends CanvasLayer
 
 signal close_stats()
 
+@onready var title_label_1 = %TitleLabel1
+@onready var title_label_2 = %TitleLabel2
 @onready var fighters = %Fighters
 @onready var bombers = %Bombers
 @onready var beamers = %Beamers
@@ -11,10 +13,14 @@ signal close_stats()
 @onready var shots_fired = %ShotsFired
 @onready var times_overheated = %TimesOverheated
 @onready var accuracy = %Accuracy
+@onready var back_button = $MarginContainer/Panel/MarginContainer/VBoxContainer/BackButton
 
 
 
 func _ready():
+	
+	back_button.grab_focus()
+	
 	fighters.text = str(Globals.fighters_defeated)
 	bombers.text = str(Globals.bombers_defeated)
 	beamers.text = str(Globals.beamers_defeated)
@@ -35,4 +41,7 @@ func _on_back_button_pressed():
 	queue_free()
 
 func _on_back_button_mouse_entered():
+	back_button.grab_focus()
+	
+func _on_back_button_focus_entered():
 	GlobalAudioManager.menu_move_sound.play()

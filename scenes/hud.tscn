@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://7s4v6k8xx1vl"]
+[gd_scene load_steps=14 format=3 uid="uid://7s4v6k8xx1vl"]
 
 [ext_resource type="FontFile" uid="uid://bl5csexcm7nrv" path="res://assets/fonts/Rocket Rinder.otf" id="1_dgk0i"]
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_nvsju"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://b8ucvuh170lrw" path="res://assets/textures/void_cell_fill_white.svg" id="7_syrxu"]
 [ext_resource type="Texture2D" uid="uid://dp53ix8l6iof0" path="res://assets/textures/heatupgradeicon.svg" id="7_xyrfh"]
 [ext_resource type="FontFile" uid="uid://mh42ommv3vnq" path="res://assets/fonts/vermin_vibes.ttf" id="8_1jsox"]
+[ext_resource type="Texture2D" uid="uid://b582f2jmqg846" path="res://assets/textures/reserve_void_cell_icon.svg" id="8_8aas2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r6edx"]
 bg_color = Color(0.0392157, 0.0392157, 0.0392157, 0.498039)
@@ -117,6 +118,16 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_r6edx")
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/HeatUpgradeIcon"]
 layout_mode = 2
 texture = ExtResource("7_xyrfh")
+
+[node name="ReserveUpgradeIcon" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_r6edx")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/ReserveUpgradeIcon"]
+layout_mode = 2
+texture = ExtResource("8_8aas2")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
