@@ -231,6 +231,7 @@ fill_mode = 3
 texture_under = ExtResource("6_o0usi")
 texture_progress = ExtResource("7_syrxu")
 texture_progress_offset = Vector2(0, 12)
+tint_under = Color(0.454902, 1, 0.996078, 1)
 tint_progress = Color(0.329412, 0, 0.458824, 1)
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]

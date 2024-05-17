@@ -25,7 +25,8 @@ func adjust_shield(adjustment: int):
 	if ownerNode is Enemy:
 		current_shield += adjustment
 	elif ownerNode is Player:
-		Globals.total_damage_taken += adjustment
+		if adjustment < 0:
+			Globals.total_damage_taken += abs(adjustment)
 		current_shield = clamp(current_shield + adjustment, 0 , max_shield)
 		shield_changed.emit(current_shield)
 		shield_regen_delay.start(regen_delay)

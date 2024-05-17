@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_fl6sr"]
 [ext_resource type="StyleBox" uid="uid://cnfujya23l8lb" path="res://themes/pausestyle.tres" id="2_xodeb"]
 [ext_resource type="FontFile" uid="uid://cxnq0tiy7l8ay" path="res://assets/fonts/Alien-Encounters-Bold-Italic.ttf" id="3_1drfm"]
-[ext_resource type="StyleBox" uid="uid://d7y8xljb54mt" path="res://assets/resources/blank_button.tres" id="5_2e8qv"]
+[ext_resource type="StyleBox" path="res://assets/resources/blank_button.tres" id="5_2e8qv"]
 [ext_resource type="PackedScene" uid="uid://dwwhc0tog5gsq" path="res://assets/models/starship.glb" id="5_06aum"]
 [ext_resource type="AudioStream" uid="uid://dnwnalvrab6jg" path="res://assets/sounds/goodluck.mp3" id="5_mmyw6"]
 [ext_resource type="Theme" uid="uid://b6epshmaiw5dd" path="res://themes/buttontheme.tres" id="6_6plbb"]

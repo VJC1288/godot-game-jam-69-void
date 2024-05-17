@@ -25,6 +25,7 @@ func adjust_hull(adjustment: int):
 	elif ownerNode is Player:
 		current_hull = clamp(current_hull + adjustment, 0 , max_hull)
 		hull_changed.emit(current_hull)
-		Globals.total_damage_taken += adjustment
+		if adjustment < 0:
+			Globals.total_damage_taken += abs(adjustment)
 		if current_hull <= 0:
 			ownerNode.queue_free()

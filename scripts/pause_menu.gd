@@ -48,7 +48,6 @@ func _on_how_to_play_mouse_entered():
 	
 func _on_statistics_mouse_entered():
 	statistics.grab_focus()
-	GlobalAudioManager.menu_move_sound.play()
 
 func _on_resume_focus_entered():
 	GlobalAudioManager.menu_move_sound.play()

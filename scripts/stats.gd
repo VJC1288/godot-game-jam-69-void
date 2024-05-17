@@ -32,7 +32,7 @@ func _ready():
 		var accNum: float = snapped((Globals.shots_hit / Globals.total_shots_fired), 0.01)
 		accuracy.text = str(accNum * 100, "%")
 	times_overheated.text = str(Globals.times_overheated)
-	damage_taken.text = str(Globals.total_damage_taken * -1)
+	damage_taken.text = str(Globals.total_damage_taken)
 	
 
 

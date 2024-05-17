@@ -111,7 +111,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 focus_neighbor_left = NodePath("../HowToPlay")
-focus_neighbor_right = NodePath("../HowToPlay")
+focus_neighbor_right = NodePath("../Resume")
 theme = ExtResource("3_sjrya")
 text = "
 "

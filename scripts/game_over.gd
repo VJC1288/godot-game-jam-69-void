@@ -23,8 +23,8 @@ func _on_statistics_pressed():
 	var stats_scene = STATS.instantiate()
 	add_child(stats_scene)
 	stats_scene.close_stats.connect(_on_retry_mouse_entered)
-	stats_scene.title_label1.text = "Game Over"
-	stats_scene.title_label2.text = "Final Statistics"
+	stats_scene.title_label_1.text = "Game Over"
+	stats_scene.title_label_2.text = "Final Statistics"
 
 func _on_retry_mouse_entered():
 	retry.grab_focus()
