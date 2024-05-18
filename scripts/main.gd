@@ -12,12 +12,15 @@ const PAUSE_MENU = preload("res://scenes/pause_menu.tscn")
 @onready var hud = $UIElements/HUD
 @onready var player_camera = $OrbiterManager/PlayerContainer/CameraPivot/Camera3D
 @onready var end_game_node= $World/EndGame
+@onready var minimap_viewport = $MinimapViewport
+@onready var the_void = %TheVoid
 
 var paused = null
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	end_game_node.initialize(ui_elements)
+	hud.initialize(minimap_viewport)
 	spawn_player()
 
 func spawn_player():
@@ -30,12 +33,27 @@ func spawn_player():
 	orbiter_manager.current_player = player
 	end_game_node.player_camera = player_camera
 	Globals.current_player = player
+	hud.update_distance_label(Globals.current_player.global_position.distance_to(the_void.global_position) - 500 )
 
 func _input(event):
 	if event.is_action_pressed("pause") and paused == null:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		paused = PAUSE_MENU.instantiate()
 		ui_elements.add_child(paused)
+	
+	if Input.is_action_just_pressed("toggle_map"):
+		hud.toggle_map()
+
+func _process(_delta):
+	if Globals.current_player != null and the_void != null:
+		if Globals.current_player.global_position.distance_to(the_void.global_position) - 500 > 0:
+			if int(Globals.current_player.global_position.distance_to(the_void.global_position) - 500) % 5 == 0:
+				hud.update_distance_label(Globals.current_player.global_position.distance_to(the_void.global_position) - 500 )
+			else:
+				pass
+		else: 
+			hud.clear_distance()
+
 
 func update_hull_bar(new_value):
 	hud.update_hull(new_value)
@@ -58,3 +76,5 @@ func end_game_sequence(result: String):
 func restart_game():
 	Globals.resetGlobals()
 	get_tree().call_deferred("reload_current_scene")
+
+	

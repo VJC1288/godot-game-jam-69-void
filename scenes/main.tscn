@@ -1,9 +1,10 @@
-[gd_scene load_steps=81 format=3 uid="uid://bhljayf8hhj62"]
+[gd_scene load_steps=87 format=3 uid="uid://bhljayf8hhj62"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_4cpek"]
 [ext_resource type="PackedScene" uid="uid://dd3se6k2tyivf" path="res://scenes/damage_zone.tscn" id="1_6hpio"]
 [ext_resource type="Texture2D" uid="uid://bkcmrnvoqn0v8" path="res://assets/textures/outrunimage-lowres.png" id="2_s47m1"]
 [ext_resource type="Script" path="res://scripts/accretiondisk.gd" id="3_kuvnv"]
+[ext_resource type="Material" uid="uid://bbeswjeibhwa4" path="res://assets/resources/minimap.tres" id="3_qcn68"]
 [ext_resource type="PackedScene" uid="uid://7s4v6k8xx1vl" path="res://scenes/hud.tscn" id="4_nxr2l"]
 [ext_resource type="Script" path="res://scripts/OrbiterManager.gd" id="4_sy0xx"]
 [ext_resource type="AudioStream" uid="uid://bics4bpt8h3lt" path="res://assets/music/80s-retro-synthwave-186631.mp3" id="5_1ijl5"]
@@ -303,6 +304,28 @@ material = SubResource("ShaderMaterial_gy5pq")
 radius = 500.0
 height = 975.0
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_1p4bv"]
+material = ExtResource("3_qcn68")
+top_radius = 500.0
+bottom_radius = 500.0
+height = 10.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mdcgt"]
+cull_mode = 2
+depth_draw_mode = 1
+no_depth_test = true
+albedo_color = Color(0.73481, 0.748356, 0.953926, 1)
+emission_enabled = true
+emission = Color(1.02278e-07, 0.278545, 0.107854, 1)
+emission_energy_multiplier = 0.26
+rim = 0.93
+rim_tint = 0.54
+subsurf_scatter_strength = 0.63
+
+[sub_resource type="QuadMesh" id="QuadMesh_xynbn"]
+material = SubResource("StandardMaterial3D_mdcgt")
+size = Vector2(3000, 3400)
+
 [sub_resource type="Gradient" id="Gradient_8w388"]
 offsets = PackedFloat32Array(0, 0.1, 0.302632, 0.460526, 0.638158, 0.796053, 0.927632)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0.317647, 0.454902, 1, 1, 1, 1, 1, 1, 0.694072, 0.000100208, 0.588447, 1, 1, 1, 1, 1, 0.32549, 0.129412, 0.682353, 1)
@@ -396,8 +419,15 @@ _data = {
 "victory": SubResource("Animation_i2t7f")
 }
 
+[sub_resource type="PrismMesh" id="PrismMesh_k6aoh"]
+material = ExtResource("3_qcn68")
+size = Vector3(160, 320, 10)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_mwojy"]
 size = Vector3(39.8423, 26.5082, 83)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_osmqp"]
+viewport_path = NodePath("MinimapViewport")
 
 [sub_resource type="Gradient" id="Gradient_2chk1"]
 offsets = PackedFloat32Array(0.0576923, 0.352564, 0.532051, 0.692308)
@@ -450,6 +480,16 @@ unique_name_in_owner = true
 [node name="Body" type="MeshInstance3D" parent="World/TheVoid"]
 mesh = SubResource("SphereMesh_vweea")
 
+[node name="MinimapIcon" type="MeshInstance3D" parent="World/TheVoid/Body"]
+layers = 2
+mesh = SubResource("CylinderMesh_1p4bv")
+
+[node name="MinimapBackground" type="MeshInstance3D" parent="World/TheVoid/Body"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+layers = 2
+mesh = SubResource("QuadMesh_xynbn")
+skeleton = NodePath("../MinimapIcon")
+
 [node name="AccretionPivot" type="Node3D" parent="World/TheVoid/Body"]
 transform = Transform3D(1, 0, 0, 0, 0.989016, 0.147809, 0, -0.147809, 0.989016, 0, 0, 0)
 
@@ -473,7 +513,7 @@ script = ExtResource("5_df1fn")
 [node name="EndGameCamera" type="Camera3D" parent="World/EndGame"]
 transform = Transform3D(-0.832921, 0.131064, -0.537647, 0, 0.971549, 0.236838, 0.553392, 0.197268, -0.809224, -1361.87, 564.413, -1935.83)
 rotation_edit_mode = 2
-cull_mask = 1048063
+cull_mask = 1048061
 fov = 37.8493
 
 [node name="EndGameShipPosition" type="Marker3D" parent="World/EndGame/EndGameCamera"]
@@ -504,6 +544,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0)
 
 [node name="Camera3D" type="Camera3D" parent="OrbiterManager/PlayerContainer/CameraPivot"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -21.2333)
+cull_mask = 1048573
 current = true
 
 [node name="SpotLight3D" type="SpotLight3D" parent="OrbiterManager/PlayerContainer/CameraPivot"]
@@ -512,6 +553,12 @@ light_energy = 8.0
 spot_range = 50.0
 spot_angle = 75.0
 spot_angle_attenuation = 1.27456
+
+[node name="MinimapPlayerIcon" type="MeshInstance3D" parent="OrbiterManager/PlayerContainer/CameraPivot"]
+transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, 0, 0, 0)
+layers = 2
+mesh = SubResource("PrismMesh_k6aoh")
+skeleton = NodePath("../..")
 
 [node name="PlayerLaserContainer" type="Node3D" parent="OrbiterManager"]
 
@@ -556,6 +603,10 @@ autostart = true
 
 [node name="HUD" parent="UIElements" instance=ExtResource("4_nxr2l")]
 
+[node name="Minimap" parent="UIElements/HUD/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer3/MarginContainer" index="0"]
+texture = SubResource("ViewportTexture_osmqp")
+stretch_mode = 5
+
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("5_1ijl5")
@@ -565,6 +616,18 @@ autoplay = true
 [node name="SpawnTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 4.0
+
+[node name="MinimapViewport" type="SubViewport" parent="."]
+transparent_bg = true
+
+[node name="MinimapCam" type="Camera3D" parent="MinimapViewport"]
+transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 0, 1906.59, 0)
+cull_mask = 2
+projection = 1
+fov = 37.8493
+size = 3200.0
+near = 1000.0
+far = 2000.0
 
 [node name="Sounds" type="Node" parent="."]
 
@@ -657,6 +720,7 @@ mesh = SubResource("SphereMesh_qgnyp")
 [connection signal="timeout" from="OrbiterManager/SpeedIncreaseTimer" to="OrbiterManager" method="_on_speed_increase_timer_timeout"]
 [connection signal="timeout" from="SpawnTimer" to="OrbiterManager/EnemyContainer" method="_on_spawn_timer_timeout"]
 
+[editable path="UIElements/HUD"]
 [editable path="ShaderPreloader/VoidEnergy"]
 [editable path="ShaderPreloader/Laser"]
 [editable path="ShaderPreloader/BomberBombExplosion"]
