@@ -15,7 +15,8 @@ const PAUSE_MENU = preload("res://scenes/pause_menu.tscn")
 @onready var minimap_viewport = $MinimapViewport
 @onready var the_void = %TheVoid
 @onready var black_hole_expand_sound = $Sounds/BlackHoleExpandSound
-
+@onready var background_music = $BackgroundMusic
+@onready var victory_music = $VictoryMusic
 
 var paused = null
 
@@ -71,6 +72,8 @@ func update_energy_cells(adjustment):
 func end_game_sequence(result: String):
 	
 	if result == "win":
+		background_music.stop()
+		
 		end_game_node.on_game_victory()
 	elif result == "loss":
 		black_hole_expand_sound.play()

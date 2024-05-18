@@ -132,6 +132,19 @@ text = "Statistics"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 25
+
+[node name="EasterEgg" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("3_bm3x0")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
 [connection signal="focus_entered" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Replay" to="." method="_on_replay_focus_entered"]
 [connection signal="mouse_entered" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Replay" to="." method="_on_replay_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Replay" to="." method="_on_replay_pressed"]
@@ -141,3 +154,5 @@ vertical_alignment = 1
 [connection signal="focus_entered" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Statistics" to="." method="_on_statistics_focus_entered"]
 [connection signal="mouse_entered" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Statistics" to="." method="_on_statistics_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Statistics" to="." method="_on_statistics_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/Panel/MarginContainer/VBoxContainer/EasterEgg" to="." method="_on_easter_egg_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/Panel/MarginContainer/VBoxContainer/EasterEgg" to="." method="_on_easter_egg_mouse_exited"]

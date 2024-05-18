@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://bhljayf8hhj62"]
+[gd_scene load_steps=89 format=3 uid="uid://bhljayf8hhj62"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_4cpek"]
 [ext_resource type="PackedScene" uid="uid://dd3se6k2tyivf" path="res://scenes/damage_zone.tscn" id="1_6hpio"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://7ocendl50uf3" path="res://assets/sounds/cinematic-glitch-fast-183843.mp3" id="8_xgdov"]
 [ext_resource type="AudioStream" uid="uid://bg74io8npul72" path="res://assets/sounds/space-laser-38082.mp3" id="9_u7y53"]
 [ext_resource type="AudioStream" uid="uid://c3r3ewlq260vb" path="res://assets/sounds/155790__deleted_user_1941307__shipboard_railgun.mp3" id="9_xtjhc"]
+[ext_resource type="AudioStream" uid="uid://cgwwaese4uvep" path="res://assets/music/aries-beats-escape-80s-synthwave-free-retrowave-instrumental-202130.mp3" id="12_lego3"]
 [ext_resource type="AudioStream" uid="uid://7qjn4ibwh1wr" path="res://assets/sounds/446625__idkmrgarcia__explosion.wav" id="14_3bx4x"]
 [ext_resource type="PackedScene" uid="uid://br75bokkf3b0h" path="res://scenes/short_warp_effect.tscn" id="16_3qhgq"]
 [ext_resource type="AudioStream" uid="uid://bl5oq6f6aet8b" path="res://assets/sounds/black_hole_expand.mp3" id="16_46bo0"]
@@ -612,6 +613,11 @@ process_mode = 3
 stream = ExtResource("5_1ijl5")
 volume_db = -25.0
 autoplay = true
+
+[node name="VictoryMusic" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("12_lego3")
+volume_db = -20.0
 
 [node name="SpawnTimer" type="Timer" parent="."]
 unique_name_in_owner = true
