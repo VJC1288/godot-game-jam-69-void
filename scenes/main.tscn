@@ -426,7 +426,7 @@ size = Vector3(160, 320, 10)
 [sub_resource type="BoxShape3D" id="BoxShape3D_mwojy"]
 size = Vector3(39.8423, 26.5082, 83)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_osmqp"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_bhtgv"]
 viewport_path = NodePath("MinimapViewport")
 
 [sub_resource type="Gradient" id="Gradient_2chk1"]
@@ -603,9 +603,8 @@ autostart = true
 
 [node name="HUD" parent="UIElements" instance=ExtResource("4_nxr2l")]
 
-[node name="Minimap" parent="UIElements/HUD/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer3/MarginContainer" index="0"]
-texture = SubResource("ViewportTexture_osmqp")
-stretch_mode = 5
+[node name="Minimap" parent="UIElements/HUD/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer3/MarginContainer/PanelContainer" index="0"]
+texture = SubResource("ViewportTexture_bhtgv")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 process_mode = 3
@@ -619,6 +618,7 @@ wait_time = 4.0
 
 [node name="MinimapViewport" type="SubViewport" parent="."]
 transparent_bg = true
+size = Vector2i(512, 544)
 
 [node name="MinimapCam" type="Camera3D" parent="MinimapViewport"]
 transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 0, 1906.59, 0)

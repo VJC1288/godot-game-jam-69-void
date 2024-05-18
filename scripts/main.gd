@@ -20,7 +20,6 @@ var paused = null
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	end_game_node.initialize(ui_elements)
-	hud.initialize(minimap_viewport)
 	spawn_player()
 
 func spawn_player():

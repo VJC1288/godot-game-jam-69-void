@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://7s4v6k8xx1vl"]
+[gd_scene load_steps=17 format=3 uid="uid://7s4v6k8xx1vl"]
 
 [ext_resource type="FontFile" uid="uid://bl5csexcm7nrv" path="res://assets/fonts/Rocket Rinder.otf" id="1_dgk0i"]
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_nvsju"]
@@ -21,7 +21,15 @@ font = ExtResource("8_1jsox")
 font_size = 35
 shadow_color = Color(0, 0, 0, 1)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_tyvbi"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g5ujr"]
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.333333, 0, 0.333333, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0xsdp"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_nvsju")
@@ -285,24 +293,29 @@ theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 0
 
-[node name="Minimap" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer3/MarginContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer3/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_g5ujr")
+
+[node name="Minimap" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer3/MarginContainer/PanelContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(115, 115)
 layout_mode = 2
-size_flags_horizontal = 8
-texture = SubResource("ViewportTexture_tyvbi")
+texture = SubResource("ViewportTexture_0xsdp")
 expand_mode = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer3/MarginContainer/Minimap"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer3/MarginContainer/PanelContainer/Minimap"]
 layout_mode = 1
 offset_right = 41.0
 offset_bottom = 18.0
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer3/MarginContainer/Minimap/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer3/MarginContainer/PanelContainer/Minimap/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 2
 
-[node name="Distance" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer3/MarginContainer/Minimap/HBoxContainer"]
+[node name="Distance" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer3/MarginContainer/PanelContainer/Minimap/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
