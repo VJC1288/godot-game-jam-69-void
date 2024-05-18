@@ -182,6 +182,7 @@ func _on_effect_timer_timeout():
 
 func toggle_map():
 	minimap.visible = !minimap.visible
+	distance.visible = !distance.visible
 
 func update_distance_label(passed_distance: int):
 	distance.text = str(passed_distance) + " km"

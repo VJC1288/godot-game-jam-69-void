@@ -1,15 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://drd1bx4mouxkk"]
+[gd_scene load_steps=10 format=3 uid="uid://drd1bx4mouxkk"]
 
 [ext_resource type="StyleBox" uid="uid://cnfujya23l8lb" path="res://themes/pausestyle.tres" id="1_iqhwm"]
 [ext_resource type="FontFile" uid="uid://cxnq0tiy7l8ay" path="res://assets/fonts/Alien-Encounters-Bold-Italic.ttf" id="1_llnbn"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_slq8j"]
 [ext_resource type="Theme" uid="uid://b6epshmaiw5dd" path="res://themes/buttontheme.tres" id="3_sjrya"]
+[ext_resource type="FontFile" uid="uid://brn6u8l4tt6kj" path="res://assets/fonts/Alien-Encounters-Solid-Bold.ttf" id="5_svoif"]
+[ext_resource type="Texture2D" uid="uid://b582f2jmqg846" path="res://assets/textures/reserve_void_cell_icon.svg" id="6_pe0h8"]
+[ext_resource type="Texture2D" uid="uid://dp53ix8l6iof0" path="res://assets/textures/heatupgradeicon.svg" id="7_7atft"]
+[ext_resource type="Texture2D" uid="uid://b8vm682460lxf" path="res://assets/textures/laserupgradeicon.svg" id="8_yi7hp"]
+[ext_resource type="FontFile" uid="uid://31n0wom88cnj" path="res://assets/fonts/Electrolize-Regular.ttf" id="9_kq6cj"]
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("1_slq8j")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MainContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -20,11 +25,11 @@ theme_override_constants/margin_top = 200
 theme_override_constants/margin_right = 300
 theme_override_constants/margin_bottom = 200
 
-[node name="Panel" type="Panel" parent="MarginContainer"]
+[node name="Panel" type="Panel" parent="MainContainer"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("1_iqhwm")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="MainContainer/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,10 +38,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_top = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/Panel/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MainContainer/Panel/MarginContainer/VBoxContainer"]
 texture_filter = 2
 layout_mode = 2
 size_flags_horizontal = 4
@@ -45,17 +50,18 @@ theme_override_fonts/font = ExtResource("1_llnbn")
 theme_override_font_sizes/font_size = 50
 text = "GAME PAUSED"
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MainContainer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_top = 25
+theme_override_constants/margin_top = 15
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainContainer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 25
 
-[node name="Resume" type="Button" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Resume" type="Button" parent="MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 texture_filter = 1
 custom_minimum_size = Vector2(110, 65)
 layout_mode = 2
@@ -65,7 +71,7 @@ focus_neighbor_left = NodePath("../Statistics")
 focus_neighbor_right = NodePath("../HowToPlay")
 theme = ExtResource("3_sjrya")
 
-[node name="ResumeText" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Resume"]
+[node name="ResumeText" type="Label" parent="MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Resume"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -78,7 +84,8 @@ text = "Resume"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HowToPlay" type="Button" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="HowToPlay" type="Button" parent="MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 texture_filter = 1
 custom_minimum_size = Vector2(110, 65)
 layout_mode = 2
@@ -90,7 +97,7 @@ theme = ExtResource("3_sjrya")
 text = "
 "
 
-[node name="ResumeText" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HowToPlay"]
+[node name="ResumeText" type="Label" parent="MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HowToPlay"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -104,7 +111,8 @@ Play"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Statistics" type="Button" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Statistics" type="Button" parent="MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 texture_filter = 1
 custom_minimum_size = Vector2(110, 65)
 layout_mode = 2
@@ -116,7 +124,7 @@ theme = ExtResource("3_sjrya")
 text = "
 "
 
-[node name="ResumeText" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Statistics"]
+[node name="ResumeText" type="Label" parent="MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Statistics"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -129,12 +137,86 @@ text = "Statistics"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="focus_entered" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Resume" to="." method="_on_resume_focus_entered"]
-[connection signal="mouse_entered" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Resume" to="." method="_on_resume_mouse_entered"]
-[connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Resume" to="." method="_on_resume_pressed"]
-[connection signal="focus_entered" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HowToPlay" to="." method="_on_how_to_play_focus_entered"]
-[connection signal="mouse_entered" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HowToPlay" to="." method="_on_how_to_play_mouse_entered"]
-[connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HowToPlay" to="." method="_on_how_to_play_pressed"]
-[connection signal="focus_entered" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Statistics" to="." method="_on_statistics_focus_entered"]
-[connection signal="mouse_entered" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Statistics" to="." method="_on_statistics_mouse_entered"]
-[connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Statistics" to="." method="_on_statistics_pressed"]
+[node name="MarginContainer3" type="MarginContainer" parent="MainContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MainContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_bottom = 10
+
+[node name="ShipUpgrades" type="Label" parent="MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_svoif")
+text = "Ship Upgrades:"
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="RVCIcon" type="TextureRect" parent="MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("6_pe0h8")
+
+[node name="BeamEffIcon" type="TextureRect" parent="MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("7_7atft")
+
+[node name="TLaserIcon" type="TextureRect" parent="MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("8_yi7hp")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="RVCText" type="Label" parent="MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_kq6cj")
+text = "Reserve Cell: Collect more Void Energy"
+vertical_alignment = 1
+
+[node name="BeamEffText" type="Label" parent="MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_kq6cj")
+text = "Beam Efficiency: Fire more before overheating"
+vertical_alignment = 1
+
+[node name="TLaserText" type="Label" parent="MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_kq6cj")
+text = "Triple laser: Fire three lasers at once"
+vertical_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="MainContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 15
+
+[connection signal="focus_entered" from="MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Resume" to="." method="_on_resume_focus_entered"]
+[connection signal="mouse_entered" from="MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Resume" to="." method="_on_resume_mouse_entered"]
+[connection signal="pressed" from="MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="focus_entered" from="MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HowToPlay" to="." method="_on_how_to_play_focus_entered"]
+[connection signal="mouse_entered" from="MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HowToPlay" to="." method="_on_how_to_play_mouse_entered"]
+[connection signal="pressed" from="MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HowToPlay" to="." method="_on_how_to_play_pressed"]
+[connection signal="focus_entered" from="MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Statistics" to="." method="_on_statistics_focus_entered"]
+[connection signal="mouse_entered" from="MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Statistics" to="." method="_on_statistics_mouse_entered"]
+[connection signal="pressed" from="MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Statistics" to="." method="_on_statistics_pressed"]
