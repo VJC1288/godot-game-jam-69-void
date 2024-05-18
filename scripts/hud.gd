@@ -16,7 +16,7 @@ extends CanvasLayer
 @onready var reserve_upgrade_icon = %ReserveUpgradeIcon
 @onready var minimap = %Minimap
 @onready var distance = %Distance
-
+@onready var minimap_panel = %MinimapPanel
 
 var void_cells:Array 
 
@@ -177,7 +177,7 @@ func _on_effect_timer_timeout():
 	voidCellEffect()
 
 func toggle_map():
-	minimap.visible = !minimap.visible
+	minimap_panel.visible = !minimap_panel.visible
 	distance.visible = !distance.visible
 
 func update_distance_label(passed_distance: int):
