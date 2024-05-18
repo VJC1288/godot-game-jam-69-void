@@ -62,7 +62,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = 3
 theme_override_fonts/font = ExtResource("3_njmf8")
 theme_override_font_sizes/font_size = 20
-text = "Earth is under attack by the Voidling army, beings from the depths of black holes! Reverse engineering their technology, your ship is equipped with an \"Event Horizon Drive\" or EHD. As Earth's last hope, defeat foes and collect their Void Energy to power up the EHD. Arrive at the black hole with enough energy and you will be able to close it, stopping the Voidlings once and for all. However, take heed, regenerating your ships shields will cost you precious Void Energy."
+text = "Earth is under attack by the Voidling fleet, beings from the depths of black holes! Reverse engineering their technology, your ship is equipped with an \"Event Horizon Drive\" or EHD. As Earth's last hope, defeat foes and collect their Void Energy to power up the EHD. Arrive at the black hole with enough energy and you will be able to close it, stopping the Voidlings once and for all. However, take heed, regenerating your ships shields will cost you precious Void Energy."
 autowrap_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer"]
