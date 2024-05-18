@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://cxnq0tiy7l8ay" path="res://assets/fonts/Alien-Encounters-Bold-Italic.ttf" id="3_m18od"]
 [ext_resource type="FontFile" uid="uid://bqkfa6mf2ckx8" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="3_njmf8"]
 [ext_resource type="Theme" uid="uid://b6epshmaiw5dd" path="res://themes/buttontheme.tres" id="4_6s3wg"]
-[ext_resource type="Texture2D" uid="uid://das82hda2662x" path="res://assets/voidcontrollerlayout.svg" id="4_xdwh2"]
+[ext_resource type="Texture2D" uid="uid://bdij7rnorcosl" path="res://assets/voidcontrollerlayout.svg" id="4_xdwh2"]
 [ext_resource type="FontFile" uid="uid://bl5csexcm7nrv" path="res://assets/fonts/Rocket Rinder.otf" id="5_mlu4u"]
 
 [node name="HowToPlay" type="CanvasLayer"]
@@ -92,19 +92,35 @@ theme_override_fonts/font = ExtResource("5_mlu4u")
 theme_override_font_sizes/font_size = 20
 text = "Keyboard Controls"
 
-[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_njmf8")
-text = "WASD: Move Ship
-LClick / Space / Ctrl: Fire Weapon
-Shift / RClick: Warp Dodge
-Tab: Pause
-M: Toggle Map
-
+text = "Move Ship:
+Fire Weapon:
+Warp Dodge:
+Pause:
+Toggle Map:
 "
 
-[node name="KeyboardControlsTitle2" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer"]
+[node name="Label2" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_njmf8")
+text = "WASD
+LClick / Space / Ctrl
+RClick / Shift
+Tab
+M"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 15
+
+[node name="AdditionalNotes" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -142,7 +158,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Voidcontrollerlayout" type="Sprite2D" parent="."]
-texture_filter = 3
+texture_filter = 1
 position = Vector2(331, 452)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("4_xdwh2")

@@ -29,7 +29,7 @@ var laserEff: bool = false
 func _ready():
 	void_cells = [void_cell_1, void_cell_2, void_cell_3, void_cell_4, void_cell_5, void_cell_6]
 
-func initialize(passed_viewport):
+func initialize(_passed_viewport):
 	#minimap.texture.viewport_path = passed_viewport
 	pass
 

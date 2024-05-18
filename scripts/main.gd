@@ -30,6 +30,7 @@ func spawn_player():
 	player.player_shield_changed.connect(update_shield_bar)
 	player.player_energy_changed.connect(update_energy_cells)
 	orbiter_manager.camera_pivot.add_child(player)
+	player.global_position.x += 18
 	orbiter_manager.current_player = player
 	end_game_node.player_camera = player_camera
 	Globals.current_player = player

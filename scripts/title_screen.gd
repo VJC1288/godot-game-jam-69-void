@@ -10,8 +10,9 @@ const HOW_TO_PLAY = preload("res://scenes/how_to_play.tscn")
 
 var easter_times_clicked: int = 0
 
-func _ready():
-	play_button.grab_focus()
+func _input(event):
+	if event is InputEventJoypadButton:
+		play_button.grab_focus()
 	
 func _on_play_button_pressed():
 	get_tree().paused = false
