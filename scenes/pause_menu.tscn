@@ -188,7 +188,7 @@ visible = false
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("9_kq6cj")
-text = "Reserve Cell: Collect more Void Energy"
+text = "Reserve Cell: Store more Void Energy"
 vertical_alignment = 1
 
 [node name="BeamEffText" type="Label" parent="MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]

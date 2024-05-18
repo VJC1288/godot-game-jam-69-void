@@ -14,6 +14,8 @@ const PAUSE_MENU = preload("res://scenes/pause_menu.tscn")
 @onready var end_game_node= $World/EndGame
 @onready var minimap_viewport = $MinimapViewport
 @onready var the_void = %TheVoid
+@onready var black_hole_expand_sound = $Sounds/BlackHoleExpandSound
+
 
 var paused = null
 
@@ -71,6 +73,7 @@ func end_game_sequence(result: String):
 	if result == "win":
 		end_game_node.on_game_victory()
 	elif result == "loss":
+		black_hole_expand_sound.play()
 		end_game_node.on_game_defeat()
 
 func restart_game():

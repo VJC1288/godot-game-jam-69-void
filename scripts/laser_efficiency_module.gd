@@ -14,5 +14,6 @@ func _physics_process(delta):
 func _on_area_entered(area):
 	has_laser_efficiency.emit()
 	area.get_parent().laser_heat_buildup = 13
+	area.get_parent().has_laser_efficiency = true
 	area.get_parent().adjust_void_energy(energy_value)
 	queue_free()

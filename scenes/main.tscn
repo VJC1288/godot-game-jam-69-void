@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://bhljayf8hhj62"]
+[gd_scene load_steps=88 format=3 uid="uid://bhljayf8hhj62"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_4cpek"]
 [ext_resource type="PackedScene" uid="uid://dd3se6k2tyivf" path="res://scenes/damage_zone.tscn" id="1_6hpio"]
@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://c3r3ewlq260vb" path="res://assets/sounds/155790__deleted_user_1941307__shipboard_railgun.mp3" id="9_xtjhc"]
 [ext_resource type="AudioStream" uid="uid://7qjn4ibwh1wr" path="res://assets/sounds/446625__idkmrgarcia__explosion.wav" id="14_3bx4x"]
 [ext_resource type="PackedScene" uid="uid://br75bokkf3b0h" path="res://scenes/short_warp_effect.tscn" id="16_3qhgq"]
+[ext_resource type="AudioStream" uid="uid://bl5oq6f6aet8b" path="res://assets/sounds/black_hole_expand.mp3" id="16_46bo0"]
 [ext_resource type="Script" path="res://scripts/ShaderPreloader.gd" id="16_muler"]
 [ext_resource type="PackedScene" uid="uid://bpe7rywf7saqe" path="res://scenes/void_energy.tscn" id="17_ddo67"]
 [ext_resource type="PackedScene" uid="uid://n0ihv481obi6" path="res://scenes/playerlaser.tscn" id="18_1fajc"]
@@ -653,6 +654,12 @@ pitch_scale = 0.85
 [node name="JuggernautDeathSound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("14_3bx4x")
 volume_db = -15.0
+pitch_scale = 0.9
+
+[node name="BlackHoleExpandSound" type="AudioStreamPlayer" parent="Sounds"]
+process_mode = 3
+stream = ExtResource("16_46bo0")
+volume_db = -5.0
 pitch_scale = 0.9
 
 [node name="ShaderPreloader" type="Node3D" parent="."]
