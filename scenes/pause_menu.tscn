@@ -204,7 +204,7 @@ visible = false
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("9_kq6cj")
-text = "Triple laser: Fire three lasers at once"
+text = "Triple Laser: Fire three lasers at once"
 vertical_alignment = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="MainContainer/Panel/MarginContainer/VBoxContainer"]
