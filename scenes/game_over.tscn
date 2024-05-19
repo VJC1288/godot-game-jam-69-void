@@ -78,7 +78,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 focus_neighbor_left = NodePath("../Statistics")
-focus_neighbor_right = NodePath("../Statistics")
+focus_neighbor_right = NodePath("../ReturnToTitle")
 theme = ExtResource("4_3xfqt")
 
 [node name="RetryText" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Retry"]
@@ -123,7 +123,7 @@ custom_minimum_size = Vector2(110, 65)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-focus_neighbor_left = NodePath("../Retry")
+focus_neighbor_left = NodePath("../ReturnToTitle")
 focus_neighbor_right = NodePath("../Retry")
 theme = ExtResource("4_3xfqt")
 

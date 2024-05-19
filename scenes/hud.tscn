@@ -152,6 +152,7 @@ size_flags_horizontal = 0
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_dgk0i")
 theme_override_font_sizes/font_size = 18
 text = "       Void Cells"
