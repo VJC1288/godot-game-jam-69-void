@@ -10,6 +10,8 @@ const KEYBOARD_CLICK_3 = preload("res://assets/sounds/keyboard_click3.mp3")
 @onready var message_box = %MessageBox
 @onready var keyboard_clicks_player = $KeyboardClicksPlayer
 
+@onready var stars = $MarginContainer/Panel/Stars
+
 
 var intro_messages = [
 	"WE FIRST BATTLED THE VOIDLINGS IN THE KUIPER BELT. IT WAS THERE THAT WE LEARNED THEY CAME FROM AND COULD TRAVERSE THE UNIVERSE'S BLACK HOLES.",
@@ -67,3 +69,4 @@ func _on_next_message_timeout():
 func _input(event):
 	if event.is_action_pressed("pause"):
 		get_tree().change_scene_to_packed(MAIN)
+

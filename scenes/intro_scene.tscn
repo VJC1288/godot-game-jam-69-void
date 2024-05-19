@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://ijukytrksirg"]
+[gd_scene load_steps=14 format=3 uid="uid://ijukytrksirg"]
 
 [ext_resource type="Script" path="res://scripts/intro_scene.gd" id="1_uolt0"]
 [ext_resource type="FontFile" uid="uid://mh42ommv3vnq" path="res://assets/fonts/vermin_vibes.ttf" id="3_1v7uv"]
 [ext_resource type="FontFile" uid="uid://bqkfa6mf2ckx8" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="3_cjx3t"]
 [ext_resource type="AudioStream" uid="uid://d0srv3kl54s2e" path="res://assets/music/706527__universfield__grim-tense-action-for-sci-fi-adventures.mp3" id="4_jjg7m"]
+[ext_resource type="Script" path="res://scripts/introBottomPanel.gd" id="6_e75yw"]
+[ext_resource type="PackedScene" uid="uid://dwwhc0tog5gsq" path="res://assets/models/starship.glb" id="7_a12fe"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8dgxc"]
 bg_color = Color(0, 0, 0, 1)
@@ -16,6 +18,34 @@ corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
+
+[sub_resource type="Gradient" id="Gradient_hy6u3"]
+colors = PackedColorArray(0, 0, 0, 0, 0.521091, 0.491733, 0.990901, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_nl6lq"]
+seed = 85
+fractal_octaves = 9
+fractal_lacunarity = 1.76
+fractal_gain = 1.65
+fractal_weighted_strength = 0.76
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_i7yqw"]
+seamless = true
+seamless_blend_skirt = 1.0
+color_ramp = SubResource("Gradient_hy6u3")
+noise = SubResource("FastNoiseLite_nl6lq")
+
+[sub_resource type="Gradient" id="Gradient_4h2c6"]
+colors = PackedColorArray(0, 0, 0, 0, 0.887785, 0.302645, 0.724457, 1)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_g20ok"]
+seamless = true
+seamless_blend_skirt = 1.0
+color_ramp = SubResource("Gradient_4h2c6")
+noise = SubResource("FastNoiseLite_nl6lq")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_f8e2s"]
+viewport_path = NodePath("SubViewport")
 
 [node name="IntroScene" type="CanvasLayer"]
 script = ExtResource("1_uolt0")
@@ -35,6 +65,18 @@ theme_override_constants/margin_bottom = 1
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8dgxc")
 
+[node name="Stars" type="TextureRect" parent="MarginContainer/Panel"]
+layout_mode = 2
+offset_right = 1150.0
+offset_bottom = 646.0
+texture = SubResource("NoiseTexture2D_i7yqw")
+
+[node name="Stars2" type="TextureRect" parent="MarginContainer/Panel"]
+layout_mode = 2
+offset_right = 1150.0
+offset_bottom = 646.0
+texture = SubResource("NoiseTexture2D_g20ok")
+
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel"]
 layout_mode = 1
 anchors_preset = 15
@@ -53,16 +95,29 @@ layout_mode = 2
 [node name="MessageBox" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 texture_filter = 1
+custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 3.41
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_cjx3t")
 theme_override_font_sizes/font_size = 40
 autowrap_mode = 3
 
-[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="ShipScene" type="TextureRect" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+texture = SubResource("ViewportTexture_f8e2s")
+stretch_mode = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer2"]
 texture_filter = 1
 layout_mode = 2
+size_flags_vertical = 8
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_1v7uv")
 theme_override_font_sizes/font_size = 30
@@ -84,6 +139,23 @@ stream = ExtResource("4_jjg7m")
 volume_db = -30.0
 pitch_scale = 0.9
 autoplay = true
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(1000, 256)
+
+[node name="IntroBottomPanel" type="Node3D" parent="SubViewport"]
+script = ExtResource("6_e75yw")
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport/IntroBottomPanel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 22.8559)
+projection = 1
+size = 24.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport/IntroBottomPanel/Camera3D"]
+
+[node name="starship" parent="SubViewport/IntroBottomPanel" instance=ExtResource("7_a12fe")]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 0.95175, 0.306875, -1.34139e-08, -0.306875, 0.95175, -4.16023e-08, -39.5957, 0, 0)
 
 [connection signal="timeout" from="NextCharacter" to="." method="_on_next_character_timeout"]
 [connection signal="timeout" from="NextMessage" to="." method="_on_next_message_timeout"]
