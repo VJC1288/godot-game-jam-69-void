@@ -126,7 +126,7 @@ func _on_spawn_timer_timeout():
 			
 
 func _input(event):
-	if event.is_action_pressed("debugspawnenemy"):
+	if event.is_action_pressed("debugspawnenemy") and !OS.has_feature("web"):
 		spawnFighter()
 
 func spawn_fighter_laser(firePoint):

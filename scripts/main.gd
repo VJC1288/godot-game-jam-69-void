@@ -78,7 +78,6 @@ func end_game_sequence(result: String):
 	
 	if result == "win":
 		background_music.stop()
-		
 		end_game_node.on_game_victory()
 	elif result == "loss":
 		black_hole_expand_sound.play()
