@@ -26,7 +26,6 @@ func _on_retry_pressed():
 	queue_free()
 	
 func _on_return_to_title_pressed():
-	pass
 	get_tree().change_scene_to_packed(TITLE_SCREEN)
 
 func _on_statistics_pressed():

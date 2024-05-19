@@ -18,6 +18,8 @@ var camera_end_game_basis
 
 var ui
 
+var endless_mode:bool
+
 func _ready():
 	camera_end_game_position = end_game_camera.global_position
 	camera_end_game_basis = end_game_camera.basis
@@ -74,6 +76,9 @@ func add_loss_message():
 
 
 func restart_game_call():
+	if Globals.endless_mode:
+		endless_mode = true
 	Globals.resetGlobals()
+	Globals.endless_mode = endless_mode
 	get_tree().call_deferred("reload_current_scene")
 	

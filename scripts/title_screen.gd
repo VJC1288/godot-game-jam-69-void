@@ -13,10 +13,10 @@ const MAIN = preload("res://scenes/main.tscn")
 
 var easter_times_clicked: int = 0
 
-func _input(event):
-	if event is InputEventJoypadButton:
-		play_button.grab_focus()
-	
+
+func _ready():
+	play_button.grab_focus()
+		
 func _on_play_button_pressed():
 	get_tree().paused = false
 	Globals.resetGlobals()

@@ -20,6 +20,7 @@ const PAUSE_MENU = preload("res://scenes/pause_menu.tscn")
 @onready var speed_increase_timer = $OrbiterManager/SpeedIncreaseTimer
 
 var paused = null
+var endless_mode:bool
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -84,7 +85,12 @@ func end_game_sequence(result: String):
 		end_game_node.on_game_defeat()
 
 func restart_game():
+	if Globals.endless_mode:
+		endless_mode = true
+		print(endless_mode)
 	Globals.resetGlobals()
+	Globals.endless_mode = endless_mode
+	print(Globals.endless_mode)
 	get_tree().call_deferred("reload_current_scene")
 
 	

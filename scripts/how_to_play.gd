@@ -2,7 +2,7 @@ extends CanvasLayer
 
 signal close_how_to_play()
 
-@onready var back_button = $MarginContainer/Panel/MarginContainer/VBoxContainer/BackButton
+@onready var back_button = %BackButton
 
 func _input(event):
 	if event is InputEventJoypadButton:

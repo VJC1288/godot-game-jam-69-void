@@ -119,10 +119,10 @@ func _on_spawn_timer_timeout():
 	if Globals.endless_mode and Globals.current_player != null:
 		if Globals.current_player.current_energy >= spawnRateThreshold:
 			spawnRateThreshold += 250
-			bomber_threshold = clamp(bomber_threshold+1,0,100)
-			beam_fighter_threshold = clamp(beam_fighter_threshold+1,0,100)
+			bomber_threshold = clamp(bomber_threshold+2,0,100)
+			beam_fighter_threshold = clamp(beam_fighter_threshold+2,0,100)
 			spawnTimeMin = clamp(spawnTimeMin-.1, .5,5)
-			spawnTimeMax = clamp(spawnTimeMax-.1, 1,5)
+			spawnTimeMax = clamp(spawnTimeMax-.1, .5,5)
 			
 
 func _input(event):

@@ -1,10 +1,21 @@
 [gd_scene load_steps=6 format=3 uid="uid://ijukytrksirg"]
 
-[ext_resource type="StyleBox" uid="uid://cnfujya23l8lb" path="res://themes/pausestyle.tres" id="1_ogqrg"]
 [ext_resource type="Script" path="res://scripts/intro_scene.gd" id="1_uolt0"]
 [ext_resource type="FontFile" uid="uid://mh42ommv3vnq" path="res://assets/fonts/vermin_vibes.ttf" id="3_1v7uv"]
 [ext_resource type="FontFile" uid="uid://bqkfa6mf2ckx8" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="3_cjx3t"]
 [ext_resource type="AudioStream" uid="uid://d0srv3kl54s2e" path="res://assets/music/706527__universfield__grim-tense-action-for-sci-fi-adventures.mp3" id="4_jjg7m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8dgxc"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.14902, 0, 0.447059, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [node name="IntroScene" type="CanvasLayer"]
 script = ExtResource("1_uolt0")
@@ -22,7 +33,7 @@ theme_override_constants/margin_bottom = 1
 
 [node name="Panel" type="Panel" parent="MarginContainer"]
 layout_mode = 2
-theme_override_styles/panel = ExtResource("1_ogqrg")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8dgxc")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel"]
 layout_mode = 1
