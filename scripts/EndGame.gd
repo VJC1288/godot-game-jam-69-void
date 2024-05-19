@@ -6,8 +6,9 @@ const GAME_OVER = preload("res://scenes/game_over.tscn")
 @onready var end_game_camera = $EndGameCamera
 @onready var end_game_animations = $EndGameAnimations
 @onready var end_game_ship_position = $EndGameCamera/EndGameShipPosition
-
+@onready var black_hole_reduce_sound = $"../../Sounds/BlackHoleReduceSound"
 @onready var the_void = %TheVoid
+@onready var victory_music = $"../../VictoryMusic"
 
 const GAME_WIN = preload("res://scenes/game_win.tscn")
 
@@ -48,6 +49,7 @@ func camera_pan_out() -> Tween:
 	return tween
 
 func play_victory_animation():
+	black_hole_reduce_sound.play()
 	end_game_animations.play("victory")
 	var player_model = STARSHIP.instantiate()
 	add_child(player_model)
@@ -56,16 +58,15 @@ func play_victory_animation():
 	var tween = create_tween()
 	tween.tween_property(player_model, "global_position", end_game_ship_position.global_position,3.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
 	tween.finished.connect(add_win_message)
+	victory_music.play()
 
 func add_win_message():
 	var message = GAME_WIN.instantiate()
 	ui.add_child(message)
 	message.restart_game.connect(restart_game_call)
 
-	
 func play_loss_animation():
 	end_game_animations.play("defeat")
-
 
 func add_loss_message():
 	var message = GAME_OVER.instantiate()
@@ -73,7 +74,6 @@ func add_loss_message():
 	if Globals.current_player != null:
 			message.energy_loss.visible = true
 	message.restart_game.connect(restart_game_call)
-
 
 func restart_game_call():
 	if Globals.endless_mode:
