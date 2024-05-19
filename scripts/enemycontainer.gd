@@ -32,6 +32,14 @@ var juggernaut_spawned:bool = false
 var reserve_cell_collected:bool = false
 var heat_eff_upgrade_collected:bool = false
 
+var spawnTimeMin: float = 3
+var spawnTimeMax: float = 5
+
+var spawnRateThreshold:int = 1000
+
+var bomber_threshold: int = 35
+var beam_fighter_threshold: int = 25
+var second_fighter_threshold: int = 30
 
 func _ready():
 	await get_tree().create_timer(4).timeout
@@ -40,7 +48,7 @@ func _ready():
 	#spawnBeamFighter()
 	#spawnBomber()
 	#spawnJuggernaut()
-	spawn_timer.start(randf_range(3,5))
+	spawn_timer.start(randf_range(spawnTimeMin,spawnTimeMax))
 	
 func spawnFighter():
 	var fighter = FIGHTER.instantiate()
@@ -70,6 +78,7 @@ func spawnBomber():
 
 func spawnJuggernaut():
 	clear_enemies()
+	clear_bombs()
 	spawn_timer.stop()
 	juggernaut_spawned = true
 	var juggernaut = JUGGERNAUT.instantiate()
@@ -91,19 +100,30 @@ func _on_spawn_timer_timeout():
 			spawnFighter()
 			
 			var bomber_chance: float = randi_range(1,100)
-			if bomber_chance <= 35:
+			if bomber_chance <= bomber_threshold:
 				await get_tree().create_timer(randf_range(0,2), false).timeout
 				spawnBomber()
 				
 			var beam_fighter_chance: float = randi_range(1,100)
-			if beam_fighter_chance <= 25:
+			if beam_fighter_chance <= beam_fighter_threshold:
 				await get_tree().create_timer(randf_range(0,2), false).timeout
 				spawnBeamFighter()
 				
 			var second_fighter_chance: float = randi_range(1,100)
-			if second_fighter_chance <= 30 and juggernaut_spawned:
+			if second_fighter_chance <= second_fighter_threshold and juggernaut_spawned:
 				await get_tree().create_timer(randf_range(0,1), false).timeout
 				spawnFighter()
+	
+	prints(bomber_threshold, beam_fighter_threshold)
+	
+	if Globals.endless_mode and Globals.current_player != null:
+		if Globals.current_player.current_energy >= spawnRateThreshold:
+			spawnRateThreshold += 250
+			bomber_threshold = clamp(bomber_threshold+1,0,100)
+			beam_fighter_threshold = clamp(beam_fighter_threshold+1,0,100)
+			spawnTimeMin = clamp(spawnTimeMin-.1, .5,5)
+			spawnTimeMax = clamp(spawnTimeMax-.1, 1,5)
+			
 
 func _input(event):
 	if event.is_action_pressed("debugspawnenemy"):
@@ -146,6 +166,10 @@ func clear_enemies():
 	for e in get_children():
 		e.currentState = e.EnemyStates.DYING
 
+func clear_bombs():
+	for b in vertical_enemy_bombs.get_children():
+		b.queue_free()
+
 func enemyDeathActions(location, value, type):
 	if type == "Fighter":
 		Globals.fighters_defeated += 1
@@ -163,7 +187,7 @@ func enemyDeathActions(location, value, type):
 		Globals.beamers_defeated += 1
 		beamer_death_sound.play()
 		var drop_chance = randi_range(1,100)
-		if !reserve_cell_collected and drop_chance < 15:
+		if !reserve_cell_collected and drop_chance < 15 and !Globals.endless_mode:
 			spawnReserveCell(location)
 		else:
 			spawnVoidEnergy(location, value)

@@ -2,11 +2,14 @@ extends CanvasLayer
 
 const INTRO_SCENE = preload("res://scenes/intro_scene.tscn")
 const HOW_TO_PLAY = preload("res://scenes/how_to_play.tscn")
+const MAIN = preload("res://scenes/main.tscn")
 
 @onready var play_button = %PlayButton
 @onready var how_to_play = %HowToPlay
 @onready var good_luck = $GoodLuck
 @onready var easter_egg_sounds = $EasterEggSounds
+@onready var endless_mode = %EndlessMode
+
 
 var easter_times_clicked: int = 0
 
@@ -19,6 +22,7 @@ func _on_play_button_pressed():
 	Globals.resetGlobals()
 	play_button.disabled = true
 	how_to_play.disabled = true
+	endless_mode.disabled = true
 	play_button.release_focus()
 	good_luck.play()
 	await good_luck.finished
@@ -29,16 +33,34 @@ func _on_how_to_play_pressed():
 	how_to_play_scene.close_how_to_play.connect(_on_play_button_mouse_entered)
 	add_child(how_to_play_scene)
 
+func _on_endless_mode_pressed():
+	Globals.resetGlobals()
+	Globals.endless_mode = true
+	get_tree().paused = false
+	play_button.disabled = true
+	how_to_play.disabled = true
+	endless_mode.disabled = true
+	endless_mode.release_focus()
+	good_luck.play()
+	await good_luck.finished
+	get_tree().change_scene_to_packed(MAIN)
+
 func _on_play_button_mouse_entered():
 	play_button.grab_focus()
 	
 func _on_how_to_play_mouse_entered():
 	how_to_play.grab_focus()
 	
+func _on_endless_mode_mouse_entered():
+	endless_mode.grab_focus()
+
 func _on_play_button_focus_entered():
 	GlobalAudioManager.menu_move_sound.play()
 
 func _on_how_to_play_focus_entered():
+	GlobalAudioManager.menu_move_sound.play()
+
+func _on_endless_mode_focus_entered():
 	GlobalAudioManager.menu_move_sound.play()
 
 

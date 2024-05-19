@@ -98,8 +98,8 @@ theme_override_constants/margin_top = 350
 unique_name_in_owner = true
 custom_minimum_size = Vector2(320, 100)
 layout_mode = 2
-focus_neighbor_top = NodePath("../HowToPlay")
-focus_neighbor_bottom = NodePath("../HowToPlay")
+focus_neighbor_top = NodePath("../HBoxContainer/HowToPlay")
+focus_neighbor_bottom = NodePath("../HBoxContainer/HowToPlay")
 theme = ExtResource("6_6plbb")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/PlayButton"]
@@ -123,15 +123,19 @@ text = "Start Game"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HowToPlay" type="Button" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HowToPlay" type="Button" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(320, 100)
 layout_mode = 2
-focus_neighbor_top = NodePath("../PlayButton")
-focus_neighbor_bottom = NodePath("../PlayButton")
+focus_neighbor_top = NodePath("../../PlayButton")
+focus_neighbor_bottom = NodePath("../../PlayButton")
 theme = ExtResource("6_6plbb")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/HowToPlay"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/HowToPlay"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -141,7 +145,7 @@ grow_vertical = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_right = 20
 
-[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/HowToPlay/MarginContainer"]
+[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/HowToPlay/MarginContainer"]
 texture_filter = 1
 custom_minimum_size = Vector2(280, 100)
 layout_mode = 2
@@ -241,6 +245,40 @@ theme_override_styles/pressed = ExtResource("5_2e8qv")
 theme_override_styles/disabled = ExtResource("5_2e8qv")
 theme_override_styles/focus = ExtResource("5_2e8qv")
 
+[node name="EndlessMode" type="Button" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 100)
+offset_left = 483.0
+offset_top = 497.0
+offset_right = 803.0
+offset_bottom = 597.0
+focus_neighbor_top = NodePath("../../PlayButton")
+focus_neighbor_bottom = NodePath("../../PlayButton")
+theme = ExtResource("6_6plbb")
+
+[node name="MarginContainer" type="MarginContainer" parent="EndlessMode"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="Label" type="Label" parent="EndlessMode/MarginContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(280, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -12
+theme_override_font_sizes/font_size = 50
+text = "Endless 
+Mode"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="GoodLuck" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_mmyw6")
 volume_db = 10.0
@@ -303,7 +341,10 @@ volume_db = -5.0
 [connection signal="focus_entered" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_focus_entered"]
 [connection signal="mouse_entered" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="focus_entered" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/HowToPlay" to="." method="_on_how_to_play_focus_entered"]
-[connection signal="mouse_entered" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/HowToPlay" to="." method="_on_how_to_play_mouse_entered"]
-[connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/HowToPlay" to="." method="_on_how_to_play_pressed"]
+[connection signal="focus_entered" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/HowToPlay" to="." method="_on_how_to_play_focus_entered"]
+[connection signal="mouse_entered" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/HowToPlay" to="." method="_on_how_to_play_mouse_entered"]
+[connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/HowToPlay" to="." method="_on_how_to_play_pressed"]
 [connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxCOntainer/MarginContainer/VBoxContainer/MarginContainer/EasterButton" to="." method="_on_easter_button_pressed"]
+[connection signal="focus_entered" from="EndlessMode" to="." method="_on_endless_mode_focus_entered"]
+[connection signal="mouse_entered" from="EndlessMode" to="." method="_on_endless_mode_mouse_entered"]
+[connection signal="pressed" from="EndlessMode" to="." method="_on_endless_mode_pressed"]

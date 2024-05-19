@@ -42,7 +42,8 @@ func _ready():
 		else:
 			asteroid_manager.add_child(asteroid_to_spawn)
 		
-
+	if Globals.endless_mode:
+		default_fall_speed = 0
 
 func _physics_process(delta):
 

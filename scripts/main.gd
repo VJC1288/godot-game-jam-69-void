@@ -17,6 +17,7 @@ const PAUSE_MENU = preload("res://scenes/pause_menu.tscn")
 @onready var black_hole_expand_sound = $Sounds/BlackHoleExpandSound
 @onready var background_music = $BackgroundMusic
 @onready var victory_music = $VictoryMusic
+@onready var speed_increase_timer = $OrbiterManager/SpeedIncreaseTimer
 
 var paused = null
 
@@ -24,6 +25,9 @@ func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	end_game_node.initialize(ui_elements)
 	spawn_player()
+	
+	if Globals.endless_mode:
+		speed_increase_timer.stop()
 
 func spawn_player():
 	var player = PLAYER.instantiate()

@@ -15,6 +15,10 @@ func _ready():
 	get_tree().paused = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
+	if Globals.endless_mode:
+		energy_loss.visible = true
+		energy_loss.text = str("Void Energy Collected\n", Globals.current_energy)
+	
 func _on_retry_pressed():
 	get_tree().paused = false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

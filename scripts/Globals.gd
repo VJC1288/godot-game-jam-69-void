@@ -1,6 +1,7 @@
 extends Node
 
 var current_player: Node
+var current_energy: int
 var fighters_defeated: int
 var bombers_defeated: int
 var beamers_defeated: int
@@ -13,8 +14,11 @@ var times_warped: int
 var shots_hit: float
 var easter_egg_listens: int
 
+var endless_mode: bool
+
 func resetGlobals(): #Does not reset easter egg listens!
 	current_player = null
+	endless_mode = false
 	fighters_defeated = 0
 	bombers_defeated = 0
 	beamers_defeated = 0

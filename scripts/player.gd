@@ -43,6 +43,10 @@ var overheated:bool = false
 var shooting:bool = false
 var laser_heat_buildup = 15
 
+func _ready():
+	if Globals.endless_mode:
+		max_energy = 1000000
+
 func _physics_process(delta):
 	
 	
@@ -115,6 +119,7 @@ func adjust_void_energy(adjustment):
 		if shield_component.shield_regen_delay.is_stopped():
 			shield_component.shield_regen()
 	player_energy_changed.emit(adjustment)
+	Globals.current_energy = current_energy
 	
 
 func shield_effect():

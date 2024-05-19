@@ -8,6 +8,7 @@ extends CanvasLayer
 @onready var void_cell_4 = %VoidCell4
 @onready var void_cell_5 = %VoidCell5
 @onready var void_cell_6 = %VoidCell6
+@onready var void_energy = %VoidEnergy
 @onready var ui_splash_text = %UISplashText
 @onready var void_cell_label = %VoidCellLabel
 @onready var effect_timer = $EffectTimer
@@ -28,6 +29,14 @@ var laserEff: bool = false
 
 func _ready():
 	void_cells = [void_cell_1, void_cell_2, void_cell_3, void_cell_4, void_cell_5, void_cell_6]
+	
+	if Globals.endless_mode:
+		max_energy = 1000000
+		void_cell_label.text = "Void Energy"
+		minimap_panel.visible = false
+		for cell in void_cells:
+			cell.visible = false
+			void_energy.visible = true
 
 func update_hull(new_value):
 	hull_bar.value = new_value
@@ -127,6 +136,9 @@ func update_energy(adjustment):
 			void_cell_4.value = void_cell_4.max_value
 			void_cell_5.value = void_cell_5.max_value
 
+	if Globals.endless_mode:
+		void_energy.text = str(total_energy)
+		
 func _on_enemy_container_laser_upgraded():
 	laser_upgrade_icon.visible = true
 	ui_splash_text.visible = true
