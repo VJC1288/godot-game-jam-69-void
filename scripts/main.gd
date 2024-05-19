@@ -15,6 +15,7 @@ const PAUSE_MENU = preload("res://scenes/pause_menu.tscn")
 @onready var minimap_viewport = $MinimapViewport
 @onready var the_void = %TheVoid
 @onready var black_hole_expand_sound = $Sounds/BlackHoleExpandSound
+@onready var black_hole_reduce_sound = $Sounds/BlackHoleReduceSound
 @onready var background_music = $BackgroundMusic
 @onready var victory_music = $VictoryMusic
 @onready var speed_increase_timer = $OrbiterManager/SpeedIncreaseTimer
@@ -75,7 +76,6 @@ func update_energy_cells(adjustment):
 	hud.update_energy(adjustment)
 
 func end_game_sequence(result: String):
-	
 	if result == "win":
 		background_music.stop()
 		end_game_node.on_game_victory()
@@ -92,4 +92,3 @@ func restart_game():
 	print(Globals.endless_mode)
 	get_tree().call_deferred("reload_current_scene")
 
-	
