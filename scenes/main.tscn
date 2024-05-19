@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=3 uid="uid://bhljayf8hhj62"]
+[gd_scene load_steps=90 format=3 uid="uid://bhljayf8hhj62"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_4cpek"]
 [ext_resource type="PackedScene" uid="uid://dd3se6k2tyivf" path="res://scenes/damage_zone.tscn" id="1_6hpio"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" path="res://scripts/ShaderPreloader.gd" id="16_muler"]
 [ext_resource type="PackedScene" uid="uid://bpe7rywf7saqe" path="res://scenes/void_energy.tscn" id="17_ddo67"]
 [ext_resource type="PackedScene" uid="uid://n0ihv481obi6" path="res://scenes/playerlaser.tscn" id="18_1fajc"]
+[ext_resource type="AudioStream" uid="uid://b747jlfth0blx" path="res://assets/sounds/blackholereduce.mp3" id="18_mw43w"]
 [ext_resource type="PackedScene" uid="uid://bcc63qx127rpn" path="res://scenes/enemies/bomber_bomb_explosion.tscn" id="19_v7jbt"]
 [ext_resource type="PackedScene" uid="uid://du0csvkol31p1" path="res://assets/models/asteroid.glb" id="21_8f6o2"]
 [ext_resource type="PackedScene" uid="uid://ds554i8vvh2y1" path="res://assets/models/beamship.glb" id="22_xxdf6"]
@@ -667,6 +668,9 @@ process_mode = 3
 stream = ExtResource("16_46bo0")
 volume_db = -5.0
 pitch_scale = 0.9
+
+[node name="BlackHoleReduceSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("18_mw43w")
 
 [node name="ShaderPreloader" type="Node3D" parent="."]
 script = ExtResource("16_muler")
