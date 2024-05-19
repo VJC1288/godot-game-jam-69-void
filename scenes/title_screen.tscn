@@ -132,6 +132,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(320, 100)
 layout_mode = 2
 focus_neighbor_top = NodePath("../../PlayButton")
+focus_neighbor_right = NodePath("../../../../../../../../../EndlessMode")
 focus_neighbor_bottom = NodePath("../../PlayButton")
 theme = ExtResource("6_6plbb")
 
@@ -252,8 +253,8 @@ offset_left = 483.0
 offset_top = 497.0
 offset_right = 803.0
 offset_bottom = 597.0
-focus_neighbor_top = NodePath("../../PlayButton")
-focus_neighbor_bottom = NodePath("../../PlayButton")
+focus_neighbor_left = NodePath("../MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/HowToPlay")
+focus_neighbor_right = NodePath("../MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/HowToPlay")
 theme = ExtResource("6_6plbb")
 
 [node name="MarginContainer" type="MarginContainer" parent="EndlessMode"]
