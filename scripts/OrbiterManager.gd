@@ -13,12 +13,13 @@ const PLAYERTRIPLELASER = preload("res://scenes/playertriplelaser.tscn")
 
 @export var default_laser_orbit_speed = default_orbit_speed * 8
 @export var default_enemy_laser_orbit_speed = default_orbit_speed * 1
-@export var default_pickup_orbit_speed = default_orbit_speed * 0
+@export var default_pickup_move_speed = 15
+
 
 @onready var player_laser_container = $PlayerLaserContainer
 @onready var player_container = $PlayerContainer
 @onready var enemy_container = $EnemyContainer
-@onready var pickup_container = $PickupContainer
+@onready var pickup_container = %PickupContainer
 @onready var asteroid_manager = $AsteroidManager
 @onready var enemy_attacks_container = $EnemyAttacksContainer
 @onready var camera_pivot = $PlayerContainer/CameraPivot
@@ -84,8 +85,7 @@ func _physics_process(delta):
 	for p in pickup_container.get_children():
 		var direction = p.global_position.direction_to(Vector3.ZERO)
 		p.global_position += default_fall_speed * delta * direction
-	
-	pickup_container.rotation.y -= default_pickup_orbit_speed * delta
+		p.position.x += default_pickup_move_speed * delta
 
 	#Enemy movement management
 	for e in enemy_container.get_children():
@@ -120,5 +120,4 @@ func _on_speed_increase_timer_timeout():
 	default_orbit_speed *= 1.05
 	default_laser_orbit_speed = default_orbit_speed * 8
 	default_enemy_laser_orbit_speed = default_orbit_speed * 1
-	default_pickup_orbit_speed = default_orbit_speed * .01
 

@@ -9,7 +9,7 @@ signal laser_upgraded()
 @onready var enemy_bombs = %EnemyBombs
 @onready var vertical_enemy_bombs = %VerticalEnemyBombs
 @onready var horizontal_enemy_bombs = %HorizontalEnemyBombs
-@onready var pickup_container = $"../PickupContainer"
+@onready var pickup_container = %PickupContainer
 @onready var fighter_death_sound = $"../../Sounds/FighterDeathSound"
 @onready var bomber_death_sound = $"../../Sounds/BomberDeathSound"
 @onready var beamer_death_sound = $"../../Sounds/BeamerDeathSound"
