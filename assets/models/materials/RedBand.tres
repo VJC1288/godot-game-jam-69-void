@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dc05yay5yio7h"]
+
+[resource]
+resource_name = "RedBand"
+cull_mode = 2
+albedo_color = Color(0.906352, 0.379769, 0.36009, 1)
+metallic = 0.621762
+roughness = 0.76943

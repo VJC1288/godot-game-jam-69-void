@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://3xcee28loq02"]
+
+[ext_resource type="Shader" path="res://shaders/model_outline.gdshader" id="1_2necd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qe05v"]
+render_priority = 0
+shader = ExtResource("1_2necd")
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_width = 2.0
+shader_parameter/constant_width = true
+
+[resource]
+resource_name = "ShipMetalBlue"
+next_pass = SubResource("ShaderMaterial_qe05v")
+cull_mode = 2
+albedo_color = Color(0.373621, 0, 0.90675, 1)
+roughness = 0.209845
