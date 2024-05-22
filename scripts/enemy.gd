@@ -65,6 +65,8 @@ func _physics_process(delta):
 			direction = global_position.direction_to(Vector3.ZERO)
 			direction = direction.normalized()
 			global_position = global_position + direction * DEATH_SPEED * delta
+			await get_tree().create_timer(3).timeout
+			queue_free()
 			
 func checkPlayerDistance():
 	if Globals.current_player != null:
