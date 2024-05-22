@@ -1,3 +1,5 @@
+class_name HowToPlay
+
 extends CanvasLayer
 
 signal close_how_to_play()

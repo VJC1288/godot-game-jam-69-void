@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://bom567dqu14p4"]
+
+[ext_resource type="PackedScene" uid="uid://bpe7rywf7saqe" path="res://scenes/void_energy.tscn" id="1_mqymi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_60sew"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ylsf3"]
+material = SubResource("StandardMaterial3D_60sew")
+size = Vector2(3, 3)
+orientation = 2
+
+[node name="VEModel" type="SubViewport"]
+process_priority = 1
+process_physics_priority = 1
+
+[node name="VoidEnergy" parent="." instance=ExtResource("1_mqymi")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+monitoring = false
+monitorable = false
+can_timeout = false
+
+[node name="MeshInstance3D" parent="VoidEnergy" index="0"]
+layers = 4
+
+[node name="Ring1" parent="VoidEnergy" index="2"]
+layers = 4
+
+[node name="Ring2" parent="VoidEnergy" index="3"]
+layers = 4
+
+[node name="Ring3" parent="VoidEnergy" index="4"]
+layers = 4
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.301295)
+cull_mask = 4
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.201257)
+layers = 4
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_ylsf3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+layers = 4
+light_energy = 0.2
+light_cull_mask = 4294966276
+
+[editable path="VoidEnergy"]

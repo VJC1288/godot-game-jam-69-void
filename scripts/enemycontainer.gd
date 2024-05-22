@@ -40,8 +40,11 @@ var spawnRateThreshold:int = 1000
 var bomber_threshold: int = 35
 var beam_fighter_threshold: int = 25
 var second_fighter_threshold: int = 30
+var juggernaut_spawn_energy: int
 
 func _ready():
+	juggernaut_spawn_energy = randi_range(1250,2000)
+	print(juggernaut_spawn_energy)
 	await get_tree().create_timer(4).timeout
 	#pass
 	spawnFighter()
@@ -92,9 +95,8 @@ func spawnJuggernaut():
 	
 func _on_spawn_timer_timeout():
 	
-	var juggernaut_chance: float = randi_range(1,100)
 	if Globals.current_player != null:
-		if Globals.current_player.current_energy >= 1250 and juggernaut_chance <= 10 and juggernaut_spawned == false:
+		if Globals.current_player.current_energy >= juggernaut_spawn_energy and juggernaut_spawned == false:
 			spawnJuggernaut()
 		else:
 			spawnFighter()

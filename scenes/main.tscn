@@ -445,7 +445,7 @@ fractal_lacunarity = 2.045
 fractal_gain = 0.51
 fractal_weighted_strength = 0.22
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_f2a00"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_k3cqc"]
 in_3d_space = true
 seamless = true
 seamless_blend_skirt = 0.19
@@ -456,7 +456,7 @@ noise = SubResource("FastNoiseLite_qsupg")
 resource_local_to_scene = true
 transparency = 1
 albedo_color = Color(1, 0.270588, 0.176471, 1)
-albedo_texture = SubResource("NoiseTexture2D_f2a00")
+albedo_texture = SubResource("NoiseTexture2D_k3cqc")
 emission_enabled = true
 emission = Color(0.53995, 0.251145, 9.62615e-08, 1)
 emission_energy_multiplier = 0.5
@@ -465,7 +465,7 @@ rim = 0.45
 rim_tint = 0.0
 refraction_scale = -0.61
 
-[sub_resource type="SphereMesh" id="SphereMesh_qgnyp"]
+[sub_resource type="SphereMesh" id="SphereMesh_g88s0"]
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_abwkc")
 
@@ -602,13 +602,6 @@ shape = SubResource("BoxShape3D_mwojy")
 wait_time = 10.0
 autostart = true
 
-[node name="UIElements" type="Node" parent="."]
-
-[node name="HUD" parent="UIElements" instance=ExtResource("4_nxr2l")]
-
-[node name="Minimap" parent="UIElements/HUD/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer3/MarginContainer/MinimapPanel" index="0"]
-texture = SubResource("ViewportTexture_xwad3")
-
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("5_1ijl5")
@@ -672,11 +665,15 @@ pitch_scale = 0.9
 [node name="BlackHoleReduceSound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("18_mw43w")
 
+[node name="UIElements" type="Node" parent="."]
+
+[node name="HUD" parent="UIElements" instance=ExtResource("4_nxr2l")]
+
+[node name="Minimap" parent="UIElements/HUD/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer3/MarginContainer/MinimapPanel" index="0"]
+texture = SubResource("ViewportTexture_xwad3")
+
 [node name="ShaderPreloader" type="Node3D" parent="."]
 script = ExtResource("16_muler")
-
-[node name="ShortWarpEffect" parent="ShaderPreloader" instance=ExtResource("16_3qhgq")]
-layers = 512
 
 [node name="VoidEnergy" parent="ShaderPreloader" instance=ExtResource("17_ddo67")]
 monitoring = false
@@ -694,13 +691,16 @@ layers = 512
 [node name="Ring3" parent="ShaderPreloader/VoidEnergy" index="4"]
 layers = 512
 
+[node name="ShortWarpEffect" parent="ShaderPreloader" instance=ExtResource("16_3qhgq")]
+layers = 512
+
 [node name="Laser" parent="ShaderPreloader" instance=ExtResource("18_1fajc")]
 
 [node name="BomberBombExplosion" parent="ShaderPreloader" instance=ExtResource("19_v7jbt")]
 
 [node name="MeshInstance3D" parent="ShaderPreloader/BomberBombExplosion" index="1"]
 layers = 512
-mesh = SubResource("SphereMesh_qgnyp")
+mesh = SubResource("SphereMesh_g88s0")
 
 [node name="asteroid" parent="ShaderPreloader" instance=ExtResource("21_8f6o2")]
 

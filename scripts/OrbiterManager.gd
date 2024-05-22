@@ -13,7 +13,7 @@ const PLAYERTRIPLELASER = preload("res://scenes/playertriplelaser.tscn")
 
 @export var default_laser_orbit_speed = default_orbit_speed * 8
 @export var default_enemy_laser_orbit_speed = default_orbit_speed * 1
-@export var default_pickup_orbit_speed = default_orbit_speed * .01
+@export var default_pickup_orbit_speed = default_orbit_speed * 0
 
 @onready var player_laser_container = $PlayerLaserContainer
 @onready var player_container = $PlayerContainer

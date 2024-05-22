@@ -79,6 +79,7 @@ volume_db = -13.0
 pitch_scale = 0.8
 
 [node name="HeatBar" parent="." instance=ExtResource("11_5jg6h")]
+size = Vector3(3, 0.25, 0.05)
 
 [node name="LaserCooldown" type="Timer" parent="."]
 wait_time = 0.1

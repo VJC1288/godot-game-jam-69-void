@@ -1,5 +1,7 @@
 extends Node
 
+const VE_MODEL = preload("res://scenes/ve_model.tscn")
+
 var current_player: Node
 var current_energy: int
 var fighters_defeated: int
