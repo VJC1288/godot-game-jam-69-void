@@ -1,17 +1,7 @@
-[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://h46gd8byueaw"]
-
-[ext_resource type="Shader" path="res://shaders/model_outline.gdshader" id="1_mcsa7"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3qfeb"]
-render_priority = 0
-shader = ExtResource("1_mcsa7")
-shader_parameter/outline_color = null
-shader_parameter/outline_width = 2.0
-shader_parameter/constant_width = true
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://h46gd8byueaw"]
 
 [resource]
 resource_name = "Cockpit"
-next_pass = SubResource("ShaderMaterial_3qfeb")
 cull_mode = 2
 albedo_color = Color(0, 0, 0, 1)
 roughness = 0.101036
